@@ -1,0 +1,22 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- configFragment 선언 -->
+<th:block th:fragment="configFragment">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Thymeleaf 예제</title>
+		
+	<!-- Common stylesheets -->
+	<link rel="stylesheet" th:href="@{/css/common/common.css}">
+	<!-- /Common stylesheets -->
+
+	<!-- Content Page의 CSS fragment 삽입 -->
+	<th:block layout:fragment="css"></th:block>
+	
+	<!-- Common JS files -->
+	<script th:src="@{/js/common/common.js}"></script>
+	<!-- /Common JS files -->
+</th:block>
+</html>
