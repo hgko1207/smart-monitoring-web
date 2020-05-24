@@ -6,7 +6,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
 	<title>Thymeleaf 예제</title>
+	
+	<!-- Global stylesheets -->
+	<link th:href="@{/limitless/css/icons/icomoon/styles.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/limitless/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/limitless/css/bootstrap_limitless.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/limitless/css/layout.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/limitless/css/components.min.css}" rel="stylesheet" type="text/css">
+	<link th:href="@{/limitless/css/colors.min.css}" rel="stylesheet" type="text/css">
+	<!-- /Global stylesheets -->
 		
 	<!-- Common stylesheets -->
 	<link rel="stylesheet" th:href="@{/css/common/common.css}">
@@ -14,6 +24,12 @@
 
 	<!-- Content Page의 CSS fragment 삽입 -->
 	<th:block layout:fragment="css"></th:block>
+	
+	<!-- Core JS files -->
+	<script th:src="@{/limitless/js/main/jquery.min.js}"></script>
+	<script th:src="@{/limitless/js/main/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/limitless/js/plugins/loaders/blockui.min.js}"></script>
+	<!-- /Core JS files -->
 	
 	<!-- Common JS files -->
 	<script th:src="@{/js/common/common.js}"></script>
