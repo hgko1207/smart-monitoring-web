@@ -1,6 +1,18 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-    <!-- headerFragment 선언 -->
-    <div th:fragment="headerFragment">
-        <h1>HEADER</h1>
-    </div>
+<!-- headerFragment 사용 -->
+<th:block th:fragment="headerFragment">
+    <div class="navbar navbar-expand-md navbar-dark">
+		<div class="navbar-brand wmin-0 mr-5">
+			<a href="${pageContext.request.contextPath}/dashboard" class="d-inline-block">
+				<img th:src="@{/images/logo.png}" alt="">
+			</a>
+		</div>
+		
+		<div class="d-md-none">
+			<button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbar-mobile" aria-expanded="false">
+				<i class="icon-tree5"></i>
+			</button>
+		</div>
+	</div>
+</th:block>
 </html>
