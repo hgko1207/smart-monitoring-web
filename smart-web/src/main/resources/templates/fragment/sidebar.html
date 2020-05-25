@@ -1,7 +1,79 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-    <!-- sidebarFragment 사용 -->
-    <th:block th:fragment="sidebarFragment">
-        <h1>sidebar</h1>
-    </th:block>
+<!-- sidebarFragment 사용 -->
+<th:block th:fragment="sidebarFragment">
+	<div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
+      	<div class="sidebar-mobile-toggler text-center">
+			<a href="#" class="sidebar-mobile-main-toggle">
+				<i class="icon-arrow-left8"></i>
+			</a>
+			Navigation
+			<a href="#" class="sidebar-mobile-expand">
+				<i class="icon-screen-full"></i>
+				<i class="icon-screen-normal"></i>
+			</a>
+		</div>
+		
+		<div class="sidebar-content">
+			<div class="card card-sidebar-mobile">
+				<ul class="nav nav-sidebar" data-nav-type="accordion">
+					<li class="nav-item-header">
+						<div class="text-uppercase font-size-md line-height-md">주요 정보</div> 
+						<i class="icon-menu" title="Main"></i>
+					</li>
+					<li id="home" class="nav-item">
+						<a th:href="@{/home}" class="nav-link">
+							<i class="icon-home4"></i><span>대시보드</span>
+						</a>
+					</li>
+					<li id="map" class="nav-item">
+						<a th:href="@{/home}" class="nav-link">
+							<i class="icon-earth"></i><span>지도정보</span>
+						</a>
+					</li>
+					<li id="measurement" class="nav-item">
+						<a th:href="@{/home}" class="nav-link">
+							<i class="icon-stats-dots"></i><span>계측정보</span>
+						</a>
+					</li>
+					<li class="nav-item-header">
+						<div class="text-uppercase font-size-md line-height-md">부가서비스</div> 
+						<i class="icon-menu" title="Main"></i>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{http://weather.rda.go.kr}" class="nav-link" target="_blank">
+							<i class="icon-arrow-right32"></i><span>기상청 정보</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{https://www.kamis.or.http://weather.rda.go.kr kr/customer/main/main.do}" class="nav-link" target="_blank">
+							<i class="icon-arrow-right32"></i><span>농산물 가격</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{https://ncpms.rda.go.kr/npms/Main.np}" class="nav-link" target="_blank">
+							<i class="icon-arrow-right32"></i><span>병충해 정보</span>
+						</a>
+					</li>
+					<li class="nav-item-header">
+						<div class="text-uppercase font-size-md line-height-md">운영 매뉴얼</div> 
+						<i class="icon-menu" title="Main"></i>
+					</li>
+					<li class="nav-item">
+						<a th:href="@{#}" class="nav-link" target="_blank">
+							<i class="icon-arrow-right32"></i><span>매뉴얼 다운로드</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		var pathName = this.location.pathname;
+		var menuName = pathName.split("/")[2];
+	    
+		$("li#" + menuName).children().addClass("active");
+	</script>
+</th:block>
 </html>
 
