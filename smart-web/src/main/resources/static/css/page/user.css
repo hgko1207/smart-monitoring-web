@@ -1,0 +1,5 @@
+@charset "EUC-KR";
+
+.layout-boxed-bg {
+    background: url(../../images/boxed_bg.png) repeat;
+}
