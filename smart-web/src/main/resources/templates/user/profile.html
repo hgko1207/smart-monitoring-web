@@ -7,22 +7,9 @@
         <link rel="stylesheet" th:href="@{/css/page/home.css}" >
     </th:block>
     
-    <th:block layout:fragment="content">
-        <div class="page-header page-header-light">
-			<div class="page-header-content header-elements-md-inline">
-				<div class="page-title d-flex">
-					<form role="form">
-						<div class="form-group mb-0">
-							<label class="col-form-label mr-2" for="form-type">항목</label>
-							<select >
-								<option>토양수분</option>
-							</select>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-    </th:block>
+    <div layout:fragment="content">
+        <h1>content</h1>
+    </div>
     
      <!-- index.html 고유 스크립트 추가 -->
     <th:block layout:fragment="script">

@@ -3,3 +3,21 @@
 h1 {
 	color: red;
 }
+
+.navbar-brand {
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+}
+
+.navbar-brand img {
+	height: 2rem;
+}
+
+.navigation-title {
+	font-weight: 600;
+	font-size: 1rem;	
+}
+
+.page-title {
+	padding: 1rem 0;
+}

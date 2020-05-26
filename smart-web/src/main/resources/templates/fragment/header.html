@@ -26,8 +26,10 @@
 				</li>
 			</ul>
 			
-			<div class="navbar-title ml-md-3">
-				<span class="text-center">Home > Dashboard</span>
+			<div class="navbar-title ml-md-4">
+				<span class="navigation-title">
+					<span id="navigation"></span>
+				</span>
 			</div>
 			
 			<span class="mr-md-auto"></span>
@@ -48,5 +50,21 @@
 			</ul>
 		</div>
 	</div>
+	
+	<script>
+		var menuName = this.location.pathname.split("/")[2];
+		
+		var name = '';
+		if (menuName === 'home') {
+			name = '대쉬보드';
+		} else if (menuName === 'map') {
+			name = '지도정보';
+		} else if (menuName === 'measurement') {
+			name = '계측정보';
+		} else {
+			name = '사용자정보';
+		}
+	    $("#navigation").html("Home > " + name);
+	</script>
 </th:block>
 </html>
