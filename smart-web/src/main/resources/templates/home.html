@@ -11,14 +11,180 @@
         <div class="page-header page-header-light">
 			<div class="page-header-content header-elements-md-inline">
 				<div class="page-title d-flex">
-					<form role="form">
-						<div class="form-group mb-0">
-							<label class="col-form-label mr-2" for="form-type">항목</label>
-							<select >
-								<option>토양수분</option>
-							</select>
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">항목 :</label>
+					<div class="form-group mr-4 mb-0">
+						<select class="form-control form-control-select2">
+							<option>토양수분</option>
+						</select>
+					</div>
+					
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">날짜 선택 :</label>
+					<div class="form-group mr-4 mb-0">
+						<div class="input-group">
+							<span class="input-group-prepend" >
+								<span class="input-group-text"><i class="icon-calendar22"></i></span>
+							</span>
+							<input type="text" id="datetimePicker" class="form-control">
 						</div>
-					</form>
+					</div>
+					
+					<button id="searchBtn" class="btn bg-info btn-sm px-3"><i class="icon-search4 mr-2"></i>검 색</button>
+				</div>
+				<div>
+					asdas
+				</div>
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="row">
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>토양 1
+							</h5>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>토양 2
+							</h5>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>토양 3
+							</h5>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>토양 4
+							</h5>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>토양 5
+							</h5>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header bg-transparent">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>병합된 경보 펼쳐보기
+							</h5>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header bg-transparent">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>병합된 경보 펼쳐보기
+							</h5>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header bg-transparent">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>병합된 경보 펼쳐보기
+							</h5>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<!-- <div class="card-header bg-transparent">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-menu7 mr-2"></i>병합된 경보 펼쳐보기
+							</h5>
+						</div> -->
+						<div class="card-body p-0">
+							<ul class="nav nav-tabs nav-tabs-highlight nav-justified">
+								<li class="nav-item"><a href="#tab1" class="nav-link active" data-toggle="tab">토양 1</a></li>
+								<li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">토양 2</a></li>
+								<li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">토양 3</a></li>
+								<li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">토양 4</a></li>
+								<li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">토양 5</a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane fade active show" id="tab1">
+									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
