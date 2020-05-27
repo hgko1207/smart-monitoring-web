@@ -10,16 +10,20 @@
     <th:block layout:fragment="content">
         <div class="page-header page-header-light">
 			<div class="page-header-content header-elements-md-inline">
-				<div class="page-title d-flex">
-					<form role="form">
-						<div class="form-group mb-0">
+				<form role="form">
+					<div class="page-title d-flex">
+						<div class="form-group mb-0 mr-4">
 							<label class="col-form-label mr-2" for="form-type">항목</label>
 							<select >
 								<option>토양수분</option>
 							</select>
 						</div>
-					</form>
-				</div>
+						<div class="form-group mb-0 mr-4">
+							<label class="col-form-label mr-2" for="form-type">날짜 선택</label>
+						</div>
+						<button class="btn btn-info">검 색</button>
+					</div>
+				</form>
 			</div>
 		</div>
     </th:block>
