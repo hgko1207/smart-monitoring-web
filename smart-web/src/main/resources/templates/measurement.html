@@ -7,9 +7,71 @@
         <link rel="stylesheet" th:href="@{/css/page/measurement.css}" >
     </th:block>
     
-    <div layout:fragment="content">
-        <h1>content</h1>
-    </div>
+    <th:block layout:fragment="content">
+       <div class="page-header page-header-light">
+			<div class="page-header-content header-elements-md-inline">
+				<div class="page-title d-flex">
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">구분 :</label>
+					<div class="form-group mr-2 mb-0">
+						<select class="form-control form-control-select2">
+							<option>지점별</option>
+						</select>
+					</div>
+					
+					<div class="form-group mr-4 mb-0">
+						<select class="form-control form-control-select2">
+							<option>상층</option>
+						</select>
+					</div>
+					
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">그래프항목 :</label>
+					<div class="form-group mr-2 mb-0">
+						<select class="form-control form-control-select2">
+							<option>토양온도</option>
+						</select>
+					</div>
+					
+					<div class="form-group mr-4 mb-0">
+						<select class="form-control form-control-select2">
+							<option>일별</option>
+						</select>
+					</div>
+					
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">날짜 선택 :</label>
+					<div class="form-group mr-4 mb-0">
+						<div class="input-group">
+							<span class="input-group-prepend" >
+								<span class="input-group-text"><i class="icon-calendar22"></i></span>
+							</span>
+							<input type="text" id="datetimePicker" class="form-control">
+						</div>
+					</div>
+					<div class="form-group mr-4 mb-0">
+						<div class="input-group">
+							<span class="input-group-prepend" >
+								<span class="input-group-text"><i class="icon-calendar22"></i></span>
+							</span>
+							<input type="text" id="datetimePicker" class="form-control">
+						</div>
+					</div>
+					
+					<button id="searchBtn" class="btn bg-info btn-sm px-3"><i class="icon-search4 mr-2"></i>검 색</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="card">
+				<div class="card-body">
+				</div>
+			</div>
+			
+			<div class="card">
+				<div class="card-body">
+				</div>
+			</div>
+		</div>
+    </th:block>
     
      <!-- index.html 고유 스크립트 추가 -->
     <th:block layout:fragment="script">

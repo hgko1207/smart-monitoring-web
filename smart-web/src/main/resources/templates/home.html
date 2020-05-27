@@ -10,26 +10,194 @@
     <th:block layout:fragment="content">
         <div class="page-header page-header-light">
 			<div class="page-header-content header-elements-md-inline">
-				<form role="form">
-					<div class="page-title d-flex">
-						<div class="form-group mb-0 mr-4">
-							<label class="col-form-label mr-2" for="form-type">항목</label>
-							<select >
-								<option>토양수분</option>
-							</select>
-						</div>
-						<div class="form-group mb-0 mr-4">
-							<label class="col-form-label mr-2" for="form-type">날짜 선택</label>
-						</div>
-						<button class="btn btn-info">검 색</button>
+				<div class="page-title d-flex">
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">항목 :</label>
+					<div class="form-group mr-4 mb-0">
+						<select class="form-control form-control-select2">
+							<option>토양수분</option>
+						</select>
 					</div>
-				</form>
+					
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">날짜 선택 :</label>
+					<div class="form-group mr-3 mb-0">
+						<div class="input-group">
+							<span class="input-group-prepend" >
+								<span class="input-group-text"><i class="icon-calendar22"></i></span>
+							</span>
+							<input type="text" id="datetimePicker" class="form-control">
+						</div>
+					</div>
+					<button id="searchBtn" class="btn bg-info btn-sm px-3"><i class="icon-search4 mr-2"></i>검 색</button>
+				</div>
+				<div>
+					<span class="font-weight-bold text-danger">2020-05-27 14:00 기준</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="content">
+			<div class="row">
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title font-weight-bold">
+								<i class="icon-stats-bars2 mr-2"></i>토양수분 A
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title font-weight-bold">
+								<i class="icon-stats-bars2 mr-2"></i>토양수분 B
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title font-weight-bold">
+								<i class="icon-stats-bars2 mr-2"></i>토양수분 C
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title font-weight-bold">
+								<i class="icon-stats-bars2 mr-2"></i>토양수분 D
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title font-weight-bold">
+								<i class="icon-stats-bars2 mr-2"></i>토양수분 E
+							</h6>
+							<div class="header-elements">
+								<div class="list-icons">
+			                		<a class="list-icons-item" data-action="collapse"></a>
+			               		</div>
+			          		</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title font-weight-bold">
+								<i class="icon-satellite-dish2 mr-2"></i>기상정보(기상청)
+							</h6>
+							<div>2020-05-27 14:00 기준</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-header bg-transparent header-elements-inline">
+							<h6 class="card-title font-weight-bold">
+								<i class="icon-clipboard3 mr-2"></i>생육환경
+							</h6>
+							<div>2020-05-27 14:00 기준</div>
+						</div>
+						<div class="card-body">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-4">
+					<div class="card">
+						<div class="card-body p-0">
+							<div class="map-container" id="googleMap"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col">
+					<div class="card">
+						<div class="card-body p-0">
+							<ul class="nav nav-tabs nav-tabs-highlight nav-justified bg-light">
+								<li class="nav-item nav-start"><a href="#tab1" class="nav-link active" data-toggle="tab">A 지점 토양수분계측그래프(10일)</a></li>
+								<li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">B 지점 토양수분계측그래프(10일)</a></li>
+								<li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">C 지점 토양수분계측그래프(10일)</a></li>
+								<li class="nav-item"><a href="#tab2" class="nav-link" data-toggle="tab">D 지점 토양수분계측그래프(10일)</a></li>
+								<li class="nav-item nav-end"><a href="#tab2" class="nav-link" data-toggle="tab">E 지점 토양수분계측그래프(10일)</a></li>
+							</ul>
+							<div class="tab-content">
+								<div class="tab-pane fade active show" id="tab1">
+									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+								</div>
+								<div class="tab-pane fade" id="tab2">
+									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+								</div>
+								<div class="tab-pane fade" id="tab3">
+									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+								</div>
+								<div class="tab-pane fade" id="tab4">
+									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+								</div>
+								<div class="tab-pane fade" id="tab5">
+									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
     </th:block>
     
      <!-- index.html 고유 스크립트 추가 -->
     <th:block layout:fragment="script">
+    	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOybNujmIFXZLfUf5J-q0_WqNH3riUKbg" async defer></script>
+    	<script th:src="@{/js/common/google_map.js}"></script>
         <script th:src="@{/js/page/home.js}"></script>
     </th:block>
 </html>

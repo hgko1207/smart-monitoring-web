@@ -1,0 +1,26 @@
+.card-header {
+	padding: 0.5rem 1.25rem;
+}
+
+#datetimePicker {
+	width: 120px;
+}
+
+.map-container {
+	height: 268px;
+}
+
+/*****************************************************/
+/* Tab */
+/*****************************************************/
+.nav-start .active {
+	border-left: 0;
+}
+
+.nav-end .active {
+	border-right: 0;
+}
+
+.tab-content {
+	padding: 0 1rem 1rem 1rem;
+}
