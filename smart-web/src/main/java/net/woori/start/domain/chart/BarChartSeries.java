@@ -16,6 +16,8 @@ public class BarChartSeries {
 	
 	private String type;
 	
+	private int barWidth = 32;
+	
 	private List<BarChartData> data;
 	
 	private BarChartItemStyle itemStyle;

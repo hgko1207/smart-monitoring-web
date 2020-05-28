@@ -18,11 +18,19 @@ public class ChartInfo {
 	
 	private List<String> categories;
 	
+	private List<LineChartSeries> lineChartSeries;
+	
 	private List<BarChartSeries> barChartSeries;
 	
 	public ChartInfo() {
 		categories = new ArrayList<>();
 		barChartSeries = new ArrayList<>();
+	}
+	
+	public ChartInfo(String title) {
+		this.title = title;
+		categories = new ArrayList<>();
+		lineChartSeries = new ArrayList<>();
 	}
 	
 	public void addCategory(String value) {
@@ -31,5 +39,9 @@ public class ChartInfo {
 	
 	public void addBarChartSeries(BarChartSeries series) {
 		barChartSeries.add(series);
+	}
+	
+	public void addListChartSeries(LineChartSeries series) {
+		lineChartSeries.add(series);
 	}
 }

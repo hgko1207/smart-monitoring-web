@@ -5,13 +5,21 @@ import org.springframework.stereotype.Service;
 import net.woori.start.domain.DashboardInfo;
 import net.woori.start.domain.chart.BarChartSeries;
 import net.woori.start.domain.chart.ChartInfo;
+import net.woori.start.domain.chart.LineChartSeries;
 
 @Service
 public class ChartService {
 
 	public DashboardInfo createChartInfo() {
-		DashboardInfo dashboardInfo = new DashboardInfo();
 		
+		DashboardInfo dashboardInfo = new DashboardInfo();
+		createBarChart(dashboardInfo);
+		createLineChart(dashboardInfo);
+		
+		return dashboardInfo;
+	}
+	
+	public void createBarChart(DashboardInfo dashboardInfo) {
 		ChartInfo soilAChartInfo = new ChartInfo();
 		ChartInfo soilBChartInfo = new ChartInfo();
 		ChartInfo soilCChartInfo = new ChartInfo();
@@ -63,7 +71,40 @@ public class ChartService {
 		dashboardInfo.setSoilCBarChart(soilCChartInfo);
 		dashboardInfo.setSoilDBarChart(soilDChartInfo);
 		dashboardInfo.setSoilEBarChart(soilEChartInfo);
+	}
+	
+	public void createLineChart(DashboardInfo dashboardInfo) {
+		ChartInfo tempAChartInfo = new ChartInfo("토양온도");
+		ChartInfo waterAChartInfo = new ChartInfo("토양수분");
 		
-		return dashboardInfo;
+		String[] categories = {"2020-05-01", "2020-05-02", "2020-05-03", "2020-05-04", "2020-05-05", "2020-05-06", "2020-05-07"};
+		for (String data : categories) {
+			tempAChartInfo.addCategory(data);
+			waterAChartInfo.addCategory(data);
+		}
+		
+		LineChartSeries tempAChartSeries = new LineChartSeries("토양온도");
+		tempAChartSeries.addDataItem(14);
+		tempAChartSeries.addDataItem(18);
+		tempAChartSeries.addDataItem(20);
+		tempAChartSeries.addDataItem(16);
+		tempAChartSeries.addDataItem(12);
+		tempAChartSeries.addDataItem(17);
+		tempAChartSeries.addDataItem(15);
+		
+		LineChartSeries waterAChartSeries = new LineChartSeries("토양수분");
+		waterAChartSeries.addDataItem(60);
+		waterAChartSeries.addDataItem(70);
+		waterAChartSeries.addDataItem(75);
+		waterAChartSeries.addDataItem(72);
+		waterAChartSeries.addDataItem(54);
+		waterAChartSeries.addDataItem(86);
+		waterAChartSeries.addDataItem(65);
+		
+		tempAChartInfo.addListChartSeries(tempAChartSeries);
+		waterAChartInfo.addListChartSeries(waterAChartSeries);
+		
+		dashboardInfo.setTempALineChart(tempAChartInfo);
+		dashboardInfo.setWaterALineChart(waterAChartInfo);
 	}
 }

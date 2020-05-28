@@ -1,13 +1,17 @@
 @charset "EUC-KR";
-
 h1 {
 	color: red;
 }
+
+.fs-16 {font-size: 16px;}
 
 .sidebar {
 	width: 15rem;
 }
 
+/*****************************************************/
+/* Navbar */
+/*****************************************************/
 @media ( min-width :768px) {
 	.navbar-expand-md .navbar-brand {
 		min-width: 13rem
@@ -25,7 +29,7 @@ h1 {
 
 .navigation-title {
 	font-weight: 600;
-	font-size: 1rem;	
+	font-size: 1rem;
 }
 
 .page-title {

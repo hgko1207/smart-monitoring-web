@@ -55,7 +55,7 @@
 			               		</div>
 			          		</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
 								<div class="chart has-fixed-height" id="soilABarChart"></div>
 							</div>
@@ -75,7 +75,7 @@
 			               		</div>
 			          		</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
 								<div class="chart has-fixed-height" id="soilBBarChart"></div>
 							</div>
@@ -95,7 +95,7 @@
 			               		</div>
 			          		</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
 								<div class="chart has-fixed-height" id="soilCBarChart"></div>
 							</div>
@@ -115,7 +115,7 @@
 			               		</div>
 			          		</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
 								<div class="chart has-fixed-height" id="soilDBarChart"></div>
 							</div>
@@ -135,7 +135,7 @@
 			               		</div>
 			          		</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
 								<div class="chart has-fixed-height" id="soilEBarChart"></div>
 							</div>
@@ -151,18 +151,20 @@
 							<h6 class="card-title font-weight-bold">
 								<i class="icon-satellite-dish2 mr-2"></i>기상정보(기상청)
 							</h6>
-							<div>2020-05-27 14:00 기준</div>
+							<div class="text-secondary">2020-05-27 14:00 기준</div>
 						</div>
 						<div class="card-body row">
+							<div class="mr-md-auto"></div>
 							<div class="col-md-4">
 								<img th:src="@{/images/sun.png}" alt="sun" style="max-width: 100%; height: auto;"/>
 							</div>
-							<div class="mr-md-auto"></div>
-							<div class="col-md-7 py-3">
+							<div class="col-md-7 pl-4 py-3">
 								<div class="weather-time">14시 현재</div>
-								<div>2 맑음</div>
+								<div class="weather-info">
+									<span class="weather-temp mr-2">22 ℃</span> 맑음
+								</div>
 								<div>어제 기온과 같음 | 강수확률 0%</div>
-								<div>미세먼지 보통 ㆍ 오존 좋음</div>
+								<div>미세먼지 <span class="text-green-600">보통</span> ㆍ 오존 <span class="text-blue-600">좋음</span></div>
 							</div>
 						</div>
 					</div>
@@ -174,10 +176,26 @@
 							<h6 class="card-title font-weight-bold">
 								<i class="icon-clipboard3 mr-2"></i>생육환경
 							</h6>
-							<div>2020-05-27 14:00 기준</div>
+							<div class="text-secondary">2020-05-27 14:00 기준</div>
 						</div>
-						<div class="card-body">
-							
+						<div class="card-body pb-2">
+							<div class="font-weight-bold">2020년 05월 11일 현재</div>
+							<div class="mt-1">
+								<span class="crop-area">A 지점</span>의 콩 작물 생육환경정보는 [<span class="crop-green fs-16">양호 단계</span>]입니다.
+							</div>
+							<div class="row mt-1">
+								<div class="col-md-3">
+									<img th:src="@{/images/crop_bean.png}" alt="" style="max-width: 100%; height: auto;"/>
+								</div>
+								<div class="col-md-1 py-2">
+									<div class="vertical-line"></div>
+								</div>
+								<div class="col-md-8 py-2">
+									<div>표층(10cm) 토양수분이 100일째 [<span class="crop-green">양호단계</span>]입니다.</div>
+									<div class="my-2">표층(30cm) 토양수분이 35일째 [<span class="crop-green">양호단계</span>]입니다.</div>
+									<div>표층(50cm) 토양수분이 56일째 [<span class="crop-green">양호단계</span>]입니다.</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -193,7 +211,7 @@
 			
 			<div class="row">
 				<div class="col">
-					<div class="card">
+					<div class="card mb-0">
 						<div class="card-body p-0">
 							<ul class="nav nav-tabs nav-tabs-highlight nav-justified bg-light">
 								<li class="nav-item nav-start"><a href="#tab1" class="nav-link active" data-toggle="tab">A 지점 토양수분계측그래프(10일)</a></li>
@@ -204,19 +222,74 @@
 							</ul>
 							<div class="tab-content">
 								<div class="tab-pane fade active show" id="tab1">
-									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+									<div class="row">
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempALineChart"></div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterALineChart"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="tab2">
-									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+									<div class="row">
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempBLineChart"></div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterBLineChart"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="tab3">
-									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+									<div class="row">
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempCLineChart"></div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterCLineChart"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="tab4">
-									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+									<div class="row">
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempDLineChart"></div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterDLineChart"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 								<div class="tab-pane fade" id="tab5">
-									To use in tabs with equal widths add <code>.nav-justified .nav-tabs-highlight</code> classes.
+									<div class="row">
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempELineChart"></div>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterELineChart"></div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -230,7 +303,8 @@
     <th:block layout:fragment="script">
     	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOybNujmIFXZLfUf5J-q0_WqNH3riUKbg" async defer></script>
     	<script th:src="@{/js/common/google_map.js}"></script>
-        <script th:src="@{/js/page/home.js}"></script>
         <script th:src="@{/js/common/bar_chart.js}"></script>
+        <script th:src="@{/js/common/line_chart.js}"></script>
+        <script th:src="@{/js/page/home.js}"></script>
     </th:block>
 </html>

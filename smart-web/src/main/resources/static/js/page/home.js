@@ -1,5 +1,7 @@
 moment.locale('ko');
 
+let map;
+
 $(document).ready(function() {
     $('#datetimePicker').daterangepicker({ 
         singleDatePicker: true,
@@ -9,7 +11,12 @@ $(document).ready(function() {
     });
     
     setTimeout(function() {
-		GoogleMap.init('googleMap');
+    	map = GoogleMap.init('googleMap');
+    	let site = new Object();
+    	site.lat = 36.5;
+		site.lon = 127.5;
+    	
+    	GoogleMap.markerAndInfoOverlay(map, site);
 	}, 500);
     
     $.ajax({
@@ -23,6 +30,9 @@ $(document).ready(function() {
 			EchartsBarChart.init("soilCBarChart", data.soilCBarChart);
 			EchartsBarChart.init("soilDBarChart", data.soilDBarChart);
 			EchartsBarChart.init("soilEBarChart", data.soilEBarChart);
+			
+			LineChart.init("tempALineChart", data.tempALineChart);
+			LineChart.init("waterALineChart", data.waterALineChart)
        	}
 	}); 
 });

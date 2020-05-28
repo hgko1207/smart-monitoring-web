@@ -12,7 +12,7 @@ const GoogleMap = function() {
 		return map;
 	};
 	
-	const markerAndInfoOverlay = function(map, site, sensorLog) {
+	const markerAndInfoOverlay = function(map, site) {
 		google.maps.event.trigger(map, "resize");
 		
 		var latlon = {lat: site.lat, lng: site.lon};
@@ -27,9 +27,9 @@ const GoogleMap = function() {
 		
 		var contentString = 
 			"<div id='content'>" +
-			"<span style='color: #0080FF'><b>" + site.name + "(토양계측)</b></span><br>" + 
-			"<b>표층 : " + sensorLog.soilSurfaceTemp + "도 | " + sensorLog.soilSurfaceMoisture + "% | " + sensorLog.soilSurfaceSalt + "ds/m</b>" + "<br>" + 
-			"<b>심층 : " + sensorLog.soilDeepTemp + "도 | " + sensorLog.soilDeepMoisture + "% | " + sensorLog.soilDeepSalt + "ds/m</b>" + 
+			"<div style='color: #0080FF'><b>A 지점 토양계측정보</b></div>" + 
+			"<b>토양온도 : 16.4% | 15.2% | 14.2%</b>" + "<br>" + 
+			"<b>토양습도 : 21.8% | 27.3% | 22.9%</b>" + "<br>" + 
 			"</div>";
 		
 		var infowindow = new google.maps.InfoWindow({
@@ -87,6 +87,9 @@ const GoogleMap = function() {
 	return {
         init: function(id) {
         	return createMap(id);
+        },
+        markerAndInfoOverlay: function(map, site) {
+        	return markerAndInfoOverlay(map, site);
         }
     }
 }();

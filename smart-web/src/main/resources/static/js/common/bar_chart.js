@@ -1,5 +1,5 @@
 var EchartsBarChart = function() {
-    var barChartContainer = function(id, data) {
+    var _barsChart = function(id, data) {
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -17,7 +17,7 @@ var EchartsBarChart = function() {
                 animationDuration: 750,
                 grid: {
                     left: 0,
-                    right: 5,
+                    right: 0,
                     top: 5,
                     bottom: 0,
                     containLabel: true
@@ -28,6 +28,9 @@ var EchartsBarChart = function() {
                 yAxis: [{
                     type: 'category',
                     data: data.categories,
+                    axisTick: {
+                    	length: 1
+                    },
                     axisLabel: {
                         color: '#333'
                     },
@@ -74,7 +77,7 @@ var EchartsBarChart = function() {
 
     return {
         init: function(id, data) {
-        	barChartContainer(id, data);
+        	_barsChart(id, data);
         }
     }
 }();

@@ -7,7 +7,15 @@
 }
 
 .map-container {
-	height: 250px;
+	height: 230px;
+}
+
+.has-fixed-height {
+	height: 150px;
+}
+
+.line-chart-height {
+	height: 260px;
 }
 
 /*****************************************************/
@@ -24,11 +32,6 @@
 .tab-content {
 	padding: 0 1rem 1rem 1rem;
 }
-
-.has-fixed-height {
-	height: 200px;
-}
-
 /*****************************************************/
 /* 범례 스타일 */
 /*****************************************************/
@@ -62,4 +65,29 @@
 .weather-time {
 	font-size: 1rem;
 	font-weight: 600;
+	color: #F96D60;
+}
+
+.weather-temp {
+	font-size: 1.6rem;
+	font-weight: 600;
+}
+
+/*****************************************************/
+/* 작물 환경 디자인 */
+/*****************************************************/
+.crop-area {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #ff0000;
+}
+
+.crop-green {
+	font-weight: 600;
+	color: #00d76a;
+}
+
+.vertical-line {
+	border-left: 4px solid #808080;
+	height: 100%;
 }

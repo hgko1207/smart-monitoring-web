@@ -15,4 +15,8 @@ public class DashboardInfo {
 	private ChartInfo soilDBarChart;
 	
 	private ChartInfo soilEBarChart;
+	
+	private ChartInfo tempALineChart;
+	
+	private ChartInfo waterALineChart;
 }
