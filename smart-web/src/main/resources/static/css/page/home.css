@@ -7,7 +7,7 @@
 }
 
 .map-container {
-	height: 268px;
+	height: 250px;
 }
 
 /*****************************************************/
@@ -23,4 +23,43 @@
 
 .tab-content {
 	padding: 0 1rem 1rem 1rem;
+}
+
+.has-fixed-height {
+	height: 200px;
+}
+
+/*****************************************************/
+/* 범례 스타일 */
+/*****************************************************/
+.btn-green, .btn-green:hover {
+	color: #fff;
+    background-color: #00d76a;
+    border-color: #00d76a;
+}
+
+.btn-yellow, .btn-yellow:hover {
+	color: #fff;
+    background-color: #ffeb0e;
+    border-color: #ffeb0e;
+}
+
+.btn-orange, .btn-orange:hover {
+	color: #fff;
+    background-color: #ff9710;
+    border-color: #ff9710;
+}
+
+.btn-red, .btn-red:hover {
+	color: #fff;
+    background-color: #ff2e2f;
+    border-color: #ff2e2f;
+}
+
+/*****************************************************/
+/* 기상 데이터 디자인 */
+/*****************************************************/
+.weather-time {
+	font-size: 1rem;
+	font-weight: 600;
 }

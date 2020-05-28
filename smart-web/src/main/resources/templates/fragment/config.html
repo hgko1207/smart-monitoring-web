@@ -9,6 +9,8 @@
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
 	<title>스마트 노지 모니터링</title>
 	
+	<link id="contextPathHolder" th:data-contextPath="${#httpServletRequest.getContextPath()}"/>
+	
 	<!-- Global stylesheets -->
 	<link th:href="@{/limitless/css/icons/icomoon/styles.min.css}" rel="stylesheet" type="text/css">
 	<link th:href="@{/limitless/css/bootstrap.min.css}" rel="stylesheet" type="text/css">
@@ -38,6 +40,7 @@
 	<script th:src="@{/limitless/js/plugins/pickers/daterangepicker.js}"></script>
 	<script th:src="@{/limitless/js/plugins/forms/styling/uniform.min.js}"></script>
 	<script th:src="@{/limitless/js/plugins/notifications/sweet_alert.min.js}"></script>
+	<script th:src="@{/limitless/js/plugins/visualization/echarts/echarts.min.js}"></script>
 	
 	<script th:src="@{/limitless/js/app.js}"></script>
 	<!-- /Theme JS files -->
@@ -45,5 +48,9 @@
 	<!-- Common JS files -->
 	<script th:src="@{/js/common/common.js}"></script>
 	<!-- /Common JS files -->
+	
+	<script>
+		const contextPath = $('#contextPathHolder').attr('data-contextPath') ? $('#contextPathHolder').attr('data-contextPath') : '';
+	</script>
 </th:block>
 </html>

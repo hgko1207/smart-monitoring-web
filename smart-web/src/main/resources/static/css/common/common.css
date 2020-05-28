@@ -4,6 +4,16 @@ h1 {
 	color: red;
 }
 
+.sidebar {
+	width: 15rem;
+}
+
+@media ( min-width :768px) {
+	.navbar-expand-md .navbar-brand {
+		min-width: 13rem
+	}
+}
+
 .navbar-brand {
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;

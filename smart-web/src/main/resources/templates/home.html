@@ -29,8 +29,14 @@
 					</div>
 					<button id="searchBtn" class="btn bg-info btn-sm px-3"><i class="icon-search4 mr-2"></i>검 색</button>
 				</div>
-				<div>
-					<span class="font-weight-bold text-danger">2020-05-27 14:00 기준</span>
+				<div class="d-flex align-items-center">
+					<span class="font-weight-bold text-danger mr-4">2020-05-27 14:00 기준</span>
+					<div class="btn-group">
+						<button type="button" class="btn btn-sm btn-green">양호</button>
+						<button type="button" class="btn btn-sm btn-yellow">주의</button>
+						<button type="button" class="btn btn-sm btn-orange">경계</button>
+						<button type="button" class="btn btn-sm btn-red">심각</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -50,6 +56,9 @@
 			          		</div>
 						</div>
 						<div class="card-body">
+							<div class="chart-container">
+								<div class="chart has-fixed-height" id="soilABarChart"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -67,6 +76,9 @@
 			          		</div>
 						</div>
 						<div class="card-body">
+							<div class="chart-container">
+								<div class="chart has-fixed-height" id="soilBBarChart"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -84,6 +96,9 @@
 			          		</div>
 						</div>
 						<div class="card-body">
+							<div class="chart-container">
+								<div class="chart has-fixed-height" id="soilCBarChart"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -101,6 +116,9 @@
 			          		</div>
 						</div>
 						<div class="card-body">
+							<div class="chart-container">
+								<div class="chart has-fixed-height" id="soilDBarChart"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -118,6 +136,9 @@
 			          		</div>
 						</div>
 						<div class="card-body">
+							<div class="chart-container">
+								<div class="chart has-fixed-height" id="soilEBarChart"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -132,7 +153,17 @@
 							</h6>
 							<div>2020-05-27 14:00 기준</div>
 						</div>
-						<div class="card-body">
+						<div class="card-body row">
+							<div class="col-md-4">
+								<img th:src="@{/images/sun.png}" alt="sun" style="max-width: 100%; height: auto;"/>
+							</div>
+							<div class="mr-md-auto"></div>
+							<div class="col-md-7 py-3">
+								<div class="weather-time">14시 현재</div>
+								<div>2 맑음</div>
+								<div>어제 기온과 같음 | 강수확률 0%</div>
+								<div>미세먼지 보통 ㆍ 오존 좋음</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -146,6 +177,7 @@
 							<div>2020-05-27 14:00 기준</div>
 						</div>
 						<div class="card-body">
+							
 						</div>
 					</div>
 				</div>
@@ -199,5 +231,6 @@
     	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOybNujmIFXZLfUf5J-q0_WqNH3riUKbg" async defer></script>
     	<script th:src="@{/js/common/google_map.js}"></script>
         <script th:src="@{/js/page/home.js}"></script>
+        <script th:src="@{/js/common/bar_chart.js}"></script>
     </th:block>
 </html>
