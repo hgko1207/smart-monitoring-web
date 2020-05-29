@@ -22,8 +22,8 @@ var linesChart = function(data) {
             },
             animationDuration: 750,
             grid: {
-           	 	left: 0,
-                right: 30,
+           	 	left: 10,
+                right: 35,
                 top: 35,
                 bottom: 60,
                containLabel: true
@@ -82,23 +82,23 @@ var linesChart = function(data) {
                 }
             }],
             dataZoom: [{
-                    type: 'inside',
-                    start: 0,
-                    end: 100
-                },{
-                    show: true,
-                    type: 'slider',
-                    start: 0,
-                    end: 100,
-                    height: 40,
-                    bottom: 0,
-                    borderColor: '#ccc',
-                    fillerColor: 'rgba(0,0,0,0.05)',
-                    handleStyle: {
-                        color: '#585f63'
-                    }
+                type: 'inside',
+                start: 0,
+                end: 100,
+               
+            },{
+                show: true,
+                type: 'slider',
+                start: 0,
+                end: 100,
+                height: 40,
+                bottom: 0,
+                borderColor: '#ccc',
+                fillerColor: 'rgba(0,0,0,0.05)',
+                handleStyle: {
+                    color: '#585f63'
                 }
-            ],
+            }],
             series: data.lineChartSeries,
         });
     }
