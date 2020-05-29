@@ -32,7 +32,7 @@ $(document).ready(function() {
 			EchartsBarChart.init("soilEBarChart", data.soilEBarChart);
 			
 			LineChart.init("tempALineChart", data.tempALineChart);
-			LineChart.init("waterALineChart", data.waterALineChart)
+			LineChart.init("waterALineChart", data.waterALineChart);
        	}
 	}); 
 });

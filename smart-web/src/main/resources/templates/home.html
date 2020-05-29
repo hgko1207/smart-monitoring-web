@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default_layout">
 
-    <!-- index.html 고유 CSS 추가 -->
     <th:block layout:fragment="css">
         <link rel="stylesheet" th:href="@{/css/page/home.css}" >
     </th:block>
@@ -299,7 +298,6 @@
 		</div>
     </th:block>
     
-     <!-- index.html 고유 스크립트 추가 -->
     <th:block layout:fragment="script">
     	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOybNujmIFXZLfUf5J-q0_WqNH3riUKbg" async defer></script>
     	<script th:src="@{/js/common/google_map.js}"></script>

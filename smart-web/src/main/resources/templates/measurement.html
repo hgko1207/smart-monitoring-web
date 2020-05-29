@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/default_layout">
 
-    <!-- index.html 고유 CSS 추가 -->
     <th:block layout:fragment="css">
         <link rel="stylesheet" th:href="@{/css/page/measurement.css}" >
     </th:block>
@@ -13,26 +12,31 @@
 				<div class="page-title d-flex">
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">구분 :</label>
 					<div class="form-group mr-2 mb-0">
-						<select class="form-control form-control-select2">
-							<option>지점별</option>
+						<select class="form-control form-control-select2" id="pointSelect">
+							<option value="전체">지점별</option>
+							<option value="A">A지점</option>
+							<option value="B">B지점</option>
+							<option value="C">C지점</option>
+							<option value="D">D지점</option>
+							<option value="E">E지점</option>
 						</select>
 					</div>
 					
 					<div class="form-group mr-4 mb-0">
-						<select class="form-control form-control-select2">
+						<select class="form-control form-control-select2" id="locationSelect">
 							<option>상층</option>
 						</select>
 					</div>
 					
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">그래프항목 :</label>
 					<div class="form-group mr-2 mb-0">
-						<select class="form-control form-control-select2">
+						<select class="form-control form-control-select2" id="sensorSelect">
 							<option>토양온도</option>
 						</select>
 					</div>
 					
 					<div class="form-group mr-4 mb-0">
-						<select class="form-control form-control-select2">
+						<select class="form-control form-control-select2" id="typeSelect">
 							<option>일별</option>
 						</select>
 					</div>
@@ -40,18 +44,10 @@
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">날짜 선택 :</label>
 					<div class="form-group mr-4 mb-0">
 						<div class="input-group">
-							<span class="input-group-prepend" >
+							<input type="text" class="form-control daterange-picker"> 
+							<span class="input-group-append">
 								<span class="input-group-text"><i class="icon-calendar22"></i></span>
 							</span>
-							<input type="text" id="datetimePicker" class="form-control">
-						</div>
-					</div>
-					<div class="form-group mr-4 mb-0">
-						<div class="input-group">
-							<span class="input-group-prepend" >
-								<span class="input-group-text"><i class="icon-calendar22"></i></span>
-							</span>
-							<input type="text" id="datetimePicker" class="form-control">
 						</div>
 					</div>
 					
@@ -63,18 +59,44 @@
 		<div class="content">
 			<div class="card">
 				<div class="card-body">
+					<div class="chart-container">
+						<div class="chart has-fixed-height" id="lineChart"></div>
+					</div>
 				</div>
 			</div>
 			
 			<div class="card">
 				<div class="card-body">
+					<table class="table table-bordered" id="measurementTable">
+						<thead class="text-center">
+							<tr class="table-active">
+								<th>일시</th>
+								<th>A 상층 온도</th>
+								<th>A 중층 온도</th>
+								<th>A 하층 온도</th>
+								<th>B 상층 온도</th>
+								<th>B 중층 온도</th>
+								<th>B 하층 온도</th>
+								<th>C 상층 온도</th>
+								<th>C 중층 온도</th>
+								<th>C 하층 온도</th>
+								<th>D 상층 온도</th>
+								<th>D 중층 온도</th>
+								<th>D 하층 온도</th>
+								<th>E 상층 온도</th>
+								<th>E 중층 온도</th>
+								<th>E 하층 온도</th>
+							</tr>
+						</thead>
+						<tbody class="text-center"></tbody>
+					</table>
 				</div>
 			</div>
 		</div>
     </th:block>
     
-     <!-- index.html 고유 스크립트 추가 -->
     <th:block layout:fragment="script">
+        <script th:src="@{/js/common/table.js}"></script>
         <script th:src="@{/js/page/measurement.js}"></script>
     </th:block>
 </html>

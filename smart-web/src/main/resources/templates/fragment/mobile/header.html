@@ -8,30 +8,7 @@
 			</a>
 		</div>
 		
-		<div class="d-md-none">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
-				<i class="icon-tree5"></i>
-			</button>
-			<button class="navbar-toggler sidebar-mobile-main-toggle" type="button">
-				<i class="icon-paragraph-justify3"></i>
-			</button>
-		</div>
-		
 		<div class="collapse navbar-collapse" id="navbar-mobile">
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<a href="#" class="navbar-nav-link sidebar-control sidebar-main-toggle d-none d-md-block">
-						<i class="icon-paragraph-justify3"></i>
-					</a>
-				</li>
-			</ul>
-			
-			<div class="navbar-title ml-md-4">
-				<span class="navigation-title">
-					<span id="navigation"></span>
-				</span>
-			</div>
-			
 			<span class="mr-md-auto"></span>
 			
 			<ul class="navbar-nav">
@@ -42,29 +19,11 @@
 					</a>
 	
 					<div class="dropdown-menu dropdown-menu-right">
-						<a th:href="@{/user/profile}" class="dropdown-item"><i class="icon-user"></i> My profile</a>
-						<div class="dropdown-divider"></div>
-						<a th:href="@{/logout}" class="dropdown-item"><i class="icon-exit"></i> Logout</a>
+						<a th:href="@{/m/logout}" class="dropdown-item"><i class="icon-exit"></i> Logout</a>
 					</div>
 				</li>
 			</ul>
 		</div>
 	</div>
-	
-	<script>
-		var menuName = this.location.pathname.split("/")[2];
-		
-		var name = '';
-		if (menuName === 'home') {
-			name = '대쉬보드';
-		} else if (menuName === 'map') {
-			name = '지도정보';
-		} else if (menuName === 'measurement') {
-			name = '계측정보';
-		} else {
-			name = '사용자정보';
-		}
-	    $("#navigation").html("Home > " + name);
-	</script>
 </th:block>
 </html>
