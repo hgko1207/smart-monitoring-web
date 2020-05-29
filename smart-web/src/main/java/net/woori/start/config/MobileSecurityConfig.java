@@ -3,49 +3,51 @@ package net.woori.start.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import net.woori.start.provider.SaveIdLoginSuccessHandler;
 import net.woori.start.provider.UserAuthenticationProvider;
 
 @Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
+@Order(1)
+public class MobileSecurityConfig extends WebSecurityConfigurerAdapter {
+
 	@Autowired
     private UserAuthenticationProvider authenticationProvider;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.csrf().disable();
-		
-		// 로그인 설정
-		http.authorizeRequests() // 요청을 어떻게 보안을 할 것인지 설정
-			.antMatchers("/home").access("hasRole('ROLE_USER')")
+		http
+			.antMatcher("/m/**")
+			.authorizeRequests()
+				.antMatchers("/m/**").access("hasRole('ROLE_USER')")
+				.anyRequest().authenticated()
 		.and()
 			// 로그인 페이지 및 성공 url, handler 그리고 로그인 시 사용되는 id, password 파라미터 정의
 			.formLogin()
-			.loginPage("/login")
-			.failureUrl("/login?error")
+			.loginPage("/m/login")
+			.failureUrl("/m/login?error")
 			.usernameParameter("username")
-            .passwordParameter("password")
-            .successHandler(saveIdLoginSuccessHandler())
+	        .passwordParameter("password")
+	        .successHandler(saveIdLoginSuccessHandler2())
+        .permitAll()
 		.and()
 			// 로그아웃 관련 설정
 			.logout()
-			.logoutSuccessUrl("/")
+			.logoutUrl("/m/logout")
+			.logoutSuccessUrl("/m/")
 			// 로그아웃 성공 시 현재 보고 있는 페이지 리다이렉트
-			.invalidateHttpSession(true);
-		
-		http.httpBasic();
+			.invalidateHttpSession(true)
+		.and()
+		.csrf().disable();
 		
 		// session 관리
 		http.sessionManagement().sessionFixation().changeSessionId()
-			.maximumSessions(5).expiredUrl("/home");
+			.maximumSessions(5).expiredUrl("/m/home");
 	}
 	
 	@Override
@@ -55,9 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 	
 	@Bean
-	public SaveIdLoginSuccessHandler saveIdLoginSuccessHandler() {
+	public SaveIdLoginSuccessHandler saveIdLoginSuccessHandler2() {
 		SaveIdLoginSuccessHandler handler = new SaveIdLoginSuccessHandler();
-		handler.setDefaultTargetUrl("/home");
+		handler.setDefaultTargetUrl("/m/home");
 		handler.setAlwaysUseDefaultTargetUrl(true);
 		
 		return handler;

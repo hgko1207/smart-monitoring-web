@@ -7,15 +7,19 @@ import net.woori.start.domain.chart.BarChartSeries;
 import net.woori.start.domain.chart.ChartInfo;
 import net.woori.start.domain.chart.LineChartSeries;
 
+/**
+ * 대쉬보드 차트
+ * 
+ * @author hgko
+ *
+ */
 @Service
 public class ChartService {
 
 	public DashboardInfo createChartInfo() {
-		
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		createBarChart(dashboardInfo);
 		createLineChart(dashboardInfo);
-		
 		return dashboardInfo;
 	}
 	
