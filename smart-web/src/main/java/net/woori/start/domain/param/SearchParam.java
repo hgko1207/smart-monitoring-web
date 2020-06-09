@@ -1,6 +1,9 @@
 package net.woori.start.domain.param;
 
 import lombok.Data;
+import net.woori.start.domain.EnumType.ChartType;
+import net.woori.start.domain.EnumType.LocationType;
+import net.woori.start.domain.EnumType.SensorType;
 
 @Data
 public class SearchParam {
@@ -9,13 +12,13 @@ public class SearchParam {
 	private String point;
 	
 	/** 위치 */
-	private String location;
+	private LocationType location;
 	
 	/** 그래프 항목 - 토양온도, 토양수분 */
-	private String sensor;
+	private SensorType sensor;
 	
 	/** 그래프 항목 - 일별, 월별 */
-	private String type;
+	private ChartType type;
 	
 	private String startDate;
 	

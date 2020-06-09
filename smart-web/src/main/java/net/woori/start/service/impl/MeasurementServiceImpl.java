@@ -55,4 +55,9 @@ public class MeasurementServiceImpl implements MeasurementService {
 	private boolean isNew(Measurement domain) {
 		return !measurementRepository.existsById(domain.getPointSq());
 	}
+
+	@Override
+	public List<Measurement> getList(int pointSq, String startDate, String endDate) {
+		return measurementRepository.findByPointSq(pointSq, startDate, endDate);
+	}
 }

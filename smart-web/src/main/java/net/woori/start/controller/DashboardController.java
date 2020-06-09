@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.service.common.ChartService;
 
 @Controller
@@ -17,8 +18,8 @@ public class DashboardController {
 	private ChartService chartService;
 
 	@GetMapping("home")
-    public String home(Model model) {
-        return "home";
+    public void home(Model model) {
+		model.addAttribute("sensorTypes", SensorType.values());
     }
 	
 	@PostMapping("dashboard/search")

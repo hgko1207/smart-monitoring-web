@@ -100,7 +100,7 @@ var linesChart = function(data) {
                 }
             }],
             series: data.lineChartSeries,
-        });
+        }, true);
     }
     
     // Resize function
@@ -154,8 +154,12 @@ var measurementTable = {
 }
 
 $(document).ready(function() {
-	let startDate = moment().format("YYYY-MM-DD 00:00:00");
-	let endDate = moment().format("YYYY-MM-DD 23:59:59");
+//	let startDate = moment().format("YYYY-MM-DD 00:00:00");
+//	let endDate = moment().format("YYYY-MM-DD 23:59:59");
+	
+	let startDate = new Date(moment().format("YYYY-MM-DD 00:00:00"));
+	startDate.setDate(startDate.getDate() - 6); 
+	let endDate = new Date(moment().format("YYYY-MM-DD 23:59:59"));
 	
 	measurementTable.init();
 	

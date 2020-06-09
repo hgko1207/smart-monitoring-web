@@ -12,8 +12,8 @@
 				<div class="page-title d-flex">
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">항목 :</label>
 					<div class="form-group mr-4 mb-0">
-						<select class="form-control form-control-select2">
-							<option>토양수분</option>
+						<select class="form-control form-control-select2" id="sensorTypeSelect">
+							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
 						</select>
 					</div>
 					
