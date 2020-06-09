@@ -23,4 +23,6 @@ public class SearchParam {
 	private String startDate;
 	
 	private String endDate;
+	
+	private String date;
 }

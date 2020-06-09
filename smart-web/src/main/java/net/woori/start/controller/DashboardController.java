@@ -7,15 +7,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import net.woori.start.domain.EnumType.SensorType;
-import net.woori.start.service.common.ChartService;
+import net.woori.start.domain.param.SearchParam;
+import net.woori.start.service.common.DashboardService;
 
 @Controller
 public class DashboardController {
 	
 	@Autowired
-	private ChartService chartService;
+	private DashboardService dashboardService;
 
 	@GetMapping("home")
     public void home(Model model) {
@@ -23,7 +25,7 @@ public class DashboardController {
     }
 	
 	@PostMapping("dashboard/search")
-    public ResponseEntity<?> search(Model model) {
-		return new ResponseEntity<>(chartService.createChartInfo(), HttpStatus.OK);
+    public ResponseEntity<?> search(@RequestBody SearchParam param) {
+		return new ResponseEntity<>(dashboardService.createChartInfo(param), HttpStatus.OK);
     }
 }

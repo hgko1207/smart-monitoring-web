@@ -16,13 +16,6 @@ import net.woori.start.domain.chart.LineChartSeries;
 @Service
 public class ChartService {
 
-	public DashboardInfo createChartInfo() {
-		DashboardInfo dashboardInfo = new DashboardInfo();
-		createBarChart(dashboardInfo);
-		createLineChart(dashboardInfo);
-		return dashboardInfo;
-	}
-	
 	public void createBarChart(DashboardInfo dashboardInfo) {
 		ChartInfo soilAChartInfo = new ChartInfo();
 		ChartInfo soilBChartInfo = new ChartInfo();

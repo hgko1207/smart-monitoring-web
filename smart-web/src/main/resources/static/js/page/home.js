@@ -19,20 +19,32 @@ $(document).ready(function() {
     	GoogleMap.markerAndInfoOverlay(map, site);
 	}, 500);
     
-    $.ajax({
-		url: contextPath + "/dashboard/search",
-		type: "POST",
-		data: {},
-		contentType: "application/json",
-		success: function(data) {
-			EchartsBarChart.init("soilABarChart", data.soilABarChart);
-			EchartsBarChart.init("soilBBarChart", data.soilBBarChart);
-			EchartsBarChart.init("soilCBarChart", data.soilCBarChart);
-			EchartsBarChart.init("soilDBarChart", data.soilDBarChart);
-			EchartsBarChart.init("soilEBarChart", data.soilEBarChart);
-			
-			LineChart.init("tempALineChart", data.tempALineChart);
-			LineChart.init("waterALineChart", data.waterALineChart);
-       	}
-	}); 
+    searchDashboard();
+    
+    function searchDashboard() {
+    	let param = new Object();
+    	param.sensor = $('#sensorTypeSelect').val();
+    	param.date = $('#datetimePicker').val();
+    	
+    	$.ajax({
+    		url: contextPath + "/dashboard/search",
+    		type: "POST",
+    		data: JSON.stringify(param),
+    		contentType: "application/json",
+    		success: function(data) {
+    			EchartsBarChart.init("soilABarChart", data.soilABarChart);
+    			EchartsBarChart.init("soilBBarChart", data.soilBBarChart);
+    			EchartsBarChart.init("soilCBarChart", data.soilCBarChart);
+    			EchartsBarChart.init("soilDBarChart", data.soilDBarChart);
+    			EchartsBarChart.init("soilEBarChart", data.soilEBarChart);
+    			
+    			LineChart.init("tempALineChart", data.tempALineChart);
+    			LineChart.init("waterALineChart", data.waterALineChart);
+           	}
+    	});
+    }
+    
+    $('#searchBtn').click(function() {
+    	searchDashboard();
+    });
 });
