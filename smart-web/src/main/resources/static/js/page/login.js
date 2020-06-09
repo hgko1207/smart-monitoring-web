@@ -22,7 +22,7 @@ var LoginValidation = function() {
             return;
         }
         
-        $.extend( $.validator.messages, {
+        $.extend($.validator.messages, {
         	required: "필수 항목입니다.",
         	number: "유효한 숫자가 아닙니다."
         });

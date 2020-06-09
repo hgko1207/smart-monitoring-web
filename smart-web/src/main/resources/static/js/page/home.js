@@ -1,8 +1,8 @@
 moment.locale('ko');
 
-let map;
-
 $(document).ready(function() {
+	let map;
+	
     $('#datetimePicker').daterangepicker({ 
         singleDatePicker: true,
         locale: {
