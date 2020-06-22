@@ -20,6 +20,8 @@ public class LineChartSeries {
 
 	private List<Float> data;
 	
+	private List<ChartSeries> dataList;
+	
 	public LineChartSeries(String name) {
 		this.name = name;
 		this.type = "line";
@@ -27,10 +29,15 @@ public class LineChartSeries {
 		this.symbolSize = 3;
 
 		data = new ArrayList<>();
+		dataList = new ArrayList<>();
 	}
 
 	public void addDataItem(float value) {
 		data.add(value);
+	}
+	
+	public void addDataItem(String date, float value) {
+		dataList.add(new ChartSeries(date, value));
 	}
 
 }

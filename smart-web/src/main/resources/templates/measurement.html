@@ -11,38 +11,33 @@
 			<div class="page-header-content header-elements-md-inline">
 				<div class="page-title d-flex">
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">구분 :</label>
-					<div class="form-group mr-2 mb-0">
-						<select class="form-control form-control-select2" id="pointSelect">
+					<div class="form-group mr-2 mb-0 wmin-150">
+						<select class="form-control form-control-select2" id="pointSelect" data-fouc>
 							<option value="전체">전체</option>
 							<option th:each="point : ${points}" th:value="${point.pointSq}" th:text="${point.pointNm}"></option>
-							<!-- <option value="A">A지점</option>
-							<option value="B">B지점</option>
-							<option value="C">C지점</option>
-							<option value="D">D지점</option>
-							<option value="E">E지점</option> -->
 						</select>
 					</div>
 					
 					<div class="form-group mr-4 mb-0">
-						<select class="form-control form-control-select2" id="locationSelect">
+						<select class="form-control form-control-select2" id="locationSelect" data-fouc>
 							<option th:each="location : ${locationTypes}" th:value="${location}" th:text="${location}"></option>
 						</select>
 					</div>
 					
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">그래프항목 :</label>
 					<div class="form-group mr-2 mb-0">
-						<select class="form-control form-control-select2" id="sensorSelect">
+						<select class="form-control form-control-select2" id="sensorSelect" data-fouc>
 							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
 						</select>
 					</div>
 					
-					<div class="form-group mr-4 mb-0">
-						<select class="form-control form-control-select2" id="typeSelect">
+					<!-- <div class="form-group mr-4 mb-0">
+						<select class="form-control form-control-select2" id="typeSelect" data-fouc>
 							<option th:each="chart : ${chartTypes}" th:value="${chart}" th:text="${chart}"></option>
 						</select>
-					</div>
+					</div> -->
 					
-					<label class="col-form-label font-weight-bold mr-2" for="form-type">날짜 선택 :</label>
+					<label class="col-form-label font-weight-bold ml-4 mr-2" for="form-type">날짜 선택 :</label>
 					<div class="form-group mr-4 mb-0">
 						<div class="input-group">
 							<input type="text" class="form-control daterange-picker"> 

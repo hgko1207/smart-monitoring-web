@@ -13,17 +13,32 @@ import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.param.SearchParam;
 import net.woori.start.service.common.DashboardService;
 
+/**
+ * 대시보드 화면 컨트롤러
+ * 
+ * @author hgko
+ *
+ */
 @Controller
 public class DashboardController {
 	
 	@Autowired
 	private DashboardService dashboardService;
 
+	/**
+	 * 대시보드 화면
+	 * @param model
+	 */
 	@GetMapping("home")
     public void home(Model model) {
 		model.addAttribute("sensorTypes", SensorType.values());
     }
 	
+	/**
+	 * 조회
+	 * @param param
+	 * @return
+	 */
 	@PostMapping("dashboard/search")
     public ResponseEntity<?> search(@RequestBody SearchParam param) {
 		return new ResponseEntity<>(dashboardService.createChartInfo(param), HttpStatus.OK);

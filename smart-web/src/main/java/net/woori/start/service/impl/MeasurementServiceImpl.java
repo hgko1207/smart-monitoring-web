@@ -58,6 +58,11 @@ public class MeasurementServiceImpl implements MeasurementService {
 
 	@Override
 	public List<Measurement> getList(int pointSq, String startDate, String endDate) {
-		return measurementRepository.findByPointSq(pointSq, startDate, endDate);
+		return measurementRepository.findByPointSq(startDate, endDate, pointSq);
+	}
+
+	@Override
+	public List<Measurement> getList(String startDate, String endDate) {
+		return measurementRepository.findByAll(startDate, endDate);
 	}
 }

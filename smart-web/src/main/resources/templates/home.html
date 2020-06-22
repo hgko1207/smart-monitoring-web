@@ -12,7 +12,7 @@
 				<div class="page-title d-flex">
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">항목 :</label>
 					<div class="form-group mr-4 mb-0">
-						<select class="form-control form-control-select2" id="sensorTypeSelect">
+						<select class="form-control form-control-select2" id="sensorTypeSelect" data-fouc>
 							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
 						</select>
 					</div>

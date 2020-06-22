@@ -3,12 +3,13 @@ package net.woori.start.service.common;
 import org.springframework.stereotype.Service;
 
 import net.woori.start.domain.DashboardInfo;
+import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.chart.BarChartSeries;
 import net.woori.start.domain.chart.ChartInfo;
 import net.woori.start.domain.chart.LineChartSeries;
 
 /**
- * 대쉬보드 차트
+ * 차트 관련 서비스
  * 
  * @author hgko
  *
@@ -16,6 +17,10 @@ import net.woori.start.domain.chart.LineChartSeries;
 @Service
 public class ChartService {
 
+	/**
+	 * 대시보드 Bar 차트 생성
+	 * @param dashboardInfo
+	 */
 	public void createBarChart(DashboardInfo dashboardInfo) {
 		ChartInfo soilAChartInfo = new ChartInfo();
 		ChartInfo soilBChartInfo = new ChartInfo();
@@ -70,11 +75,15 @@ public class ChartService {
 		dashboardInfo.setSoilEBarChart(soilEChartInfo);
 	}
 	
+	/**
+	 * 대시보드 Line 차트 생성
+	 * @param dashboardInfo
+	 */
 	public void createLineChart(DashboardInfo dashboardInfo) {
-		ChartInfo tempAChartInfo = new ChartInfo("토양온도");
-		ChartInfo waterAChartInfo = new ChartInfo("토양수분");
+		ChartInfo tempAChartInfo = new ChartInfo(SensorType.토양온도);
+		ChartInfo waterAChartInfo = new ChartInfo(SensorType.토양수분);
 		
-		String[] categories = {"2020-05-01", "2020-05-02", "2020-05-03", "2020-05-04", "2020-05-05", "2020-05-06", "2020-05-07"};
+		String[] categories = {"05-01", "05-02", "05-03", "05-04", "05-05", "05-06", "05-07"};
 		for (String data : categories) {
 			tempAChartInfo.addCategory(data);
 			waterAChartInfo.addCategory(data);

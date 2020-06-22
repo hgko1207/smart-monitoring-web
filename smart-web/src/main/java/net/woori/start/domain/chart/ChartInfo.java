@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import net.woori.start.domain.EnumType.SensorType;
 
 /**
  * LineChart 정보
@@ -13,6 +14,8 @@ import lombok.Data;
  */
 @Data
 public class ChartInfo {
+	
+	private String unit;
 
 	private String title;
 	
@@ -27,8 +30,9 @@ public class ChartInfo {
 		barChartSeries = new ArrayList<>();
 	}
 	
-	public ChartInfo(String title) {
-		this.title = title;
+	public ChartInfo(SensorType type) {
+		this.title = type.name();
+		this.unit = type.getUnit();
 		categories = new ArrayList<>();
 		lineChartSeries = new ArrayList<>();
 	}

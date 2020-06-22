@@ -17,6 +17,12 @@ import net.woori.start.domain.param.SearchParam;
 import net.woori.start.service.PointInfoService;
 import net.woori.start.service.common.MeasurementInfoService;
 
+/**
+ * 계측 정보 화면 컨트롤러
+ * 
+ * @author hgko
+ *
+ */
 @Controller
 @RequestMapping("measurement")
 public class MeasurementController {
@@ -27,6 +33,10 @@ public class MeasurementController {
 	@Autowired
 	private PointInfoService pointInfoService;
 	
+	/**
+	 * 계측정보 화면
+	 * @param model
+	 */
 	@GetMapping("")
 	public void main(Model model) {
 		model.addAttribute("points", pointInfoService.getList());
@@ -35,11 +45,22 @@ public class MeasurementController {
 		model.addAttribute("chartTypes", ChartType.values());
 	}
 	
+	
+	/**
+	 * 차트 조회
+	 * @param param
+	 * @return
+	 */
 	@PostMapping("search/chart")
     public ResponseEntity<?> searchChart(@RequestBody SearchParam param) {
 		return new ResponseEntity<>(measurementInfoService.createChartInfo(param), HttpStatus.OK);
     }
 	
+	/**
+	 * 테이블 조회
+	 * @param param
+	 * @return
+	 */
 	@PostMapping("search/table")
     public ResponseEntity<?> searchTable(@RequestBody SearchParam param) {
 		return new ResponseEntity<>(HttpStatus.OK);
