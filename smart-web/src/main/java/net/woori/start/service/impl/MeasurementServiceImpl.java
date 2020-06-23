@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.woori.start.domain.chart.ChartData;
 import net.woori.start.domain.db.Measurement;
 import net.woori.start.repository.MeasurementRepository;
 import net.woori.start.service.MeasurementService;
@@ -67,7 +68,7 @@ public class MeasurementServiceImpl implements MeasurementService {
 	}
 
 	@Override
-	public List<Measurement> getDailyList(int pointSq, String startDate, String endDate) {
+	public List<ChartData> getDailyList(int pointSq, String startDate, String endDate) {
 		return measurementRepository.getDailyList(startDate, endDate, pointSq);
 	}
 }

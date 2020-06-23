@@ -9,6 +9,9 @@ public class DashboardInfo {
 	
 	private String dateTime;
 	
+	/** 날씨 정보 */
+	private WeatherInfo weatherInfo;
+	
 	/** 양호, 주의, 경계, 심각 */
 	private LevelType levelType;
 

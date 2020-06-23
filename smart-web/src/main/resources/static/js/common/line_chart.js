@@ -21,7 +21,7 @@ var LineChart = function() {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
                     fontSize: 13
                 },
-                animationDuration: 750,
+                animationDuration: 500,
                 grid: {
                 	 left: 15,
                      right: 30,

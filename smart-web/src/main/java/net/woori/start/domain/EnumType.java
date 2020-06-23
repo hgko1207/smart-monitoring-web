@@ -6,16 +6,22 @@ public class EnumType {
 	
 	@Getter
 	public enum PointType {
-		A("A"),
-		B("B"),
-		C("C"),
-		D("D"),
-		E("E");
+		A("A", "토양수분 A", "토양온도 A"),
+		B("B", "토양수분 B", "토양온도 B"),
+		C("C", "토양수분 C", "토양온도 C"),
+		D("D", "토양수분 D", "토양온도 D"),
+		E("E", "토양수분 E", "토양온도 E");
 		
 		private String name;
 		
-		private PointType(String name) {
+		private String titleWater;
+		
+		private String titleTemp;
+		
+		private PointType(String name, String titleWater, String titleTemp) {
 			this.name = name;
+			this.titleWater = titleWater;
+			this.titleTemp = titleTemp;
 		}
 	}
 

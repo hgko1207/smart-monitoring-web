@@ -10,6 +10,7 @@ import net.woori.start.domain.EnumType.LocationType;
 import net.woori.start.domain.EnumType.PointType;
 import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.chart.BarChartSeries;
+import net.woori.start.domain.chart.ChartData;
 import net.woori.start.domain.chart.ChartInfo;
 import net.woori.start.domain.chart.LineChartSeries;
 import net.woori.start.domain.db.PointInfo;
@@ -34,65 +35,77 @@ public class ChartService {
 	 * 대시보드 Bar 차트 생성
 	 * @param dashboardInfo
 	 */
-	public void createBarChart(DashboardInfo dashboardInfo, SearchParam param) {
-		System.err.println(param);
-		ChartInfo soilAChartInfo = new ChartInfo();
-		ChartInfo soilBChartInfo = new ChartInfo();
-		ChartInfo soilCChartInfo = new ChartInfo();
-		ChartInfo soilDChartInfo = new ChartInfo();
-		ChartInfo soilEChartInfo = new ChartInfo();
+	public ChartInfo createBarChart(PointType type, SearchParam param, ChartData chartData) {
+//		if (type == PointType.A) {
+//			if (param.getSensor() == SensorType.토양수분) {
+//				
+//			} else if (param.getSensor() == SensorType.토양온도) {
+//				
+//			}
+//		} else if (type == PointType.B) {
+//		} else if (type == PointType.C) {
+//		} else if (type == PointType.D) {
+//		} else if (type == PointType.E) {
+//		}
 		
+		ChartInfo chartInfo = new ChartInfo();
 		String[] categories = {"50cm", "30cm", "10cm"};
 		for (String data : categories) {
-			soilAChartInfo.addCategory(data);
-			soilBChartInfo.addCategory(data);
-			soilCChartInfo.addCategory(data);
-			soilDChartInfo.addCategory(data);
-			soilEChartInfo.addCategory(data);
+			chartInfo.addCategory(data);
 		}
 		
 		if (param.getSensor() == SensorType.토양수분) {
+			BarChartSeries soilChartSeries = new BarChartSeries(type.getTitleWater());
+			soilChartSeries.addDataItem(round(chartData.getWater1()));
+			soilChartSeries.addDataItem(round(chartData.getWater2()));
+			soilChartSeries.addDataItem(round(chartData.getWater3()));
 			
+			chartInfo.addBarChartSeries(soilChartSeries);
 		} else if (param.getSensor() == SensorType.토양온도) {
+			BarChartSeries soilChartSeries = new BarChartSeries(type.getTitleTemp());
+			soilChartSeries.addDataItem(round(chartData.getTemp1()));
+			soilChartSeries.addDataItem(round(chartData.getTemp2()));
+			soilChartSeries.addDataItem(round(chartData.getTemp3()));
 			
+			chartInfo.addBarChartSeries(soilChartSeries);
 		}
 		
-		BarChartSeries soilAChartSeries = new BarChartSeries("토양수분 A");
-		soilAChartSeries.addDataItem(22.9f);
-		soilAChartSeries.addDataItem(27.3f);
-		soilAChartSeries.addDataItem(21.8f);
+		return chartInfo;
 		
-		BarChartSeries soilBChartSeries = new BarChartSeries("토양수분 B");
-		soilBChartSeries.addDataItem(21.4f);
-		soilBChartSeries.addDataItem(14.6f);
-		soilBChartSeries.addDataItem(22.1f);
-		
-		BarChartSeries soilCChartSeries = new BarChartSeries("토양수분 C");
-		soilCChartSeries.addDataItem(10.6f);
-		soilCChartSeries.addDataItem(34.3f);
-		soilCChartSeries.addDataItem(44.3f);
-		
-		BarChartSeries soilDChartSeries = new BarChartSeries("토양수분 D");
-		soilDChartSeries.addDataItem(11.9f);
-		soilDChartSeries.addDataItem(13.7f);
-		soilDChartSeries.addDataItem(23.5f);
-		
-		BarChartSeries soilEChartSeries = new BarChartSeries("토양수분 E");
-		soilEChartSeries.addDataItem(11.9f);
-		soilEChartSeries.addDataItem(13.7f);
-		soilEChartSeries.addDataItem(25.6f);
-		
-		soilAChartInfo.addBarChartSeries(soilAChartSeries);
-		soilBChartInfo.addBarChartSeries(soilBChartSeries);
-		soilCChartInfo.addBarChartSeries(soilCChartSeries);
-		soilDChartInfo.addBarChartSeries(soilDChartSeries);
-		soilEChartInfo.addBarChartSeries(soilEChartSeries);
-		
-		dashboardInfo.setSoilABarChart(soilAChartInfo);
-		dashboardInfo.setSoilBBarChart(soilBChartInfo);
-		dashboardInfo.setSoilCBarChart(soilCChartInfo);
-		dashboardInfo.setSoilDBarChart(soilDChartInfo);
-		dashboardInfo.setSoilEBarChart(soilEChartInfo);
+//		BarChartSeries soilAChartSeries = new BarChartSeries("토양수분 A");
+//		soilAChartSeries.addDataItem(22.9f);
+//		soilAChartSeries.addDataItem(27.3f);
+//		soilAChartSeries.addDataItem(21.8f);
+//		
+//		BarChartSeries soilBChartSeries = new BarChartSeries("토양수분 B");
+//		soilBChartSeries.addDataItem(21.4f);
+//		soilBChartSeries.addDataItem(14.6f);
+//		soilBChartSeries.addDataItem(22.1f);
+//		
+//		BarChartSeries soilCChartSeries = new BarChartSeries("토양수분 C");
+//		soilCChartSeries.addDataItem(10.6f);
+//		soilCChartSeries.addDataItem(34.3f);
+//		soilCChartSeries.addDataItem(44.3f);
+//		
+//		BarChartSeries soilDChartSeries = new BarChartSeries("토양수분 D");
+//		soilDChartSeries.addDataItem(11.9f);
+//		soilDChartSeries.addDataItem(13.7f);
+//		soilDChartSeries.addDataItem(23.5f);
+//		
+//		BarChartSeries soilEChartSeries = new BarChartSeries("토양수분 E");
+//		soilEChartSeries.addDataItem(11.9f);
+//		soilEChartSeries.addDataItem(13.7f);
+//		soilEChartSeries.addDataItem(25.6f);
+//		
+//		soilAChartInfo.addBarChartSeries(soilAChartSeries);
+//		soilBChartInfo.addBarChartSeries(soilBChartSeries);
+//		soilCChartInfo.addBarChartSeries(soilCChartSeries);
+//		soilDChartInfo.addBarChartSeries(soilDChartSeries);
+//		soilEChartInfo.addBarChartSeries(soilEChartSeries);
+	}
+	
+	private float round(float value) {
+		return (float) (Math.round(value * 100) / 100.0);
 	}
 	
 	public void createLineChart(PointType type, PointInfo pointInfo, SearchParam param, DashboardInfo dashboardInfo) {
@@ -123,6 +136,7 @@ public class ChartService {
 		tempChartInfo.addListChartSeries(temp1ChartSeries);
 		tempChartInfo.addListChartSeries(temp2ChartSeries);
 		tempChartInfo.addListChartSeries(temp3ChartSeries);
+		
 		waterChartInfo.addListChartSeries(water1ChartSeries);
 		waterChartInfo.addListChartSeries(water2ChartSeries);
 		waterChartInfo.addListChartSeries(water3ChartSeries);

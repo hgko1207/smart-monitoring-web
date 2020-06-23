@@ -2,6 +2,13 @@ moment.locale('ko');
 
 $(document).ready(function() {
 	let map;
+	let type = 'A';
+	
+	let barChartA = null;
+	let barChartB = null;
+	let barChartC = null;
+	let barChartD = null;
+	let barChartE = null;
 	
     $('#datetimePicker').daterangepicker({ 
         singleDatePicker: true,
@@ -20,10 +27,6 @@ $(document).ready(function() {
 	}, 500);
     
     const searchDashboard = () => {
-    	
-    }
-    
-    const searchBarChart = () => {
     	const date = $('#datetimePicker').val();
     	
     	let param = new Object();
@@ -37,20 +40,67 @@ $(document).ready(function() {
     		data: JSON.stringify(param),
     		contentType: "application/json",
     		success: function(data) {
-    			EchartsBarChart.init("soilABarChart", data.soilABarChart);
-    			EchartsBarChart.init("soilBBarChart", data.soilBBarChart);
-    			EchartsBarChart.init("soilCBarChart", data.soilCBarChart);
-    			EchartsBarChart.init("soilDBarChart", data.soilDBarChart);
-    			EchartsBarChart.init("soilEBarChart", data.soilEBarChart);
+    			
            	}
     	});
     }
     
-    const searchLiseChart = (type) => { 
-    	const date = $('#datetimePicker').val();
+    const clearBarChart = () => {
+    	if (barChartA != null) {
+    		barChartA.clear();
+    	}
+    	if (barChartB != null) {
+    		barChartB.clear();
+    	}
+    	if (barChartC != null) {
+    		barChartC.clear();
+    	}
+    	if (barChartD != null) {
+    		barChartD.clear();
+    	}
+    	if (barChartE != null) {
+    		barChartE.clear();
+    	}
+    }
+    
+    const searchBarChart = () => {
+    	clearBarChart();
     	
     	let param = new Object();
+    	param.sensor = $('#sensorTypeSelect').val();
+    	const date = $('#datetimePicker').val();
+    	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
+    	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
+    	
+    	$.ajax({
+    		url: contextPath + "/dashboard/search/bar",
+    		type: "POST",
+    		data: JSON.stringify(param),
+    		contentType: "application/json",
+    		success: function(data) {
+    			if (data.soilABarChart) {
+    				barChartA = EchartsBarChart.init("soilABarChart", data.soilABarChart);
+    			}
+    			if (data.soilBBarChart) {
+    				barChartB = EchartsBarChart.init("soilBBarChart", data.soilBBarChart);
+    			}
+    			if (data.soilCBarChart) {
+    				barChartC = EchartsBarChart.init("soilCBarChart", data.soilCBarChart);
+    			}
+    			if (data.soilDBarChart) {
+    				barChartD = EchartsBarChart.init("soilDBarChart", data.soilDBarChart);
+    			}
+    			if (data.soilEBarChart) {
+    				barChartE = EchartsBarChart.init("soilEBarChart", data.soilEBarChart);
+    			}
+           	}
+    	});
+    }
+    
+    const searchLiseChart = (type) => {
+    	let param = new Object();
     	param.pointType = type;
+    	const date = $('#datetimePicker').val();
     	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
     	param.daysDate = moment(date).subtract(9, 'days').format("YYYY-MM-DD 00:00:00");
     	
@@ -88,20 +138,20 @@ $(document).ready(function() {
     	});
     }
     
-    const search = () => {
+    const search = (type) => {
     	searchDashboard();
     	searchBarChart();
-    	searchLiseChart('A');
+    	searchLiseChart(type);
     }
     
-    search();
+    search(type);
     
     $('#searchBtn').click(function() {
-    	search();
+    	search(type);
     });
     
     $("#lineChartTab li").click(function() {
-    	const type = this.id;
+    	type = this.id;
     	searchLiseChart(type);
     });
 });
