@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import net.woori.start.domain.DashboardInfo;
 import net.woori.start.domain.EnumType.PointType;
+import net.woori.start.domain.EnumType.WeatherType;
+import net.woori.start.domain.WeatherInfo;
 import net.woori.start.domain.db.PointInfo;
 import net.woori.start.domain.param.SearchParam;
 import net.woori.start.service.MeasurementService;
@@ -28,11 +30,25 @@ public class DashboardService {
 	@Autowired
 	private ChartService chartService;
 	
+	@Autowired
+	private DateService dateService;
+	
 	public DashboardInfo createDashboardInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
+		WeatherInfo weatherInfo = new WeatherInfo();
+		weatherInfo.setDate(dateService.parseDate(param.getCurrentDate()) + " 기준");
+		weatherInfo.setTemp(22);
+		weatherInfo.setType("맑음");
+		weatherInfo.setRainfall(0);
+		weatherInfo.setFineDust(WeatherType.보통);
+		weatherInfo.setOzone(WeatherType.좋음);
+		weatherInfo.setDescription("어제 기온와 같음");
+		
+		dashboardInfo.setWeatherInfo(weatherInfo);
+		
 		return dashboardInfo;
 	}
-
+	
 	public DashboardInfo createBarChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		

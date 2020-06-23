@@ -27,5 +27,7 @@ public class SearchParam {
 	
 	private String endDate;
 	
+	private String currentDate;
+	
 	private String daysDate;
 }

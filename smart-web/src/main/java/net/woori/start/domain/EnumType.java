@@ -58,4 +58,8 @@ public class EnumType {
 	public enum ChartType {
 		일별, 주별, 월별;
 	}
+	
+	public enum WeatherType {
+		좋음, 나쁨, 보통
+	}
 }

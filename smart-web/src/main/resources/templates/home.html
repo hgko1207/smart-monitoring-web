@@ -29,7 +29,7 @@
 					<button id="searchBtn" class="btn bg-info btn-sm px-3"><i class="icon-search4 mr-2"></i>검 색</button>
 				</div>
 				<div class="d-flex align-items-center">
-					<span class="font-weight-bold text-danger mr-4">2020-05-27 14:00 기준</span>
+					<span class="font-weight-bold text-danger mr-4"></span>
 					<div class="btn-group">
 						<button type="button" class="btn btn-sm btn-green">양호</button>
 						<button type="button" class="btn btn-sm btn-yellow">주의</button>
@@ -150,7 +150,7 @@
 							<h6 class="card-title font-weight-bold">
 								<i class="icon-satellite-dish2 mr-2"></i>기상정보(기상청)
 							</h6>
-							<div class="text-secondary">2020-05-27 14:00 기준</div>
+							<div id="weatherDate" class="text-secondary">2020-05-27 14:00 기준</div>
 						</div>
 						<div class="card-body row">
 							<div class="mr-md-auto"></div>
@@ -160,10 +160,16 @@
 							<div class="col-md-7 pl-4 py-3">
 								<div class="weather-time">14시 현재</div>
 								<div class="weather-info">
-									<span class="weather-temp mr-2">22 ℃</span> 맑음
+									<span class="weather-temp"><span id="weatherTemp"></span>℃</span> 
+									<span id="weatherType" class="ml-2"></span>
 								</div>
-								<div>어제 기온과 같음 | 강수확률 0%</div>
-								<div>미세먼지 <span class="text-green-600">보통</span> ㆍ 오존 <span class="text-blue-600">좋음</span></div>
+								<div>
+									<span id="description"></span> | 강수확률 <span id="weatherRainfall"></span>%
+								</div>
+								<div>
+									미세먼지 <span id="weatherFineDust" class="text-green-600"></span>
+									 ㆍ 오존 <span id="weatherOzone" class="text-blue-600"></span>
+								 </div>
 							</div>
 						</div>
 					</div>

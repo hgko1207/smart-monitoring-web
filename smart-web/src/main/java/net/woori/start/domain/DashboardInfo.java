@@ -4,6 +4,12 @@ import lombok.Data;
 import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.chart.ChartInfo;
 
+/**
+ * 대시보드 정보 도메인
+ * 
+ * @author hgko
+ *
+ */
 @Data
 public class DashboardInfo {
 	
@@ -15,6 +21,7 @@ public class DashboardInfo {
 	/** 양호, 주의, 경계, 심각 */
 	private LevelType levelType;
 
+	/** 상단 BarChart */
 	private ChartInfo soilABarChart;
 	
 	private ChartInfo soilBBarChart;
@@ -25,6 +32,7 @@ public class DashboardInfo {
 	
 	private ChartInfo soilEBarChart;
 	
+	/** 하단 LineChart */
 	private ChartInfo tempALineChart;
 	
 	private ChartInfo waterALineChart;

@@ -27,11 +27,11 @@ $(document).ready(function() {
 	}, 500);
     
     const searchDashboard = () => {
-    	const date = $('#datetimePicker').val();
-    	
     	let param = new Object();
     	param.sensor = $('#sensorTypeSelect').val();
+    	const date = $('#datetimePicker').val();
     	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
+    	param.currentDate = moment(date).format("YYYY-MM-DD hh:mm:ss");
     	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
     	
     	$.ajax({
@@ -40,7 +40,14 @@ $(document).ready(function() {
     		data: JSON.stringify(param),
     		contentType: "application/json",
     		success: function(data) {
-    			
+    			const weather = data.weatherInfo;
+    			$('#weatherDate').html(weather.date);
+    			$('#weatherTemp').html(weather.temp);
+    			$('#weatherType').html(weather.type);
+    			$('#description').html(weather.description);
+    			$('#weatherRainfall').html(weather.rainfall);
+    			$('#weatherFineDust').html(weather.fineDust);
+    			$('#weatherOzone').html(weather.ozone);
            	}
     	});
     }
