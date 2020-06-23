@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import net.woori.start.domain.EnumType.LevelType;
+import net.woori.start.domain.EnumType.SensorType;
 
 @Data
 @NoArgsConstructor
@@ -22,16 +24,38 @@ public class BarChartSeries {
 	
 	private BarChartItemStyle itemStyle;
 	
-	public BarChartSeries(String name) {
+	private SeriesLabel label = new SeriesLabel();
+	
+	private SensorType sensorType;
+	
+	public BarChartSeries(SensorType type, String name) {
 		this.name = name;
 		this.type = "bar";
 		this.itemStyle = new BarChartItemStyle();
 
+		this.sensorType = type;
 		data = new ArrayList<>();
 	}
 
 	public void addDataItem(float value) {
-		data.add(new BarChartData(value));
+		data.add(new BarChartData(sensorType, value));
+	}
+	
+	@Data
+	public class SeriesLabel {
+		
+		private Normal normal = new Normal();
+		
+	}
+	
+	@Data
+	public class Normal {
+		
+		private boolean show = true;
+		
+		private String textBorderColor = "#353535";
+		
+		private int textBorderWidth = 0;
 	}
 	
 	@Data
@@ -40,18 +64,32 @@ public class BarChartSeries {
 		
 		private float value;
 		
+//		private Label label = new Label();
+		
 		private ItemStyle itemStyle;
 		
-		public BarChartData(float value) {
+		public BarChartData(SensorType type, float value) {
 			String color = "";
-			if (value >= 40) {
-				color = "#ff9710";
-			} else if (value >= 20) {
-				color = "#00d76a";
-			} else if (value >= 10) {
-				color = "#ffeb0e";
-			} else if (value >= 0) {
-				color = "#ff2e2f";
+			if (type == SensorType.토양수분) {
+				if (value >= 0 && value < 4.6) {
+					color = LevelType.주의.getColor();
+				} else if (value >= 4.6 && value < 44) {
+					color = LevelType.양호.getColor();
+				} else if (value >= 44) {
+					color = LevelType.경계.getColor();
+				}
+			} else if (type == SensorType.토양온도) {
+				if ((value >= 0 && value < 10) || (value >= 35 && value <= 45)) {
+					color = LevelType.심각.getColor();
+				} else if ((value >= 10 && value < 15) || (value >= 28 && value < 35)) {
+					color = LevelType.경계.getColor();
+				} else if ((value >= 15 && value < 19) || (value >= 25 && value < 28)) {
+					color = LevelType.주의.getColor();
+				} else if (value >= 19 && value < 25) {
+					color = LevelType.양호.getColor();
+				} else {
+					color = LevelType.심각.getColor();
+				}
 			}
 			
 			this.value = value;
@@ -70,6 +108,6 @@ public class BarChartSeries {
 	@Getter
 	public class Label {
 		
-		private String color;
+		private String position = "right";
 	}
 }

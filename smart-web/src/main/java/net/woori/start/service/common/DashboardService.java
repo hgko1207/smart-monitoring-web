@@ -49,12 +49,6 @@ public class DashboardService {
 		return dashboardInfo;
 	}
 	
-	public Object createGaugeChartInfo(SearchParam param) {
-		DashboardInfo dashboardInfo = new DashboardInfo();
-		
-		return dashboardInfo;
-	}
-	
 	public DashboardInfo createLineChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		

@@ -227,19 +227,19 @@
 						<div class="card-body p-0">
 							<ul class="nav nav-tabs nav-tabs-highlight nav-justified bg-light" id="lineChartTab">
 								<li class="nav-item nav-start" id="A">
-									<a href="#tab1" class="nav-link active" data-toggle="tab">A 지점 토양수분계측그래프(10일)</a>
+									<a href="#tab1" class="nav-link active" data-toggle="tab">A 지점 토양계측그래프(10일)</a>
 								</li>
 								<li class="nav-item" id="B">
-									<a href="#tab2" class="nav-link" data-toggle="tab">B 지점 토양수분계측그래프(10일)</a>
+									<a href="#tab2" class="nav-link" data-toggle="tab">B 지점 계측그래프(10일)</a>
 								</li>
 								<li class="nav-item" id="C">
-									<a href="#tab3" class="nav-link" data-toggle="tab">C 지점 토양수분계측그래프(10일)</a>
+									<a href="#tab3" class="nav-link" data-toggle="tab">C 지점 토양계측그래프(10일)</a>
 								</li>
 								<li class="nav-item" id="D">
 									<a href="#tab4" class="nav-link" data-toggle="tab">D 지점 토양수분계측그래프(10일)</a>
 								</li>
 								<li class="nav-item nav-end" id="E">
-									<a href="#tab5" class="nav-link" data-toggle="tab">E 지점 토양수분계측그래프(10일)</a>
+									<a href="#tab5" class="nav-link" data-toggle="tab">E 지점 토양계측그래프(10일)</a>
 								</li>
 							</ul>
 							<div class="tab-content">
@@ -322,15 +322,10 @@
     </th:block>
     
     <th:block layout:fragment="script">
-	    <script th:src="@{/js/fusioncharts/fusioncharts.js}"></script>
-		<script th:src="@{/js/fusioncharts/fusioncharts.widgets.js}"></script>
-		<script th:src="@{/js/fusioncharts/fusioncharts.theme.js}"></script>
-	
     	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOybNujmIFXZLfUf5J-q0_WqNH3riUKbg" async defer></script>
     	<script th:src="@{/js/common/google_map.js}"></script>
-        <!-- <script th:src="@{/js/common/bar_chart.js}"></script> -->
+        <script th:src="@{/js/common/bar_chart.js}"></script>
         <script th:src="@{/js/common/line_chart.js}"></script>
-        <script th:src="@{/js/common/gauge_chart.js}"></script>
         <script th:src="@{/js/page/home.js}"></script>
     </th:block>
 </html>

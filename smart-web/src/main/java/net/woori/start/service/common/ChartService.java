@@ -46,14 +46,14 @@ public class ChartService {
 		}
 		
 		if (param.getSensor() == SensorType.토양수분) {
-			BarChartSeries soilChartSeries = new BarChartSeries(type.getTitleWater());
+			BarChartSeries soilChartSeries = new BarChartSeries(param.getSensor(), type.getTitleWater());
 			soilChartSeries.addDataItem(round(chartData.getWater1()));
 			soilChartSeries.addDataItem(round(chartData.getWater2()));
 			soilChartSeries.addDataItem(round(chartData.getWater3()));
 			
 			chartInfo.addBarChartSeries(soilChartSeries);
 		} else if (param.getSensor() == SensorType.토양온도) {
-			BarChartSeries soilChartSeries = new BarChartSeries(type.getTitleTemp());
+			BarChartSeries soilChartSeries = new BarChartSeries(param.getSensor(), type.getTitleTemp());
 			soilChartSeries.addDataItem(round(chartData.getTemp1()));
 			soilChartSeries.addDataItem(round(chartData.getTemp2()));
 			soilChartSeries.addDataItem(round(chartData.getTemp3()));

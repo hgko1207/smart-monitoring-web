@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.woori.start.domain.EnumType.ChartType;
 import net.woori.start.domain.EnumType.LocationType;
+import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.param.SearchParam;
 import net.woori.start.service.PointInfoService;
@@ -43,8 +44,8 @@ public class MeasurementController {
 		model.addAttribute("locationTypes", LocationType.values());
 		model.addAttribute("sensorTypes", SensorType.values());
 		model.addAttribute("chartTypes", ChartType.values());
+		model.addAttribute("sensorPointTypes", SensorPointType.values());
 	}
-	
 	
 	/**
 	 * 차트 조회

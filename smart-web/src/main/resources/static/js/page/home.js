@@ -26,6 +26,58 @@ $(document).ready(function() {
     	GoogleMap.markerAndInfoOverlay(map, site);
 	}, 500);
     
+    const clearBarChart = () => {
+    	if (barChartA != null) {
+    		barChartA.clear();
+    	}
+    	if (barChartB != null) {
+    		barChartB.clear();
+    	}
+    	if (barChartC != null) {
+    		barChartC.clear();
+    	}
+    	if (barChartD != null) {
+    		barChartD.clear();
+    	}
+    	if (barChartE != null) {
+    		barChartE.clear();
+    	}
+    }
+    
+    const searchBarChart = () => {
+    	clearBarChart();
+    	
+    	let param = new Object();
+    	param.sensor = $('#sensorTypeSelect').val();
+    	const date = $('#datetimePicker').val();
+    	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
+    	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
+    	
+    	$.ajax({
+    		url: contextPath + "/dashboard/search/bar",
+    		type: "POST",
+    		data: JSON.stringify(param),
+    		contentType: "application/json",
+    		success: function(data) {
+    			if (data.soilABarChart) {
+    				barChartA = EchartsBarChart.init("soilAChart", data.soilABarChart);
+    			}
+    			if (data.soilBBarChart) {
+    				barChartB = EchartsBarChart.init("soilBChart", data.soilBBarChart);
+    			}
+    			if (data.soilCBarChart) {
+    				barChartC = EchartsBarChart.init("soilCChart", data.soilCBarChart);
+    			}
+    			if (data.soilDBarChart) {
+    				barChartD = EchartsBarChart.init("soilDChart", data.soilDBarChart);
+    			}
+    			if (data.soilEBarChart) {
+    				barChartE = EchartsBarChart.init("soilEChart", data.soilEBarChart);
+    			}
+           	}
+    	});
+    }
+    
     const searchDashboard = () => {
     	let param = new Object();
     	param.sensor = $('#sensorTypeSelect').val();
@@ -48,28 +100,6 @@ $(document).ready(function() {
     			$('#weatherRainfall').html(weather.rainfall);
     			$('#weatherFineDust').html(weather.fineDust);
     			$('#weatherOzone').html(weather.ozone);
-           	}
-    	});
-    }
-    
-    const searchGaugeChart = (type) => {
-    	let param = new Object();
-    	param.sensor = $('#sensorTypeSelect').val();
-    	const date = $('#datetimePicker').val();
-    	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
-    	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
-    	
-    	$.ajax({
-    		url: contextPath + "/dashboard/search/gauge",
-    		type: "POST",
-    		data: JSON.stringify(param),
-    		contentType: "application/json",
-    		success: function(data) {
-    			soilWaterChart("soilAChart");
-    			soilWaterChart("soilBChart");
-    			soilWaterChart("soilCChart");
-    			soilWaterChart("soilDChart");
-    			soilWaterChart("soilEChart");
            	}
     	});
     }
@@ -117,9 +147,8 @@ $(document).ready(function() {
     }
     
     const search = (type) => {
-    	searchGaugeChart();
+    	searchBarChart();
     	searchDashboard();
-//    	searchBarChart();
     	searchLiseChart(type);
     }
     
@@ -133,56 +162,4 @@ $(document).ready(function() {
     	type = this.id;
     	searchLiseChart(type);
     });
-    
-    const clearBarChart = () => {
-    	if (barChartA != null) {
-    		barChartA.clear();
-    	}
-    	if (barChartB != null) {
-    		barChartB.clear();
-    	}
-    	if (barChartC != null) {
-    		barChartC.clear();
-    	}
-    	if (barChartD != null) {
-    		barChartD.clear();
-    	}
-    	if (barChartE != null) {
-    		barChartE.clear();
-    	}
-    }
-    
-    const searchBarChart = () => {
-    	clearBarChart();
-    	
-    	let param = new Object();
-    	param.sensor = $('#sensorTypeSelect').val();
-    	const date = $('#datetimePicker').val();
-    	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
-    	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
-    	
-    	$.ajax({
-    		url: contextPath + "/dashboard/search/bar",
-    		type: "POST",
-    		data: JSON.stringify(param),
-    		contentType: "application/json",
-    		success: function(data) {
-    			if (data.soilABarChart) {
-    				barChartA = EchartsBarChart.init("soilABarChart", data.soilABarChart);
-    			}
-    			if (data.soilBBarChart) {
-    				barChartB = EchartsBarChart.init("soilBBarChart", data.soilBBarChart);
-    			}
-    			if (data.soilCBarChart) {
-    				barChartC = EchartsBarChart.init("soilCBarChart", data.soilCBarChart);
-    			}
-    			if (data.soilDBarChart) {
-    				barChartD = EchartsBarChart.init("soilDBarChart", data.soilDBarChart);
-    			}
-    			if (data.soilEBarChart) {
-    				barChartE = EchartsBarChart.init("soilEBarChart", data.soilEBarChart);
-    			}
-           	}
-    	});
-    }
 });

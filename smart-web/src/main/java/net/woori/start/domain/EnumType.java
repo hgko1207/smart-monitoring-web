@@ -64,15 +64,15 @@ public class EnumType {
 	
 	@Getter
 	public enum LevelType {
-		양호(0),
-		주의(1),
-		경계(2),
-		심각(3);
+		양호("#00D76A"),
+		주의("#FFEB0E"),
+		경계("#FF9710"),
+		심각("#FF2E2F");
 		
-		private int id;
+		private String color;
 		
-		private LevelType(int id) {
-			this.id = id;
+		private LevelType(String color) {
+			this.color = color;
 		}
 	}
 }

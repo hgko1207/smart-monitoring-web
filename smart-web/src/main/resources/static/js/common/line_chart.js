@@ -40,6 +40,9 @@ var LineChart = function() {
                     textStyle: {
                         fontSize: 13,
                         fontFamily: 'Roboto, sans-serif'
+                    },
+                    axisPointer: {
+                        type: 'shadow'
                     }
                 },
                 xAxis: [{

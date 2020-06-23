@@ -18,9 +18,15 @@
 						</select>
 					</div>
 					
-					<div class="form-group mr-4 mb-0">
+					<div class="form-group mr-2 mb-0">
 						<select class="form-control form-control-select2" id="locationSelect" data-fouc>
 							<option th:each="location : ${locationTypes}" th:value="${location}" th:text="${location}"></option>
+						</select>
+					</div>
+					
+					<div class="form-group mr-4 mb-0">
+						<select class="form-control form-control-select2" id="sensorPointSelect" data-fouc>
+							<option th:each="sensorPoint : ${sensorPointTypes}" th:value="${sensorPoint}" th:text="${sensorPoint}"></option>
 						</select>
 					</div>
 					

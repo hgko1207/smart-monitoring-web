@@ -21,7 +21,7 @@
 	<!-- /Global stylesheets -->
 		
 	<!-- Common stylesheets -->
-	<link rel="stylesheet" th:href="@{/css/page/user.css}">
+	<link rel="stylesheet" th:href="@{/css/page/login.css}">
 	<!-- /Common stylesheets -->
 	
 	<!-- Core JS files -->
@@ -50,12 +50,13 @@
 	<div class="page-content">
 		<div class="content-wrapper">
 			<div class="content d-flex justify-content-center align-items-center">
-				<form class="form-validate wmin-sm-400" th:action="@{/m/login}" method="POST">
+				<form class="form-validate col-xl-7 col-11" th:action="@{/m/login}" method="POST">
+					<div class="d-flex justify-content-center mb-2 mobile-title">스마트 노지 토양환경계측시스템</div>
 					<div class="card mb-0">
 						<div class="card-body">
 							<div class="text-center mb-3">
 								<i class="icon-reading icon-2x text-slate-300 border-slate-300 border-3 rounded-round p-3 mb-3 mt-3"></i>
-								<h3 class="mb-1">계정 로그인1</h3>
+								<h4 class="mb-1">사용자 로그인</h4>
 								<span class="d-block text-muted">아이디와 비밀번호를 입력하세요.</span>
 							</div>
 							

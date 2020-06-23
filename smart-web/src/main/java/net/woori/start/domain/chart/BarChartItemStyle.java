@@ -19,7 +19,7 @@ public class BarChartItemStyle {
 		
 		private boolean show = true;
 		
-		private String position = "insideLeft";
+		private String position = "insideRight";
 		
 		private String formatter = "{c}%";
 		
@@ -28,6 +28,7 @@ public class BarChartItemStyle {
 	
 	@Getter
 	public class TextStyle {
+		
 		private int padding = 5;
 	}
 }

@@ -1,5 +1,6 @@
 var EchartsBarChart = function() {
     var _barsChart = function(id, data) {
+    	console.log(data);
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
@@ -30,28 +31,30 @@ var EchartsBarChart = function() {
                     type: 'category',
                     data: data.categories,
                     axisTick: {
-                    	length: 1
+                    	show: false,
+                    	length: 0
                     },
                     axisLabel: {
                         color: '#333'
                     },
                     axisLine: {
                         lineStyle: {
-                            color: '#999'
+                            color: '#999',
+                            width: 1
                         }
                     },
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: '#eee'
-                        }
-                    },
-                    splitArea: {
-                        show: true,
-                        areaStyle: {
-                            color: ['rgba(250,250,250,0.1)', 'rgba(0,0,0,0.015)']
-                        }
-                    }
+//                    splitLine: {
+//                        show: true,
+//                        lineStyle: {
+//                            color: '#eee'
+//                        }
+//                    },
+//                    splitArea: {
+//                        show: true,
+//                        areaStyle: {
+//                            color: ['rgba(250,250,250,0.1)', 'rgba(0,0,0,0.015)']
+//                        }
+//                    }
                 }],
                 series: data.barChartSeries
             });

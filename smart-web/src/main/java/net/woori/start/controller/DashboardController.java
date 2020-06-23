@@ -47,16 +47,6 @@ public class DashboardController {
     }
 	
 	/**
-	 * Gauge 차트 조회
-	 * @param param
-	 * @return
-	 */
-	@PostMapping("dashboard/search/gauge")
-    public ResponseEntity<?> searchGauge(@RequestBody SearchParam param) {
-		return new ResponseEntity<>(dashboardService.createGaugeChartInfo(param), HttpStatus.OK);
-    }
-	
-	/**
 	 * Bar 차트 조회
 	 * @param param
 	 * @return
