@@ -37,18 +37,8 @@ public class EnumType {
 		}
 	}
 	
-	@Getter
-	public enum LevelType {
-		양호(0),
-		주의(1),
-		경계(2),
-		심각(3);
-		
-		private int id;
-		
-		private LevelType(int id) {
-			this.id = id;
-		}
+	public enum SensorPointType {
+		시점, 말단; 
 	}
 	
 	public enum LocationType {
@@ -61,5 +51,19 @@ public class EnumType {
 	
 	public enum WeatherType {
 		좋음, 나쁨, 보통
+	}
+	
+	@Getter
+	public enum LevelType {
+		양호(0),
+		주의(1),
+		경계(2),
+		심각(3);
+		
+		private int id;
+		
+		private LevelType(int id) {
+			this.id = id;
+		}
 	}
 }

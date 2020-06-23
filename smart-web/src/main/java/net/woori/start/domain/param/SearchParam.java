@@ -4,6 +4,7 @@ import lombok.Data;
 import net.woori.start.domain.EnumType.ChartType;
 import net.woori.start.domain.EnumType.LocationType;
 import net.woori.start.domain.EnumType.PointType;
+import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.EnumType.SensorType;
 
 @Data
@@ -13,6 +14,8 @@ public class SearchParam {
 
 	/** 지점 */
 	private String point;
+	
+	private SensorPointType sensorPoint;
 	
 	/** 위치 */
 	private LocationType location;

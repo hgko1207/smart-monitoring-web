@@ -52,6 +52,88 @@ $(document).ready(function() {
     	});
     }
     
+    const searchGaugeChart = (type) => {
+    	let param = new Object();
+    	param.sensor = $('#sensorTypeSelect').val();
+    	const date = $('#datetimePicker').val();
+    	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
+    	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
+    	
+    	$.ajax({
+    		url: contextPath + "/dashboard/search/gauge",
+    		type: "POST",
+    		data: JSON.stringify(param),
+    		contentType: "application/json",
+    		success: function(data) {
+    			soilWaterChart("soilAChart");
+    			soilWaterChart("soilBChart");
+    			soilWaterChart("soilCChart");
+    			soilWaterChart("soilDChart");
+    			soilWaterChart("soilEChart");
+           	}
+    	});
+    }
+    
+    const searchLiseChart = (type) => {
+    	let param = new Object();
+    	param.pointType = type;
+    	const date = $('#datetimePicker').val();
+    	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
+    	param.daysDate = moment(date).subtract(9, 'days').format("YYYY-MM-DD 00:00:00");
+    	param.sensorPoint = $('#sensorPointSelect').val();
+    	
+    	$.ajax({
+    		url: contextPath + "/dashboard/search/line",
+    		type: "POST",
+    		data: JSON.stringify(param),
+    		contentType: "application/json",
+    		success: function(data) {
+    			let tempChart = null;
+    			let waterChart = null;
+    			
+    			if (type === 'A') {
+    				tempChart = LineChart.init("tempALineChart", data.tempALineChart);
+    				waterChart = LineChart.init("waterALineChart", data.waterALineChart);
+    			} else if (type === 'B') {
+    				tempChart = LineChart.init("tempBLineChart", data.tempBLineChart);
+    				waterChart = LineChart.init("waterBLineChart", data.waterBLineChart);
+    			} else if (type === 'C') {
+    				tempChart = LineChart.init("tempCLineChart", data.tempCLineChart);
+    				waterChart = LineChart.init("waterCLineChart", data.waterCLineChart);
+    			} else if (type === 'D') {
+    				tempChart = LineChart.init("tempDLineChart", data.tempDLineChart);
+    				waterChart = LineChart.init("waterDLineChart", data.waterDLineChart);
+    			} else if (type === 'E') {
+    				tempChart = LineChart.init("tempELineChart", data.tempELineChart);
+    				waterChart = LineChart.init("waterELineChart", data.waterELineChart);
+    			}
+    			
+    			setTimeout(function () {
+    				tempChart.resize();
+    				waterChart.resize();
+                }, 200);
+           	}
+    	});
+    }
+    
+    const search = (type) => {
+    	searchGaugeChart();
+    	searchDashboard();
+//    	searchBarChart();
+    	searchLiseChart(type);
+    }
+    
+    search(type);
+    
+    $('#searchBtn').click(function() {
+    	search(type);
+    });
+    
+    $("#lineChartTab li").click(function() {
+    	type = this.id;
+    	searchLiseChart(type);
+    });
+    
     const clearBarChart = () => {
     	if (barChartA != null) {
     		barChartA.clear();
@@ -103,62 +185,4 @@ $(document).ready(function() {
            	}
     	});
     }
-    
-    const searchLiseChart = (type) => {
-    	let param = new Object();
-    	param.pointType = type;
-    	const date = $('#datetimePicker').val();
-    	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
-    	param.daysDate = moment(date).subtract(9, 'days').format("YYYY-MM-DD 00:00:00");
-    	
-    	$.ajax({
-    		url: contextPath + "/dashboard/search/line",
-    		type: "POST",
-    		data: JSON.stringify(param),
-    		contentType: "application/json",
-    		success: function(data) {
-    			let tempChart = null;
-    			let waterChart = null;
-    			
-    			if (type === 'A') {
-    				tempChart = LineChart.init("tempALineChart", data.tempALineChart);
-    				waterChart = LineChart.init("waterALineChart", data.waterALineChart);
-    			} else if (type === 'B') {
-    				tempChart = LineChart.init("tempBLineChart", data.tempBLineChart);
-    				waterChart = LineChart.init("waterBLineChart", data.waterBLineChart);
-    			} else if (type === 'C') {
-    				tempChart = LineChart.init("tempCLineChart", data.tempCLineChart);
-    				waterChart = LineChart.init("waterCLineChart", data.waterCLineChart);
-    			} else if (type === 'D') {
-    				tempChart = LineChart.init("tempDLineChart", data.tempDLineChart);
-    				waterChart = LineChart.init("waterDLineChart", data.waterDLineChart);
-    			} else if (type === 'E') {
-    				tempChart = LineChart.init("tempELineChart", data.tempELineChart);
-    				waterChart = LineChart.init("waterELineChart", data.waterELineChart);
-    			}
-    			
-    			setTimeout(function () {
-    				tempChart.resize();
-    				waterChart.resize();
-                }, 200);
-           	}
-    	});
-    }
-    
-    const search = (type) => {
-    	searchDashboard();
-    	searchBarChart();
-    	searchLiseChart(type);
-    }
-    
-    search(type);
-    
-    $('#searchBtn').click(function() {
-    	search(type);
-    });
-    
-    $("#lineChartTab li").click(function() {
-    	type = this.id;
-    	searchLiseChart(type);
-    });
 });

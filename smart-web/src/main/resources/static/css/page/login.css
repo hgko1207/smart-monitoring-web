@@ -1,0 +1,19 @@
+@charset "EUC-KR";
+
+.card.bg-authentication {
+    box-shadow: -8px 20px 25px 0 rgba(25,42,70,.3);
+    background-color: #F2F4F4;
+}
+
+.login-title {
+	color: white;
+	font-weight: 600;
+	font-size: 4rem;
+}
+
+.login-logo {
+	position: absolute;
+	bottom: 0;
+	left: 38%;
+	padding-bottom: 0.8rem;
+}

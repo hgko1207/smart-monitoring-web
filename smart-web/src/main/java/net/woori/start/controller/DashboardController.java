@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.param.SearchParam;
 import net.woori.start.service.common.DashboardService;
@@ -32,6 +33,7 @@ public class DashboardController {
 	@GetMapping("home")
     public void home(Model model) {
 		model.addAttribute("sensorTypes", SensorType.values());
+		model.addAttribute("sensorPointTypes", SensorPointType.values());
     }
 	
 	/**
@@ -42,6 +44,16 @@ public class DashboardController {
 	@PostMapping("dashboard/search")
     public ResponseEntity<?> search(@RequestBody SearchParam param) {
 		return new ResponseEntity<>(dashboardService.createDashboardInfo(param), HttpStatus.OK);
+    }
+	
+	/**
+	 * Gauge 차트 조회
+	 * @param param
+	 * @return
+	 */
+	@PostMapping("dashboard/search/gauge")
+    public ResponseEntity<?> searchGauge(@RequestBody SearchParam param) {
+		return new ResponseEntity<>(dashboardService.createGaugeChartInfo(param), HttpStatus.OK);
     }
 	
 	/**

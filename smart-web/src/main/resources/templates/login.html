@@ -21,7 +21,7 @@
 	<!-- /Global stylesheets -->
 		
 	<!-- Common stylesheets -->
-	<link rel="stylesheet" th:href="@{/css/page/user.css}">
+	<link rel="stylesheet" th:href="@{/css/page/login.css}">
 	<!-- /Common stylesheets -->
 	
 	<!-- Core JS files -->
@@ -51,6 +51,7 @@
 		<div class="content-wrapper">
 			<div class="content d-flex justify-content-center align-items-center">
 				<form class="form-validate col-xl-7 col-11" th:action="@{/login}" method="POST">
+					<div class="d-flex justify-content-center mb-2 login-title">스마트 노지 토양환경계측시스템</div>
 					<div class="card bg-authentication mb-0">
 						<div class="row m-0">
 							<div class="col-md-6 col-12 bg-white">
@@ -101,6 +102,10 @@
 	                    		<div class="card-content">
 			                        <img class="img-fluid" th:src="@{/images/login.png}" alt="branding logo">
 				                </div>
+	                    	</div>
+	                    	
+	                    	<div class="login-logo">
+	                    		 <img class="img-fluid" th:src="@{/images/login_logo.png}" alt="branding logo">
 	                    	</div>
 						</div>
 					</div>

@@ -11,9 +11,16 @@
 			<div class="page-header-content header-elements-md-inline">
 				<div class="page-title d-flex">
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">항목 :</label>
-					<div class="form-group mr-4 mb-0">
+					<div class="form-group mr-3 mb-0">
 						<select class="form-control form-control-select2" id="sensorTypeSelect" data-fouc>
 							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
+						</select>
+					</div>
+					
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">구분 :</label>
+					<div class="form-group mr-3 mb-0">
+						<select class="form-control form-control-select2" id="sensorPointSelect" data-fouc>
+							<option th:each="sensorPoint : ${sensorPointTypes}" th:value="${sensorPoint}" th:text="${sensorPoint}"></option>
 						</select>
 					</div>
 					
@@ -29,7 +36,7 @@
 					<button id="searchBtn" class="btn bg-info btn-sm px-3"><i class="icon-search4 mr-2"></i>검 색</button>
 				</div>
 				<div class="d-flex align-items-center">
-					<span class="font-weight-bold text-danger mr-4"></span>
+					<span class="font-weight-bold text-danger mr-4">2020-06-23 14:00 기준</span>
 					<div class="btn-group">
 						<button type="button" class="btn btn-sm btn-green">양호</button>
 						<button type="button" class="btn btn-sm btn-yellow">주의</button>
@@ -56,7 +63,7 @@
 						</div>
 						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
-								<div class="chart has-fixed-height" id="soilABarChart"></div>
+								<div class="chart has-fixed-height" id="soilAChart"></div>
 							</div>
 						</div>
 					</div>
@@ -76,7 +83,7 @@
 						</div>
 						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
-								<div class="chart has-fixed-height" id="soilBBarChart"></div>
+								<div class="chart has-fixed-height" id="soilBChart"></div>
 							</div>
 						</div>
 					</div>
@@ -96,7 +103,7 @@
 						</div>
 						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
-								<div class="chart has-fixed-height" id="soilCBarChart"></div>
+								<div class="chart has-fixed-height" id="soilCChart"></div>
 							</div>
 						</div>
 					</div>
@@ -116,7 +123,7 @@
 						</div>
 						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
-								<div class="chart has-fixed-height" id="soilDBarChart"></div>
+								<div class="chart has-fixed-height" id="soilDChart"></div>
 							</div>
 						</div>
 					</div>
@@ -136,7 +143,7 @@
 						</div>
 						<div class="card-body pb-0 pt-1">
 							<div class="chart-container">
-								<div class="chart has-fixed-height" id="soilEBarChart"></div>
+								<div class="chart has-fixed-height" id="soilEChart"></div>
 							</div>
 						</div>
 					</div>
@@ -315,10 +322,15 @@
     </th:block>
     
     <th:block layout:fragment="script">
+	    <script th:src="@{/js/fusioncharts/fusioncharts.js}"></script>
+		<script th:src="@{/js/fusioncharts/fusioncharts.widgets.js}"></script>
+		<script th:src="@{/js/fusioncharts/fusioncharts.theme.js}"></script>
+	
     	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOybNujmIFXZLfUf5J-q0_WqNH3riUKbg" async defer></script>
     	<script th:src="@{/js/common/google_map.js}"></script>
-        <script th:src="@{/js/common/bar_chart.js}"></script>
+        <!-- <script th:src="@{/js/common/bar_chart.js}"></script> -->
         <script th:src="@{/js/common/line_chart.js}"></script>
+        <script th:src="@{/js/common/gauge_chart.js}"></script>
         <script th:src="@{/js/page/home.js}"></script>
     </th:block>
 </html>

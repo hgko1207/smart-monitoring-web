@@ -49,11 +49,25 @@ public class DashboardService {
 		return dashboardInfo;
 	}
 	
-	public DashboardInfo createBarChartInfo(SearchParam param) {
+	public Object createGaugeChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		
-//		String startDate = "2020-06-22 00:00:00";
-//		String endDate = "2020-06-22 23:59:59";
+		return dashboardInfo;
+	}
+	
+	public DashboardInfo createLineChartInfo(SearchParam param) {
+		DashboardInfo dashboardInfo = new DashboardInfo();
+		
+		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName());
+		if (pointInfo != null) {
+			chartService.createLineChart(param.getPointType(), pointInfo, param, dashboardInfo);
+		}
+		
+		return dashboardInfo;
+	}
+	
+	public DashboardInfo createBarChartInfo(SearchParam param) {
+		DashboardInfo dashboardInfo = new DashboardInfo();
 		
 		PointInfo pointA = pointInfoService.get(PointType.A.getName());
 		if (pointA != null) {
@@ -88,19 +102,6 @@ public class DashboardService {
 			measurementService.getDailyList(pointE.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
 				dashboardInfo.setSoilEBarChart(chartService.createBarChart(PointType.E, param, data));
 			});
-		}
-		
-//		chartService.createBarChart(dashboardInfo, param);
-		
-		return dashboardInfo;
-	}
-
-	public DashboardInfo createLineChartInfo(SearchParam param) {
-		DashboardInfo dashboardInfo = new DashboardInfo();
-		
-		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName());
-		if (pointInfo != null) {
-			chartService.createLineChart(param.getPointType(), pointInfo, param, dashboardInfo);
 		}
 		
 		return dashboardInfo;
