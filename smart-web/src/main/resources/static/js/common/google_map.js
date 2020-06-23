@@ -12,16 +12,14 @@ const GoogleMap = function() {
 		return map;
 	};
 	
-	const markerAndInfoOverlay = function(map, site) {
+	const markerAndInfoOverlay = function(map, data) {
 		google.maps.event.trigger(map, "resize");
 		
-		var latlon = {lat: site.lat, lng: site.lon};
-		
-		map.setZoom(14);
-		map.setCenter(new google.maps.LatLng(site.lat, site.lon));
+		map.setZoom(20);
+		map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
 		
 		var marker = new google.maps.Marker({
-			position: latlon,
+			position: {lat: data.latitude, lng: data.longitude},
 			map: map
 		});
 		
@@ -29,7 +27,7 @@ const GoogleMap = function() {
 			"<div id='content'>" +
 			"<div style='color: #0080FF'><b>A 지점 토양계측정보</b></div>" + 
 			"<b>토양온도 : 16.4% | 15.2% | 14.2%</b>" + "<br>" + 
-			"<b>토양습도 : 21.8% | 27.3% | 22.9%</b>" + "<br>" + 
+			"<b>토양수분 : 21.8% | 27.3% | 22.9%</b>" + "<br>" + 
 			"</div>";
 		
 		var infowindow = new google.maps.InfoWindow({
@@ -43,35 +41,25 @@ const GoogleMap = function() {
 		infowindow.open(map, marker);
 	};
 	
-	const markerAndInfoOverlayList = function(map, siteSensorList) {
+	const markerAndInfoOverlayList = function(map, list) {
 		google.maps.event.trigger(map, "resize");
 		
-		$.each(siteSensorList, function(key) {
-			var site = siteSensorList[key];
-			var latlon = {lat: site.lat, lng: site.lon};
-			
-			map.setZoom(14);
-			map.setCenter(new google.maps.LatLng(site.lat, site.lon));
+		$.each(list, function(i, data) {
+			map.setZoom(22);
+			map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
 			
 			var marker = new google.maps.Marker({
-				position: latlon,
+				position: {lat: data.latitude, lng: data.longitude},
 				map: map
 			});
 			
-			var contentString;
-			if (site.soilSensorLog == null) {
-				contentString = 
-					"<div id='content'>" +
-					"<span style='color: #0080FF'><b>" + site.name + "(토양계측)</b></span><br>" + 
-					"</div>";
-			} else {
-				contentString = 
-					"<div id='content'>" +
-					"<span style='color: #0080FF'><b>" + site.name + "(토양계측)</b></span><br>" + 
-					"<b>표층 : " + site.soilSensorLog.soilSurfaceTemp + "도 | " + site.soilSensorLog.soilSurfaceMoisture + "% | " + site.soilSensorLog.soilSurfaceSalt + "ds/m</b>" + "<br>" + 
-					"<b>심층 : " + site.soilSensorLog.soilDeepTemp + "도 | " + site.soilSensorLog.soilDeepMoisture + "% | " + site.soilSensorLog.soilDeepSalt + "ds/m</b>" + 
-					"</div>";
-			}
+			var contentString = 
+				"<div id='content'>" +
+				"<div style='color: #0080FF'><b>" + data.point + " 토양계측정보</b></div>" +
+				"<b>토양온도 : " + data.temp1 + "% | " + data.temp2 + "% | " + data.temp3 + "%</b>" + "<br>" +
+				"<b>토양수분 : " + data.water1 + "% | " + data.water2 + "% | " + data.water3 + "%</b>" + "<br>" +
+				"</div>";
+			
 			var infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
@@ -90,6 +78,9 @@ const GoogleMap = function() {
         },
         markerAndInfoOverlay: function(map, site) {
         	return markerAndInfoOverlay(map, site);
+        },
+        markerAndInfoOverlayList: function(map, list) {
+        	return markerAndInfoOverlayList(map, list);
         }
     }
 }();

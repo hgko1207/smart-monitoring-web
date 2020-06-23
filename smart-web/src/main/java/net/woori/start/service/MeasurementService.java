@@ -12,4 +12,6 @@ public interface MeasurementService extends CRUDService<Measurement, Integer> {
 	List<Measurement> getList(int pointSq, String startDate, String endDate);
 	
 	List<ChartData> getDailyList(int pointSq, String startDate, String endDate);
+	
+	Measurement getCurrentData(int pointSq);
 }

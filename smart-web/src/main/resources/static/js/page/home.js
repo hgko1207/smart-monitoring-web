@@ -20,8 +20,8 @@ $(document).ready(function() {
     setTimeout(function() {
     	map = GoogleMap.init('googleMap');
     	let site = new Object();
-    	site.lat = 36.5;
-		site.lon = 127.5;
+    	site.latitude = 36.5;
+		site.longitude = 127.5;
     	
     	GoogleMap.markerAndInfoOverlay(map, site);
 	}, 500);

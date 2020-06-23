@@ -21,4 +21,7 @@ public interface MeasurementRepository extends DefaultRepository<Measurement, In
 	@Query(value = "SELECT " + SELECT + " FROM tb_sf_meas_raw WHERE point_sq = ?3 and " + BETWEEN + GROUP_BY, nativeQuery = true)
 	List<ChartData> getDailyList(String startDate, String endDate, int pointSq);
 
+	@Query(value = "SELECT * FROM tb_sf_meas_raw WHERE point_sq = ?1 ORDER By meas_dt limit 1", nativeQuery = true)
+	Measurement getCurrentData(int pointSq);
+
 }

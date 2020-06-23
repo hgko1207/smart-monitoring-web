@@ -41,8 +41,17 @@ public class EnumType {
 		시점, 말단; 
 	}
 	
+	@Getter
 	public enum LocationType {
-		상층, 중층, 하층;
+		상층("10cm"), 
+		중층("30cm"), 
+		하층("50cm");
+		
+		private String name;
+		
+		private LocationType(String name) {
+			this.name = name;
+		}
 	}
 	
 	public enum ChartType {
