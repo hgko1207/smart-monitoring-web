@@ -3,10 +3,13 @@ package net.woori.start.domain.param;
 import lombok.Data;
 import net.woori.start.domain.EnumType.ChartType;
 import net.woori.start.domain.EnumType.LocationType;
+import net.woori.start.domain.EnumType.PointType;
 import net.woori.start.domain.EnumType.SensorType;
 
 @Data
 public class SearchParam {
+	
+	private PointType pointType;
 
 	/** 지점 */
 	private String point;
@@ -24,5 +27,5 @@ public class SearchParam {
 	
 	private String endDate;
 	
-	private String date;
+	private String daysDate;
 }

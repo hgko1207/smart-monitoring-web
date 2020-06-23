@@ -41,6 +41,16 @@ public class DashboardController {
 	 */
 	@PostMapping("dashboard/search")
     public ResponseEntity<?> search(@RequestBody SearchParam param) {
-		return new ResponseEntity<>(dashboardService.createChartInfo(param), HttpStatus.OK);
+		return new ResponseEntity<>(dashboardService.createBarChartInfo(param), HttpStatus.OK);
+    }
+	
+	/**
+	 * 조회
+	 * @param param
+	 * @return
+	 */
+	@PostMapping("dashboard/search/line")
+    public ResponseEntity<?> searchLine(@RequestBody SearchParam param) {
+		return new ResponseEntity<>(dashboardService.createLineChartInfo(param), HttpStatus.OK);
     }
 }

@@ -4,4 +4,5 @@ import net.woori.start.domain.db.PointInfo;
 
 public interface PointInfoService extends CRUDService<PointInfo, Integer> {
 
+	PointInfo get(String pointNm);
 }

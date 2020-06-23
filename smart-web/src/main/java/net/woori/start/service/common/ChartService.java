@@ -1,12 +1,20 @@
 package net.woori.start.service.common;
 
+import java.text.SimpleDateFormat;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.woori.start.domain.DashboardInfo;
+import net.woori.start.domain.EnumType.LocationType;
+import net.woori.start.domain.EnumType.PointType;
 import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.chart.BarChartSeries;
 import net.woori.start.domain.chart.ChartInfo;
 import net.woori.start.domain.chart.LineChartSeries;
+import net.woori.start.domain.db.PointInfo;
+import net.woori.start.domain.param.SearchParam;
+import net.woori.start.service.MeasurementService;
 
 /**
  * 차트 관련 서비스
@@ -16,12 +24,18 @@ import net.woori.start.domain.chart.LineChartSeries;
  */
 @Service
 public class ChartService {
-
+	
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	@Autowired
+	private MeasurementService measurementService;
+	
 	/**
 	 * 대시보드 Bar 차트 생성
 	 * @param dashboardInfo
 	 */
-	public void createBarChart(DashboardInfo dashboardInfo) {
+	public void createBarChart(DashboardInfo dashboardInfo, SearchParam param) {
+		System.err.println(param);
 		ChartInfo soilAChartInfo = new ChartInfo();
 		ChartInfo soilBChartInfo = new ChartInfo();
 		ChartInfo soilCChartInfo = new ChartInfo();
@@ -35,6 +49,12 @@ public class ChartService {
 			soilCChartInfo.addCategory(data);
 			soilDChartInfo.addCategory(data);
 			soilEChartInfo.addCategory(data);
+		}
+		
+		if (param.getSensor() == SensorType.토양수분) {
+			
+		} else if (param.getSensor() == SensorType.토양온도) {
+			
 		}
 		
 		BarChartSeries soilAChartSeries = new BarChartSeries("토양수분 A");
@@ -73,6 +93,56 @@ public class ChartService {
 		dashboardInfo.setSoilCBarChart(soilCChartInfo);
 		dashboardInfo.setSoilDBarChart(soilDChartInfo);
 		dashboardInfo.setSoilEBarChart(soilEChartInfo);
+	}
+	
+	public void createLineChart(PointType type, PointInfo pointInfo, SearchParam param, DashboardInfo dashboardInfo) {
+		ChartInfo tempChartInfo = new ChartInfo(SensorType.토양온도);
+		ChartInfo waterChartInfo = new ChartInfo(SensorType.토양수분);
+		
+		LineChartSeries temp1ChartSeries = new LineChartSeries(LocationType.상층.name());
+		LineChartSeries temp2ChartSeries = new LineChartSeries(LocationType.중층.name());
+		LineChartSeries temp3ChartSeries = new LineChartSeries(LocationType.하층.name());
+		
+		LineChartSeries water1ChartSeries = new LineChartSeries(LocationType.상층.name());
+		LineChartSeries water2ChartSeries = new LineChartSeries(LocationType.중층.name());
+		LineChartSeries water3ChartSeries = new LineChartSeries(LocationType.하층.name());
+		
+		measurementService.getList(pointInfo.getPointSq(), param.getDaysDate(), param.getEndDate()).forEach(data -> {
+			tempChartInfo.addCategory(dateFormat.format(data.getMeasDt()));
+			waterChartInfo.addCategory(dateFormat.format(data.getMeasDt()));
+			
+			temp1ChartSeries.addDataItem(data.getTempCh1());
+			temp2ChartSeries.addDataItem(data.getTempCh2());
+			temp3ChartSeries.addDataItem(data.getTempCh3());
+			
+			water1ChartSeries.addDataItem(data.getVwcCh1());
+			water2ChartSeries.addDataItem(data.getVwcCh2());
+			water3ChartSeries.addDataItem(data.getVwcCh3());
+		});
+		
+		tempChartInfo.addListChartSeries(temp1ChartSeries);
+		tempChartInfo.addListChartSeries(temp2ChartSeries);
+		tempChartInfo.addListChartSeries(temp3ChartSeries);
+		waterChartInfo.addListChartSeries(water1ChartSeries);
+		waterChartInfo.addListChartSeries(water2ChartSeries);
+		waterChartInfo.addListChartSeries(water3ChartSeries);
+		
+		if (type == PointType.A) {
+			dashboardInfo.setTempALineChart(tempChartInfo);
+			dashboardInfo.setWaterALineChart(waterChartInfo);
+		} else if (type == PointType.B) {
+			dashboardInfo.setTempBLineChart(tempChartInfo);
+			dashboardInfo.setWaterBLineChart(waterChartInfo);
+		} else if (type == PointType.C) {
+			dashboardInfo.setTempCLineChart(tempChartInfo);
+			dashboardInfo.setWaterCLineChart(waterChartInfo);
+		} else if (type == PointType.D) {
+			dashboardInfo.setTempDLineChart(tempChartInfo);
+			dashboardInfo.setWaterDLineChart(waterChartInfo);
+		} else if (type == PointType.E) {
+			dashboardInfo.setTempELineChart(tempChartInfo);
+			dashboardInfo.setWaterELineChart(waterChartInfo);
+		}
 	}
 	
 	/**

@@ -4,11 +4,12 @@ var EchartsBarChart = function() {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;
         }
+        
+        var bars_basic = null;
 
         var bars_element = document.getElementById(id);
         if (bars_element) {
-            var bars_basic = echarts.init(bars_element);
-
+            bars_basic = echarts.init(bars_element);
             bars_basic.setOption({
                 textStyle: {
                     fontFamily: 'Roboto, Arial, Verdana, sans-serif',
@@ -73,11 +74,13 @@ var EchartsBarChart = function() {
                 triggerChartResize();
             }, 200);
         });
+        
+        return bars_basic;
     };
 
     return {
         init: function(id, data) {
-        	_barsChart(id, data);
+        	return _barsChart(id, data);
         }
     }
 }();

@@ -5,9 +5,11 @@ var LineChart = function() {
             return;
         }
         
+        var line_chart = null;
+        
         var line_chart_element = document.getElementById(id);
         if (line_chart_element) {
-            var line_chart = echarts.init(line_chart_element);
+            line_chart = echarts.init(line_chart_element);
             line_chart.setOption({
             	title: {
             		text: data.title,
@@ -21,16 +23,16 @@ var LineChart = function() {
                 },
                 animationDuration: 750,
                 grid: {
-                	 left: 0,
+                	 left: 15,
                      right: 30,
                      top: 35,
-                     bottom: 30,
+                     bottom: 5,
                     containLabel: true
                 },
-//                legend: {
-//                    itemHeight: 8,
-//                    itemGap: 20
-//                },
+                legend: {
+                    itemHeight: 8,
+                    itemGap: 20
+                },
                 tooltip: {
                     trigger: 'axis',
                     backgroundColor: 'rgba(0,0,0,0.75)',
@@ -45,7 +47,12 @@ var LineChart = function() {
                     boundaryGap: false,
                     data: data.categories,
                     axisLabel: {
-                        color: '#333'
+                    	color: '#333',
+                        formatter: function (value, idx) {
+                        	const date = new Date(value);
+                        	const result = moment(date).format("MM/DD");
+                            return idx === 0 ? moment(date).format("MM/DD hh") : result;
+                        }
                     },
                     axisLine: {
                         lineStyle: {
@@ -120,11 +127,13 @@ var LineChart = function() {
                 triggerChartResize();
             }, 200);
         });
+        
+        return line_chart;
     };
 
     return {
         init: function(id, data) {
-        	_linesChart(id, data);
+        	return _linesChart(id, data);
         }
     }
 }();

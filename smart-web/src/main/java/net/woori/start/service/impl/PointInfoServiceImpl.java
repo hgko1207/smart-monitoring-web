@@ -55,4 +55,9 @@ public class PointInfoServiceImpl implements PointInfoService {
 	private boolean isNew(PointInfo domain) {
 		return !pointInfoRepository.existsById(domain.getPointSq());
 	}
+
+	@Override
+	public PointInfo get(String pointNm) {
+		return pointInfoRepository.findByPointNmContaining(pointNm);
+	}
 }
