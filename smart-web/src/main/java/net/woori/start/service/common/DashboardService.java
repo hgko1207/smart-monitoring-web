@@ -52,7 +52,7 @@ public class DashboardService {
 	public DashboardInfo createLineChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		
-		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName());
+		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName() + " " + param.getSensorPoint().name());
 		if (pointInfo != null) {
 			chartService.createLineChart(param.getPointType(), pointInfo, param, dashboardInfo);
 		}
@@ -61,37 +61,38 @@ public class DashboardService {
 	}
 	
 	public DashboardInfo createBarChartInfo(SearchParam param) {
+		System.err.println(param);
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		
-		PointInfo pointA = pointInfoService.get(PointType.A.getName());
+		PointInfo pointA = pointInfoService.get(PointType.A.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {
 			measurementService.getDailyList(pointA.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
 				dashboardInfo.setSoilABarChart(chartService.createBarChart(PointType.A, param, data));
 			});
 		}
 		
-		PointInfo pointB = pointInfoService.get(PointType.B.getName());
+		PointInfo pointB = pointInfoService.get(PointType.B.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {
 			measurementService.getDailyList(pointB.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
 				dashboardInfo.setSoilBBarChart(chartService.createBarChart(PointType.B, param, data));
 			});
 		}
 		
-		PointInfo pointC = pointInfoService.get(PointType.C.getName());
+		PointInfo pointC = pointInfoService.get(PointType.C.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {
 			measurementService.getDailyList(pointC.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
 				dashboardInfo.setSoilCBarChart(chartService.createBarChart(PointType.C, param, data));
 			});
 		}
 		
-		PointInfo pointD = pointInfoService.get(PointType.D.getName());
+		PointInfo pointD = pointInfoService.get(PointType.D.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {
 			measurementService.getDailyList(pointD.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
 				dashboardInfo.setSoilDBarChart(chartService.createBarChart(PointType.D, param, data));
 			});
 		}
 		
-		PointInfo pointE = pointInfoService.get(PointType.E.getName());
+		PointInfo pointE = pointInfoService.get(PointType.E.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {
 			measurementService.getDailyList(pointE.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
 				dashboardInfo.setSoilEBarChart(chartService.createBarChart(PointType.E, param, data));
