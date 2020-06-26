@@ -49,6 +49,7 @@ $(document).ready(function() {
     	
     	let param = new Object();
     	param.sensor = $('#sensorTypeSelect').val();
+    	param.sensorPoint = $('#sensorPointSelect').val();
     	const date = $('#datetimePicker').val();
     	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
     	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");

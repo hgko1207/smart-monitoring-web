@@ -1,0 +1,37 @@
+.wmin-80 {min-width: 80px;}
+.wmin-90 {min-width: 90px;}
+.wmin-100 {min-width: 100px;}
+
+/*****************************************************/
+/* Table                                             */
+/*****************************************************/
+.tab-header {
+	border: 0;
+	background-color: #23B9B6 !important;
+}
+
+.tab-header a {
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.card, .card-header:first-child {
+	border-radius: 0;
+}
+
+.nav-tabs-bottom .nav-link.active:before {
+	background-color: #FFFF8D;
+}
+
+.nav-tabs-bottom .nav-link:before {
+	height: 4px;
+}
+
+/*****************************************************/
+/* 검색 조건                                                                                                     */
+/*****************************************************/
+.navbar-collapse {
+	background-color: white;
+	margin-left: 0;
+	margin-right: 0;
+}

@@ -1,0 +1,14 @@
+@charset "EUC-KR";
+
+.navbar-dark {
+	background-color: #23B9B6;
+	padding: 0 .75rem;
+}
+
+.navbar-title {
+	height: 3rem;
+	padding-left: 0.5rem;
+	font-weight: 600;
+	font-size: 1.1rem;
+}
+
