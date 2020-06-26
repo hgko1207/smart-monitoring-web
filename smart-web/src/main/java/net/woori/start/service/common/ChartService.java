@@ -76,8 +76,8 @@ public class ChartService {
 	 * @param dashboardInfo
 	 */
 	public void createLineChart(PointType type, PointInfo pointInfo, SearchParam param, DashboardInfo dashboardInfo) {
-		ChartInfo tempChartInfo = new ChartInfo(SensorType.토양온도);
-		ChartInfo waterChartInfo = new ChartInfo(SensorType.토양수분);
+		ChartInfo tempChartInfo = new ChartInfo(SensorType.토양온도, param.getSensorPoint());
+		ChartInfo waterChartInfo = new ChartInfo(SensorType.토양수분, param.getSensorPoint());
 		
 		LineChartSeries temp1ChartSeries = new LineChartSeries(LocationType.상층.getName());
 		LineChartSeries temp2ChartSeries = new LineChartSeries(LocationType.중층.getName());

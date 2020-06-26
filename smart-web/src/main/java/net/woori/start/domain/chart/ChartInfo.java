@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.EnumType.SensorType;
 
 /**
@@ -35,6 +36,11 @@ public class ChartInfo {
 		this.unit = type.getUnit();
 		categories = new ArrayList<>();
 		lineChartSeries = new ArrayList<>();
+	}
+	
+	public ChartInfo(SensorType type, SensorPointType sensorPoint) {
+		this(type);
+		this.title = type.name() + " " + sensorPoint.name();
 	}
 	
 	public void addCategory(String value) {

@@ -33,6 +33,11 @@ public class DashboardService {
 	@Autowired
 	private DateService dateService;
 	
+	/**
+	 * 대시보드 날씨 정보 생성
+	 * @param param
+	 * @return
+	 */
 	public DashboardInfo createDashboardInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		WeatherInfo weatherInfo = new WeatherInfo();
@@ -49,17 +54,11 @@ public class DashboardService {
 		return dashboardInfo;
 	}
 	
-	public DashboardInfo createLineChartInfo(SearchParam param) {
-		DashboardInfo dashboardInfo = new DashboardInfo();
-		
-		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName());
-		if (pointInfo != null) {
-			chartService.createLineChart(param.getPointType(), pointInfo, param, dashboardInfo);
-		}
-		
-		return dashboardInfo;
-	}
-	
+	/**
+	 * 대시보드 Bar 차트 생성
+	 * @param param
+	 * @return
+	 */
 	public DashboardInfo createBarChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		
@@ -96,6 +95,22 @@ public class DashboardService {
 			measurementService.getDailyList(pointE.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
 				dashboardInfo.setSoilEBarChart(chartService.createBarChart(PointType.E, param, data));
 			});
+		}
+		
+		return dashboardInfo;
+	}
+	
+	/**
+	 * 대시보드 Line 차트 생성
+	 * @param param
+	 * @return
+	 */
+	public DashboardInfo createLineChartInfo(SearchParam param) {
+		DashboardInfo dashboardInfo = new DashboardInfo();
+		
+		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName());
+		if (pointInfo != null) {
+			chartService.createLineChart(param.getPointType(), pointInfo, param, dashboardInfo);
 		}
 		
 		return dashboardInfo;
