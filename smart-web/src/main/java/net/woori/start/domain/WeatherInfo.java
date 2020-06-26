@@ -5,7 +5,7 @@ import net.woori.start.domain.EnumType.WeatherType;
 
 @Data
 public class WeatherInfo {
-
+	
 	private String date;
 	
 	/** 온도 */
