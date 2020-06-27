@@ -50,14 +50,31 @@
     		</div>
    			<div class="tab-content">
 				<div class="tab-pane fade show active" id="tab1">
-					<div class="card border-0">
-						<div class="card-header">
-							<h6 class="card-title font-weight-bold">
-								<i class="icon-stats-bars2 mr-2"></i>생육환경
-							</h6>
+					<div class="card environment-card border-0">
+						<div class="card-header py-2">
+							<h5 class="card-title font-weight-bold">
+								<i class="icon-chevron-right mr-2"></i>생육환경
+							</h5>
 						</div>
+						<hr class="mx-3 my-0 border-grey-300">
 						<div class="card-body">
-							
+							<div class="row">
+								<div class="col-5 px-2">
+									<img th:src="@{/images/crop_bean.png}" class="img-fluid" alt=""/>
+								</div>
+								<div class="col-7 d-flex flex-column justify-content-center">
+									<div class="date-info">2020년 06월 27일 현재</div>
+									<div class="environment-info mt-1">
+										A 지점의 콩<br>
+										작물 생육환경정보는<br>[<span class="crop-green">양호</span>] 단계입니다.
+									</div>
+								</div>
+							</div>
+							<div class="mt-3 detail-info py-3 pl-2">
+								<div>표층(10cm) 토양수분이 100일째 [<span class="crop-green">양호</span>] 단계입니다.</div>
+								<div class="my-2">표층(30cm) 토양수분이 35일째 [<span class="crop-green">양호</span>] 단계입니다.</div>
+								<div>표층(50cm) 토양수분이 56일째 [<span class="crop-green">양호</span>] 단계입니다.</div>
+							</div>
 						</div>
 					</div>
 				</div>

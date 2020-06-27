@@ -35,3 +35,41 @@
 	margin-left: 0;
 	margin-right: 0;
 }
+
+/*****************************************************/
+/* »ýÀ°È¯°æ                                                                                                */
+/*****************************************************/
+.crop-area {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #ff0000;
+}
+
+.crop-green {
+	font-weight: 600;
+	color: #2F9D27;
+}
+
+.environment-card {
+	background-color: #CAAE84;
+}
+
+.environment-info {
+	font-size: 1rem;
+	font-weight: 700;
+	color: white;
+	line-height: 1.2
+}
+
+.date-info {
+	font-size: 0.9rem;
+	font-weight: 700;
+	color: white;
+}
+
+.detail-info {
+	font-weight: 700;
+	color: white;
+	background-color: #846B44;
+	line-height: 1.2
+}
