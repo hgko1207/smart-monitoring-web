@@ -1,11 +1,19 @@
 package net.woori.start.controller.mobile;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import net.woori.start.domain.EnumType.SensorPointType;
+import net.woori.start.domain.EnumType.SensorType;
+import net.woori.start.domain.param.SearchParam;
 
 @Controller
 @RequestMapping("m")
@@ -31,5 +39,18 @@ public class MobileController {
 	
 	@GetMapping("home")
     public void home(Model model) {
+		model.addAttribute("sensorTypes", SensorType.values());
+		model.addAttribute("sensorPointTypes", SensorPointType.values());
+    }
+	
+	/**
+	 * 조회
+	 * @param param
+	 * @return
+	 */
+	@PostMapping("search")
+    public ResponseEntity<?> search(@RequestBody SearchParam param) {
+		System.err.println(param);
+		return new ResponseEntity<>(HttpStatus.OK);
     }
 }

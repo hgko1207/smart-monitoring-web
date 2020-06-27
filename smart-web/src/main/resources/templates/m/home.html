@@ -25,17 +25,26 @@
 				</ul>
 				<div class="collapse navbar-collapse py-2" id="navbar-mobile">
 					<div class="form-group d-flex mb-1">
-						<label class="col-form-label font-weight-bold wmin-80">지점선택</label>
-						<select class="form-control form-control-select2 input-sm"></select>
+						<label class="col-form-label font-weight-bold wmin-80">항목</label>
+						<select class="form-control form-control-select2 input-sm" id="sensorTypeSelect" data-fouc>
+							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
+						</select>
 					</div>
 					<div class="form-group d-flex mb-1">
-						<label class="col-form-label font-weight-bold wmin-80">항목선택</label>
-						<select class="form-control form-control-select2 input-sm"></select>
+						<label class="col-form-label font-weight-bold wmin-80">구분</label>
+						<select class="form-control form-control-select2 input-sm" id="sensorPointSelect" data-fouc>
+							<option th:each="sensorPoint : ${sensorPointTypes}" th:value="${sensorPoint}" th:text="${sensorPoint}"></option>
+						</select>
 					</div>
 					<div class="form-group d-flex mb-0">
 						<label class="col-form-label font-weight-bold wmin-80">날짜선택</label>
-						<input type="text" class="form-control input-sm mr-2">
-						<button type="button" class="btn btn-primary wmin-90"><i class="icon-search4 mr-1"></i>검 색</button>
+						<div class="input-group mr-2">
+							<span class="input-group-prepend" >
+								<span class="input-group-text"><i class="icon-calendar22"></i></span>
+							</span>
+							<input type="text" id="datetimePicker" class="form-control">
+						</div>
+						<button type="button" id="searchBtn" class="btn btn-primary wmin-90"><i class="icon-search4 mr-1"></i>검 색</button>
 					</div>
 				</div>
     		</div>
