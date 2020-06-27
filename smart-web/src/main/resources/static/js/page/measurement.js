@@ -57,7 +57,6 @@ var linesChart = function(data) {
                     }
                 },
 //                formatter: function (params) {
-//                	console.log(params);
 //                    return params[2].name + '<br />' + ((params[2].value - base) * 100).toFixed(1) + '%';
 //                }
             },

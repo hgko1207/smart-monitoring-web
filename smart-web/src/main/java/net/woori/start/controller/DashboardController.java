@@ -63,6 +63,7 @@ public class DashboardController {
 	 */
 	@PostMapping("dashboard/search/line")
     public ResponseEntity<?> searchLine(@RequestBody SearchParam param) {
+		System.err.println(param);
 		return new ResponseEntity<>(dashboardService.createLineChartInfo(param), HttpStatus.OK);
     }
 }

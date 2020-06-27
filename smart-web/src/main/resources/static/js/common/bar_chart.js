@@ -1,6 +1,5 @@
 var EchartsBarChart = function() {
     var _barsChart = function(id, data) {
-    	console.log(data);
         if (typeof echarts == 'undefined') {
             console.warn('Warning - echarts.min.js is not loaded.');
             return;

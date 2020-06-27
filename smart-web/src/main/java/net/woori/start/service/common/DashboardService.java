@@ -109,7 +109,7 @@ public class DashboardService {
 	public DashboardInfo createLineChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		
-		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName());
+		PointInfo pointInfo = pointInfoService.get(param.getPointType().getName() + " " + param.getSensorPoint().name());
 		if (pointInfo != null) {
 			chartService.createLineChart(param.getPointType(), pointInfo, param, dashboardInfo);
 		}
