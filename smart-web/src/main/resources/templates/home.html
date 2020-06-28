@@ -188,12 +188,13 @@
 							<h6 class="card-title font-weight-bold">
 								<i class="icon-clipboard3 mr-2"></i>생육환경
 							</h6>
-							<div class="text-secondary">2020-05-27 14:00 기준</div>
+							<div id="environmentDate" class="text-secondary"></div>
 						</div>
 						<div class="card-body pb-2">
-							<div class="font-weight-bold">2020년 05월 11일 현재</div>
+							<div id="environmentCurrent" class="font-weight-bold"></div>
 							<div class="mt-1">
-								<span class="crop-area">A 지점</span>의 콩 작물 생육환경정보는 [<span class="crop-green fs-16">양호 단계</span>]입니다.
+								<span id="environmentPoint" class="crop-area"></span>의 콩 작물 생육환경정보는
+								[<span id="environmentLevel" class="crop-green fs-16"></span>]입니다.
 							</div>
 							<div class="row mt-1">
 								<div class="col-md-3">
@@ -203,9 +204,15 @@
 									<div class="vertical-line"></div>
 								</div>
 								<div class="col-md-8 py-2">
-									<div>표층(10cm) 토양수분이 100일째 [<span class="crop-green">양호단계</span>]입니다.</div>
-									<div class="my-2">표층(30cm) 토양수분이 35일째 [<span class="crop-green">양호단계</span>]입니다.</div>
-									<div>표층(50cm) 토양수분이 56일째 [<span class="crop-green">양호단계</span>]입니다.</div>
+									<div>표층(10cm) <span id="environmentSensor1"></span>이 100일째 
+										[<span id="environmentLevel1" class="crop-green"></span>]입니다.
+									</div>
+									<div class="my-2">표층(30cm) <span id="environmentSensor2"></span>이 35일째 
+										[<span id="environmentLevel2" class="crop-green"></span>]입니다.
+									</div>
+									<div>표층(50cm) <span id="environmentSensor3"></span>이 56일째 
+										[<span id="environmentLevel3" class="crop-green"></span>]입니다.
+									</div>
 								</div>
 							</div>
 						</div>

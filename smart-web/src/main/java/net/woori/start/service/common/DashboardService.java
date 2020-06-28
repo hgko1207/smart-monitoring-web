@@ -67,9 +67,10 @@ public class DashboardService {
 	
 	private EnvironmentInfo createEnvironmentInfo(SearchParam param) {
 		EnvironmentInfo info = new EnvironmentInfo();
-		info.setPoint("A 지점");
+		info.setPoint("A " + param.getSensorPoint().name());
 		info.setSensor(param.getSensor().name());
 		info.setDate(dateService.parseDate(param.getCurrentDate()) + " 기준");
+		info.setCurrent(dateService.parseDay(param.getCurrentDate()) + " 현재");
 		info.setLevel(LevelType.양호.getName());
 		info.setLevel1(LevelType.양호.getName());
 		info.setLevel2(LevelType.양호.getName());

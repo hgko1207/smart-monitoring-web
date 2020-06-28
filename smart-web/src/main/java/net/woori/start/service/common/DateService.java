@@ -10,10 +10,20 @@ public class DateService {
 
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private final SimpleDateFormat hourFormat = new SimpleDateFormat("yyyy-MM-dd HH:00");
+	private final SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 	
 	public String parseDate(String value) {
 		try {
 			return hourFormat.format(dateFormat.parse(value));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return value;
+	}
+	
+	public String parseDay(String value) {
+		try {
+			return dayFormat.format(dateFormat.parse(value));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

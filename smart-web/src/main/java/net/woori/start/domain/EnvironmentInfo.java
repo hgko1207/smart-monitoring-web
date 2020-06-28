@@ -18,6 +18,8 @@ public class EnvironmentInfo {
 	/** 기준 일시 */
 	private String date;
 	
+	private String current;
+	
 	/** 지점 단계 */
 	private String level;
 	

@@ -99,6 +99,18 @@ $(document).ready(function() {
     			$('#weatherFineDust').html(weather.fineDust);
     			$('#weatherOzone').html(weather.ozone);
     			
+    			const info = data.environmentInfo;
+    			$('#environmentPoint').html(info.point);
+    			$('#environmentDate').html(info.date);
+    			$('#environmentCurrent').html(info.current);
+    			$('#environmentSensor1').html(info.sensor);
+    			$('#environmentSensor2').html(info.sensor);
+    			$('#environmentSensor3').html(info.sensor);
+    			$('#environmentLevel').html(info.level);
+    			$('#environmentLevel1').html(info.level1);
+    			$('#environmentLevel2').html(info.level2);
+    			$('#environmentLevel3').html(info.level3);
+    			
     			GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
            	}
     	});

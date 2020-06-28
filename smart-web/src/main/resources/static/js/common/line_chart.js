@@ -23,7 +23,7 @@ var LineChart = function() {
                 },
                 animationDuration: 500,
                 grid: {
-                	 left: 15,
+                	 left: 10,
                      right: 30,
                      top: 35,
                      bottom: 5,
@@ -54,7 +54,7 @@ var LineChart = function() {
                         formatter: function (value, idx) {
                         	const date = new Date(value);
                         	const result = moment(date).format("MM/DD");
-                            return idx === 0 ? moment(date).format("MM/DD hh") : result;
+                            return idx === 0 ? moment(date).format("MM/DD") : result;
                         }
                     },
                     axisLine: {
@@ -71,7 +71,10 @@ var LineChart = function() {
                 yAxis: [{
                     type: 'value',
                     axisLabel: {
-                        color: '#333'
+                        color: '#333',
+                        formatter: function (val) {
+                            return val + data.unit;
+                        }
                     },
                     axisLine: {
                         lineStyle: {
@@ -90,25 +93,6 @@ var LineChart = function() {
                         }
                     }
                 }],
-                // Zoom control
-//                dataZoom: [{
-//                        type: 'inside',
-//                        start: 0,
-//                        end: 100
-//                    },{
-//                        show: true,
-//                        type: 'slider',
-//                        start: 0,
-//                        end: 100,
-//                        height: 40,
-//                        bottom: 0,
-//                        borderColor: '#ccc',
-//                        fillerColor: 'rgba(0,0,0,0.05)',
-//                        handleStyle: {
-//                            color: '#585f63'
-//                        }
-//                    }
-//                ],
                 series: data.lineChartSeries,
             });
         }
