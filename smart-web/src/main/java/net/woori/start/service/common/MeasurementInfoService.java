@@ -37,33 +37,31 @@ public class MeasurementInfoService {
 		
 		if (param.getPoint().equals("전체")) {
 			pointInfoService.getList().forEach(pointInfo -> {
-				if (!pointInfo.getPointNm().contains("사람")) {
-					LineChartSeries chartSeries = new LineChartSeries(pointInfo.getPointNm());
-					
-					measurementService.getList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
-						String date = dateFormat.format(data.getMeasDt());
-						chartInfo.addCategory(date);
-						if (param.getSensor() == SensorType.토양수분) {
-							if (param.getLocation() == LocationType.상층) {
-								chartSeries.addDataItem(date, data.getVwcCh1());
-							} else if (param.getLocation() == LocationType.중층) {
-								chartSeries.addDataItem(date, data.getVwcCh2());
-							} else if (param.getLocation() == LocationType.하층) {
-								chartSeries.addDataItem(date, data.getVwcCh3());
-							}
-						} else if (param.getSensor() == SensorType.토양온도) {
-							if (param.getLocation() == LocationType.상층) {
-								chartSeries.addDataItem(date, data.getTempCh1());
-							} else if (param.getLocation() == LocationType.중층) {
-								chartSeries.addDataItem(date, data.getTempCh2());
-							} else if (param.getLocation() == LocationType.하층) {
-								chartSeries.addDataItem(date, data.getTempCh3());
-							}
+				LineChartSeries chartSeries = new LineChartSeries(pointInfo.getPointNm());
+				
+				measurementService.getList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate()).forEach(data -> {
+					String date = dateFormat.format(data.getMeasDt());
+					chartInfo.addCategory(date);
+					if (param.getSensor() == SensorType.토양수분) {
+						if (param.getLocation() == LocationType.상층) {
+							chartSeries.addDataItem(date, data.getVwcCh1());
+						} else if (param.getLocation() == LocationType.중층) {
+							chartSeries.addDataItem(date, data.getVwcCh2());
+						} else if (param.getLocation() == LocationType.하층) {
+							chartSeries.addDataItem(date, data.getVwcCh3());
 						}
-					});
-					
-					chartInfo.addListChartSeries(chartSeries);
-				}
+					} else if (param.getSensor() == SensorType.토양온도) {
+						if (param.getLocation() == LocationType.상층) {
+							chartSeries.addDataItem(date, data.getTempCh1());
+						} else if (param.getLocation() == LocationType.중층) {
+							chartSeries.addDataItem(date, data.getTempCh2());
+						} else if (param.getLocation() == LocationType.하층) {
+							chartSeries.addDataItem(date, data.getTempCh3());
+						}
+					}
+				});
+				
+				chartInfo.addListChartSeries(chartSeries);
 			});
 		} else {
 			PointInfo pointInfo = pointInfoService.get(Integer.parseInt(param.getPoint()));

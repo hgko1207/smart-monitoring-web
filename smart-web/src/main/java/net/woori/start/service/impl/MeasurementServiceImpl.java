@@ -63,11 +63,6 @@ public class MeasurementServiceImpl implements MeasurementService {
 	}
 
 	@Override
-	public List<Measurement> getList(String startDate, String endDate) {
-		return measurementRepository.findByAll(startDate, endDate);
-	}
-
-	@Override
 	public List<ChartData> getDailyList(int pointSq, String startDate, String endDate) {
 		return measurementRepository.getDailyList(startDate, endDate, pointSq);
 	}

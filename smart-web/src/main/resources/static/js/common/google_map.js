@@ -25,9 +25,9 @@ const GoogleMap = function() {
 		
 		var contentString = 
 			"<div id='content'>" +
-			"<div style='color: #0080FF'><b>A 지점 토양계측정보</b></div>" + 
-			"<b>토양온도 : 16.4% | 15.2% | 14.2%</b>" + "<br>" + 
-			"<b>토양수분 : 21.8% | 27.3% | 22.9%</b>" + "<br>" + 
+			"<div style='color: #0080FF'><b>" + data.point + " 토양계측정보</b></div>" +
+			"<b>토양온도 : " + data.temp1 + "% | " + data.temp2 + "% | " + data.temp3 + "%</b>" + "<br>" +
+			"<b>토양수분 : " + data.water1 + "% | " + data.water2 + "% | " + data.water3 + "%</b>" + "<br>" +
 			"</div>";
 		
 		var infowindow = new google.maps.InfoWindow({

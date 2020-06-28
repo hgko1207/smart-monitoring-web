@@ -1,6 +1,4 @@
 $(document).ready(function() {
-	let map;
-	
 	const search = (map) => {
 		$.ajax({
     		url: contextPath + "/map/search",
@@ -12,7 +10,7 @@ $(document).ready(function() {
 	}
 	
 	setTimeout(function() {
-		map = GoogleMap.init('googleMap');
+		const map = GoogleMap.init('googleMap');
 		search(map);
 	}, 500);
 });

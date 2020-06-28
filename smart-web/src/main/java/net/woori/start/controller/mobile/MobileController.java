@@ -50,7 +50,6 @@ public class MobileController {
 	 */
 	@PostMapping("search")
     public ResponseEntity<?> search(@RequestBody SearchParam param) {
-		System.err.println(param);
 		return new ResponseEntity<>(HttpStatus.OK);
     }
 }

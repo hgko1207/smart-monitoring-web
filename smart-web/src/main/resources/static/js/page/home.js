@@ -19,11 +19,7 @@ $(document).ready(function() {
     
     setTimeout(function() {
     	map = GoogleMap.init('googleMap');
-    	let site = new Object();
-    	site.latitude = 36.5;
-		site.longitude = 127.5;
-    	
-    	GoogleMap.markerAndInfoOverlay(map, site);
+    	search(type);
 	}, 500);
     
     const clearBarChart = () => {
@@ -82,6 +78,7 @@ $(document).ready(function() {
     const searchDashboard = () => {
     	let param = new Object();
     	param.sensor = $('#sensorTypeSelect').val();
+    	param.sensorPoint = $('#sensorPointSelect').val();
     	const date = $('#datetimePicker').val();
     	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
     	param.currentDate = moment(date).format("YYYY-MM-DD hh:mm:ss");
@@ -101,6 +98,8 @@ $(document).ready(function() {
     			$('#weatherRainfall').html(weather.rainfall);
     			$('#weatherFineDust').html(weather.fineDust);
     			$('#weatherOzone').html(weather.ozone);
+    			
+    			GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
            	}
     	});
     }
@@ -152,8 +151,6 @@ $(document).ready(function() {
     	searchDashboard();
     	searchLiseChart(type);
     }
-    
-    search(type);
     
     $('#searchBtn').click(function() {
     	search(type);

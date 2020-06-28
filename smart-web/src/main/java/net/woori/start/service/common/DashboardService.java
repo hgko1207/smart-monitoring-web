@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.woori.start.domain.DashboardInfo;
+import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.EnumType.PointType;
 import net.woori.start.domain.EnumType.WeatherType;
+import net.woori.start.domain.EnvironmentInfo;
 import net.woori.start.domain.WeatherInfo;
 import net.woori.start.domain.db.PointInfo;
 import net.woori.start.domain.param.SearchParam;
@@ -33,6 +35,9 @@ public class DashboardService {
 	@Autowired
 	private DateService dateService;
 	
+	@Autowired
+	private MapService mapService;
+	
 	/**
 	 * 대시보드 날씨 정보 생성
 	 * @param param
@@ -40,6 +45,14 @@ public class DashboardService {
 	 */
 	public DashboardInfo createDashboardInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
+		dashboardInfo.setWeatherInfo(createWeatherInfo(param));
+		dashboardInfo.setEnvironmentInfo(createEnvironmentInfo(param));
+		dashboardInfo.setMapInfo(mapService.createMapInfo(param));
+		
+		return dashboardInfo;
+	}
+	
+	private WeatherInfo createWeatherInfo(SearchParam param) {
 		WeatherInfo weatherInfo = new WeatherInfo();
 		weatherInfo.setDate(dateService.parseDate(param.getCurrentDate()) + " 기준");
 		weatherInfo.setTemp(22);
@@ -49,9 +62,20 @@ public class DashboardService {
 		weatherInfo.setOzone(WeatherType.좋음);
 		weatherInfo.setDescription("어제 기온와 같음");
 		
-		dashboardInfo.setWeatherInfo(weatherInfo);
+		return weatherInfo;
+	}
+	
+	private EnvironmentInfo createEnvironmentInfo(SearchParam param) {
+		EnvironmentInfo info = new EnvironmentInfo();
+		info.setPoint("A 지점");
+		info.setSensor(param.getSensor().name());
+		info.setDate(dateService.parseDate(param.getCurrentDate()) + " 기준");
+		info.setLevel(LevelType.양호.getName());
+		info.setLevel1(LevelType.양호.getName());
+		info.setLevel2(LevelType.양호.getName());
+		info.setLevel3(LevelType.양호.getName());
 		
-		return dashboardInfo;
+		return info;
 	}
 
 	/**
@@ -60,7 +84,6 @@ public class DashboardService {
 	 * @return
 	 */
 	public DashboardInfo createBarChartInfo(SearchParam param) {
-		System.err.println(param);
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		
 		PointInfo pointA = pointInfoService.get(PointType.A.getName() + " " + param.getSensorPoint().name());

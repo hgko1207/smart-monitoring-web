@@ -6,8 +6,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +16,7 @@ public class WeatherService {
 	
 	private final String serviceKey = "hs2LSXM7HYbhChv6V%2BaT%2BCpU8ckmAd2BRHbiA7Khzc813PYIVX7aGo7mctF%2F1uLb%2FSH%2BVVkPeCzaJbQouAWwDw%3D%3D";
 	
-	@PostConstruct
+//	@PostConstruct
 	public void getWthrDataList() {
 		StringBuilder urlBuilder = new StringBuilder(BASE_URL); /*URL*/
 		try {
