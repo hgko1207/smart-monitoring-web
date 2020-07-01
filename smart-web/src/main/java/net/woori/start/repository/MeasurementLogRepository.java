@@ -38,4 +38,7 @@ public interface MeasurementLogRepository extends DefaultRepository<MeasurementL
 	@Query(value = "SELECT * FROM tb_sf_meas_raw WHERE point_sq = ?1 ORDER By meas_dt limit 1", nativeQuery = true)
 	MeasurementLog getCurrentData(int pointSq);
 
+	@Query(value = "SELECT * FROM tb_sf_meas_raw WHERE point_sq = ?3 and " + BETWEEN + ORDER_BY + " limit 1", nativeQuery = true)
+	MeasurementLog getCurrentData(String startDate, String endDate, int pointSq);
+
 }

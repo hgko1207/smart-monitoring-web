@@ -17,4 +17,5 @@ public interface ChartData {
 	float getWater2();
 	
 	float getWater3();
+	
 }

@@ -188,6 +188,34 @@ var measurementTable = {
 	}
 }
 
+var weatherTable = {
+		ele: "#weatherTable",
+		table: null,
+		option: {
+			columns: [
+				{ data: "date" },
+				{ data: "valueA1" },
+				{ data: "valueA2" },
+				{ data: "valueA3" },
+				{ data: "valueB1" },
+				{ data: "valueB2" },
+				{ data: "valueB3" },
+				{ data: "valueC1" },
+				{ data: "valueC2" },
+				{ data: "valueC3" },
+				{ data: "valueD1" },
+				{ data: "valueD2" },
+				{ data: "valueD3" },
+				{ data: "valueE1" },
+				{ data: "valueE2" },
+				{ data: "valueE3" },
+			]
+		},
+		init: function() {
+			this.table = Datatables.weather(this.ele, this.option);
+		}
+	}
+
 $(document).ready(function() {
 	let startDate = new Date(moment().format("YYYY-MM-DD 00:00:00"));
 	startDate.setDate(startDate.getDate() - 6); 
@@ -222,9 +250,13 @@ $(document).ready(function() {
     $('#sensorSelect').change(function() {
     	const val = $(this).val();
     	if (val === '기상') {
-    		
+    		$('#locationSelectDiv').addClass('d-none');
+    		$('#sensorPointSelectDiv').addClass('d-none');
+    		$('#weatherSelectDiv').removeClass('d-none');
     	} else {
-    		
+    		$('#locationSelectDiv').removeClass('d-none');
+    		$('#sensorPointSelectDiv').removeClass('d-none');
+    		$('#weatherSelectDiv').addClass('d-none');
     	}
     });
     
@@ -237,9 +269,20 @@ $(document).ready(function() {
     	const sensor = $('#sensorSelect').val();
     	if (sensor == '기상') {
     		let param = new Object();
+    		param.weatherType = $('#weatherTypeSelect').val();
     		param.startDate = startDate;
     		param.endDate = endDate;
     		
+    		$.ajax({
+    			url: contextPath + "/measurement/search/weather",
+    			type: "POST",
+    			data: JSON.stringify(param),
+    			contentType: "application/json",
+    			success: function(data) {
+    				console.log(data);
+    				lineChart = linesChart(data.chartInfo);
+    			}
+    		}); 
     	} else {
     		measurementTable.table.clear();
     		removeSelected();

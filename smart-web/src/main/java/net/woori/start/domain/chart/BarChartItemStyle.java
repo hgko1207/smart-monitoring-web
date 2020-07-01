@@ -29,6 +29,6 @@ public class BarChartItemStyle {
 	@Getter
 	public class TextStyle {
 		
-		private int padding = 5;
+		private int padding = 0;
 	}
 }

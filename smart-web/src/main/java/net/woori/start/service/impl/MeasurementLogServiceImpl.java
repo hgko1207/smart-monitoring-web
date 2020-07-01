@@ -76,4 +76,9 @@ public class MeasurementLogServiceImpl implements MeasurementLogService {
 	public List<ChartData> getHourlyList(int pointSq, String startDate, String endDate) {
 		return measurementLogRepository.getHourlyList(startDate, endDate, pointSq);
 	}
+
+	@Override
+	public MeasurementLog getCurrentData(int pointSq, String startDate, String endDate) {
+		return measurementLogRepository.getCurrentData(startDate, endDate, pointSq);
+	}
 }

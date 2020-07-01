@@ -53,6 +53,10 @@ public class BarChartSeries {
 		
 		private boolean show = true;
 		
+//		private String color = "#353535";
+		
+		private int fontWeight = 600;
+
 		private String textBorderColor = "#353535";
 		
 		private int textBorderWidth = 0;
@@ -64,22 +68,24 @@ public class BarChartSeries {
 		
 		private float value;
 		
-//		private Label label = new Label();
+		private Label label = new Label();
 		
 		private ItemStyle itemStyle;
 		
 		public BarChartData(SensorType type, float value) {
 			String color = "";
 			if (type == SensorType.토양수분) {
-				if (value >= 0 && value < 4.6) {
+				if (value > 0 && value < 4.6) {
 					color = LevelType.주의.getColor();
 				} else if (value >= 4.6 && value < 44) {
 					color = LevelType.양호.getColor();
 				} else if (value >= 44) {
 					color = LevelType.경계.getColor();
+				} else {
+					color = "#353535";
 				}
 			} else if (type == SensorType.토양온도) {
-				if ((value >= 0 && value < 10) || (value >= 35 && value <= 45)) {
+			 	if ((value >= 0 && value < 10) || (value >= 35 && value <= 45)) {
 					color = LevelType.심각.getColor();
 				} else if ((value >= 10 && value < 15) || (value >= 28 && value < 35)) {
 					color = LevelType.경계.getColor();

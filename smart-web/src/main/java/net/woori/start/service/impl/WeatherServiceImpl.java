@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.woori.start.domain.chart.WeatherChartData;
 import net.woori.start.domain.db.Weather;
 import net.woori.start.repository.WeatherRepository;
 import net.woori.start.service.WeatherService;
@@ -57,7 +58,12 @@ public class WeatherServiceImpl implements WeatherService {
 	}
 
 	@Override
-	public Weather getData() {
-		return weatherRepository.getData();
+	public Weather getRecentData() {
+		return weatherRepository.getRecentData();
+	}
+
+	@Override
+	public List<WeatherChartData> getList(String startDate, String endDate) {
+		return weatherRepository.getList(startDate, endDate);
 	}
 }

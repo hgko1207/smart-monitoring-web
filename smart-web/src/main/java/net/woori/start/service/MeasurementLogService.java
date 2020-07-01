@@ -14,4 +14,6 @@ public interface MeasurementLogService extends CRUDService<MeasurementLog, Integ
 	List<ChartData> getHourlyList(int pointSq, String startDate, String endDate);
 	
 	MeasurementLog getCurrentData(int pointSq);
+	
+	MeasurementLog getCurrentData(int pointSq, String startDate, String endDate);
 }

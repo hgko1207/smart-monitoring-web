@@ -14,6 +14,7 @@ import net.woori.start.domain.EnumType.ChartType;
 import net.woori.start.domain.EnumType.LocationType;
 import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.EnumType.SensorType;
+import net.woori.start.domain.EnumType.WeatherType;
 import net.woori.start.domain.param.SearchParam;
 import net.woori.start.service.common.MeasurementInfoService;
 
@@ -40,15 +41,26 @@ public class MeasurementController {
 		model.addAttribute("locationTypes", LocationType.values());
 		model.addAttribute("chartTypes", ChartType.values());
 		model.addAttribute("sensorPointTypes", SensorPointType.values());
+		model.addAttribute("weatherTypes", WeatherType.values());
 	}
 	
 	/**
-	 * 차트 조회
+	 * 조회
 	 * @param param
 	 * @return
 	 */
 	@PostMapping("search")
     public ResponseEntity<?> search(@RequestBody SearchParam param) {
-		return new ResponseEntity<>(measurementInfoService.createMeasurementInfo(param), HttpStatus.OK);
+		return new ResponseEntity<>(measurementInfoService.createMeasurementLog(param), HttpStatus.OK);
+    }
+	
+	/**
+	 * 기상 데이터 조회
+	 * @param param
+	 * @return
+	 */
+	@PostMapping("search/weather")
+    public ResponseEntity<?> searchWeather(@RequestBody SearchParam param) {
+		return new ResponseEntity<>(measurementInfoService.createWeatherLog(param), HttpStatus.OK);
     }
 }

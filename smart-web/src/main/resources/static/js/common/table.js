@@ -66,6 +66,16 @@ var Datatables = {
 		
 		return table;
 	},
+	weather: function(id, tableOption) {
+		var table = $(id).DataTable({
+		    columns: tableOption.columns,
+		    columnDefs: [
+		    	{ orderable: true, className: 'reorder', targets: 0 },
+		    	{ orderable: false, targets: '_all' }
+		    ],
+		    order: [[0, 'desc']],
+		})
+	},
 	download: function(id, tableOption, info, visible, exportColumns) {
 		var table = $(id).DataTable({
 			dom: '<"datatable-header"fl><"datatable-scroll-wrap"t><"datatable-footer"iBp>',

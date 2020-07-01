@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.Data;
 import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.EnumType.SensorType;
+import net.woori.start.domain.EnumType.WeatherType;
 
 /**
  * LineChart 정보
@@ -33,6 +34,13 @@ public class ChartInfo {
 	
 	public ChartInfo(SensorType type) {
 		this.title = type.name();
+		this.unit = type.getUnit();
+		categories = new ArrayList<>();
+		lineChartSeries = new ArrayList<>();
+	}
+	
+	public ChartInfo(WeatherType type) {
+		this.title = "";
 		this.unit = type.getUnit();
 		categories = new ArrayList<>();
 		lineChartSeries = new ArrayList<>();

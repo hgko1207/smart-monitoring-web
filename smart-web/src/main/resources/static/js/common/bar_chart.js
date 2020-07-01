@@ -18,7 +18,7 @@ var EchartsBarChart = function() {
                 animationDuration: 750,
                 grid: {
                     left: 0,
-                    right: 0,
+                    right: '10%',
                     top: 5,
                     bottom: 0,
                     containLabel: true

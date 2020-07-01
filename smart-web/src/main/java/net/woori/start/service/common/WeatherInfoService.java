@@ -13,6 +13,12 @@ import net.woori.start.domain.db.Weather;
 import net.woori.start.domain.weather.Response;
 import net.woori.start.service.WeatherService;
 
+/**
+ * 기상 데이터 조회 서비스
+ * 
+ * @author hgko
+ *
+ */
 @Service
 public class WeatherInfoService {
 
@@ -42,9 +48,9 @@ public class WeatherInfoService {
 	        
 	        Weather weather = new Weather(response);
 	        
-	        Weather temp = weatherService.getData();
+	        Weather temp = weatherService.getRecentData();
 	        if (temp != null) {
-	        	String date = dateFormat.format(temp.getDate());
+	        	String date = dateFormat.format(temp.getMeasDt());
 	        	if (!response.getInfo().getDate().equals(date)) {
 	        		weatherService.regist(weather);
 	        	}

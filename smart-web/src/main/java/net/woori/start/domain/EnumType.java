@@ -44,12 +44,10 @@ public class EnumType {
 	public enum WeatherType {
 		기온("℃"),
 		습도("%"),
-		풍향(""),
-		평균풍속(""),
-		최대풍속(""),
+		풍속("m/s"),
 		강수량("mm"),
 		일조량("J/㎡"),
-		토양수분("");
+		토양수분("%");
 		
 		private String unit;
 		

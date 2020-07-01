@@ -37,7 +37,7 @@ public class Weather implements Domain {
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	private Date measDt;
 	
 	/** 온도(150CM) */
 	private float temp_150;
@@ -72,7 +72,7 @@ public class Weather implements Domain {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		Info info = response.getInfo();
 		try {
-			this.date = format.parse(info.getDate());
+			this.measDt = format.parse(info.getDate());
 			this.temp_150 = Float.valueOf(info.getTemp_150().replace("℃", ""));
 			this.hd_150 = Float.valueOf(info.getHd_150().replace("%", ""));
 			this.wd_300 = info.getWd_300();

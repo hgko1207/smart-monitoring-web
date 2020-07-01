@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import net.woori.start.domain.EnumType.LocationType;
 import net.woori.start.domain.EnumType.SensorType;
+import net.woori.start.domain.EnumType.WeatherType;
 import net.woori.start.domain.chart.ChartData;
 import net.woori.start.domain.chart.ChartInfo;
 import net.woori.start.domain.chart.LineChartSeries;
@@ -20,6 +21,7 @@ import net.woori.start.domain.measurement.TableInfo;
 import net.woori.start.domain.param.SearchParam;
 import net.woori.start.service.MeasurementLogService;
 import net.woori.start.service.PointInfoService;
+import net.woori.start.service.WeatherService;
 
 /**
  * 계측정보 서비스 
@@ -37,13 +39,16 @@ public class MeasurementInfoService {
 	
 	@Autowired
 	private PointInfoService pointInfoService;
+	
+	@Autowired
+	private WeatherService weatherService;
 
 	/**
 	 * 토양수분, 토양온도 선택 시
 	 * @param param
 	 * @return
 	 */
-	public MeasurementInfo createMeasurementInfo(SearchParam param) {
+	public MeasurementInfo createMeasurementLog(SearchParam param) {
 		MeasurementInfo measurementInfo = new MeasurementInfo();
 		
 		ChartInfo chartInfo = new ChartInfo(param.getSensor());
@@ -152,6 +157,31 @@ public class MeasurementInfoService {
 		measurementInfo.setSensor(param.getSensor().getName());
 		measurementInfo.setChartInfo(chartInfo);
 		measurementInfo.setTableInfos(tableInfos);
+		
+		return measurementInfo;
+	}
+	
+	public MeasurementInfo createWeatherLog(SearchParam param) {
+		System.err.println(param);
+		MeasurementInfo measurementInfo = new MeasurementInfo();
+		WeatherType weatherType = param.getWeatherType();
+		
+		ChartInfo chartInfo = new ChartInfo(param.getWeatherType());
+		
+		LineChartSeries chartSeries = new LineChartSeries(param.getWeatherType().name());
+		
+		weatherService.getList(param.getStartDate(), param.getEndDate()).forEach(data -> {
+			String date = hourFormat.format(data.getDate());
+			chartInfo.addCategory(date);
+			
+			if (weatherType == WeatherType.기온) {
+				chartSeries.addDataItem(data.getTemp());
+			}
+		});
+		
+		chartInfo.addListChartSeries(chartSeries);
+		
+		measurementInfo.setChartInfo(chartInfo);
 		
 		return measurementInfo;
 	}

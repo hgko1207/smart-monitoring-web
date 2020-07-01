@@ -66,9 +66,9 @@ public class DashboardService {
 	private WeatherInfo createWeatherInfo(SearchParam param) {
 		WeatherInfo weatherInfo = new WeatherInfo();
 		
-		Weather weather = weatherService.getData();
+		Weather weather = weatherService.getRecentData();
 		if (weather != null) {
-			weatherInfo.setDate(hourFormat.format(weather.getDate()) + " 기준");
+			weatherInfo.setDate(hourFormat.format(weather.getMeasDt()) + " 기준");
 			weatherInfo.setTemp(weather.getTemp_150());
 			weatherInfo.setType("맑음");
 			weatherInfo.setRainfall(0);

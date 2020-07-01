@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * 날짜 관련 유틸 서비스
+ * 
+ * @author hgko
+ *
+ */
 @Service
 public class DateService {
 
