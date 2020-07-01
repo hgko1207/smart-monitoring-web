@@ -69,8 +69,11 @@ var linesChart = function(data) {
                 	fontSize: 13,
 	                fontFamily: 'Roboto, sans-serif',
                     formatter: function (value, idx) {
-                        var date = new Date(value);
-                        return idx === 0 ? value : [date.getMonth() + 1, date.getDate()].join('-');
+                        const date = new Date(value);
+//                    	const result = moment(date).format("MM/DD HH:mm");
+//                        return idx === 0 ? moment(date).format("MM/DD HH:mm") : result;
+                    	return moment(date).format("MM/DD HH:mm");
+//                        return idx === 0 ? value : [date.getMonth() + 1, date.getDate()].join('-');
                     }
                 },
                 axisLine: {

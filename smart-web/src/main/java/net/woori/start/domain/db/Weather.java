@@ -1,5 +1,7 @@
 package net.woori.start.domain.db;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,6 +17,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.woori.start.domain.Domain;
 import net.woori.start.domain.weather.Response;
+import net.woori.start.domain.weather.Response.Info;
 
 /**
  * 사용자 관리 도메인
@@ -66,6 +69,21 @@ public class Weather implements Domain {
 	private float soilMitr_10;
 	
 	public Weather(Response response) {
-		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		Info info = response.getInfo();
+		try {
+			this.date = format.parse(info.getDate());
+			this.temp_150 = Float.valueOf(info.getTemp_150().replace("℃", ""));
+			this.hd_150 = Float.valueOf(info.getHd_150().replace("%", ""));
+			this.wd_300 = info.getWd_300();
+			this.arvlty_300 = info.getArvlty_300();
+			this.afp = Float.valueOf(info.getAfp().replace("mm", ""));
+			this.afv = info.getAfv();
+			this.solradQy = Float.valueOf(info.getSolradQy().replace("MJ/㎡", ""));
+			this.sunshnTime = info.getSunshnTime();
+			this.soilMitr_10 = info.getSoilMitr_10();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 }

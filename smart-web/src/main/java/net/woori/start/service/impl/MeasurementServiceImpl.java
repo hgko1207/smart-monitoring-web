@@ -71,4 +71,9 @@ public class MeasurementServiceImpl implements MeasurementService {
 	public Measurement getCurrentData(int pointSq) {
 		return measurementRepository.getCurrentData(pointSq);
 	}
+
+	@Override
+	public List<ChartData> getHourlyList(int pointSq, String startDate, String endDate) {
+		return measurementRepository.getHourlyList(startDate, endDate, pointSq);
+	}
 }

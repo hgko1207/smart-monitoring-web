@@ -5,7 +5,7 @@ import java.util.Date;
 public interface ChartData {
 	
 	Date getDate();
-
+	
 	float getTemp1();
 	
 	float getTemp2();

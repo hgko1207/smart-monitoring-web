@@ -30,9 +30,7 @@ import net.woori.start.service.PointInfoService;
 @Service
 public class MeasurementInfoService {
 	
-//	private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd HH시");
-//	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private final SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+	private final SimpleDateFormat hourFormat = new SimpleDateFormat("yyyy-MM-dd HH:00");
 	
 	@Autowired
 	private MeasurementService measurementService;
@@ -54,9 +52,9 @@ public class MeasurementInfoService {
 		pointInfoService.getList(param.getSensorPoint()).forEach(pointInfo -> {
 			LineChartSeries chartSeries = new LineChartSeries(pointInfo.getPointNm());
 			
-			List<ChartData> measurements = measurementService.getDailyList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate());
+			List<ChartData> measurements = measurementService.getHourlyList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate());
 			measurements.forEach(data -> {
-				String date = dayFormat.format(data.getDate());
+				String date = hourFormat.format(data.getDate());
 				TableInfo info = tableInfoMap.get(date);
 				if (info == null) {
 					tableInfoMap.put(date, new TableInfo(date));
@@ -64,7 +62,7 @@ public class MeasurementInfoService {
 			});
 			
 			measurements.forEach(data -> {
-				String date = dayFormat.format(data.getDate());
+				String date = hourFormat.format(data.getDate());
 				TableInfo info = tableInfoMap.get(date);
 				if (info != null) {
 					if (param.getSensor() == SensorType.토양수분) {
