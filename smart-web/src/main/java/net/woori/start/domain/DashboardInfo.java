@@ -16,6 +16,8 @@ public class DashboardInfo {
 	
 	private String dateTime;
 	
+	private String sensor;
+	
 	/** 날씨 정보 */
 	private WeatherInfo weatherInfo;
 	

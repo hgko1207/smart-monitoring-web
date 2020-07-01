@@ -86,6 +86,7 @@ public class DashboardService {
 	 */
 	public DashboardInfo createBarChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
+		dashboardInfo.setSensor(param.getSensor().name());
 		
 		PointInfo pointA = pointInfoService.get(PointType.A.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {

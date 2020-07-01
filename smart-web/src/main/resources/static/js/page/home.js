@@ -56,6 +56,12 @@ $(document).ready(function() {
     		data: JSON.stringify(param),
     		contentType: "application/json",
     		success: function(data) {
+    			$('#barChartTitleA').html(data.sensor + " A");
+    			$('#barChartTitleB').html(data.sensor + " B");
+    			$('#barChartTitleC').html(data.sensor + " C");
+    			$('#barChartTitleD').html(data.sensor + " D");
+    			$('#barChartTitleE').html(data.sensor + " E");
+    			
     			if (data.soilABarChart) {
     				barChartA = EchartsBarChart.init("soilAChart", data.soilABarChart);
     			}
