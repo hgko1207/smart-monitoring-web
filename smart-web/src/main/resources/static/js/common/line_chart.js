@@ -30,6 +30,7 @@ var LineChart = function() {
                     containLabel: true
                 },
                 legend: {
+                	left: 'right',
                     itemHeight: 8,
                     itemGap: 20
                 },

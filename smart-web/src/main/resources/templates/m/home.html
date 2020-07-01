@@ -11,14 +11,14 @@
     <th:block layout:fragment="content">
     	<div class="content p-0">
     		<div class="tab-header">
-	   			<ul class="nav nav-tabs nav-tabs-bottom border-bottom-0 nav-justified mb-0">
+	   			<ul class="nav nav-tabs nav-tabs-bottom border-bottom-0 nav-justified mb-0" id="mainTab">
 					<li class="nav-item">
-						<a href="#tab1" class="nav-link active" data-toggle="tab">
+						<a href="#info_tab1" class="nav-link active" data-toggle="tab">
 							<span class="d-md-none text-white">작물생육 정보</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="#tab2" class="nav-link" data-toggle="tab">
+						<a href="#info_tab2" class="nav-link" data-toggle="tab">
 							<span class="d-md-none text-white">데이터 보기</span>
 						</a>
 					</li>
@@ -49,105 +49,278 @@
 				</div>
     		</div>
    			<div class="tab-content">
-				<div class="tab-pane fade show active" id="tab1">
+				<div class="tab-pane fade show active" id="info_tab1">
 					<div class="card environment-card border-0">
 						<div class="card-header py-2">
-							<h5 class="card-title font-weight-bold">
+							<h5 class="card-title font-weight-bold text-white">
 								<i class="icon-chevron-right mr-2"></i>생육환경
 							</h5>
 						</div>
-						<hr class="mx-3 my-0 border-grey-300">
-						<div class="card-body">
+						<hr class="mx-3 my-0 bg-white">
+						<div class="card-body pt-2">
 							<div class="row">
-								<div class="col-5 px-2">
+								<div class="mr-auto"></div>
+								<div class="col-4 px-2">
 									<img th:src="@{/images/crop_bean.png}" class="img-fluid" alt=""/>
 								</div>
-								<div class="col-7 d-flex flex-column justify-content-center">
-									<div class="date-info">2020년 06월 27일 현재</div>
-									<div class="environment-info mt-1">
-										A 지점의 콩<br>
-										작물 생육환경정보는<br>[<span class="crop-green">양호</span>] 단계입니다.
+								<div class="col-7 d-flex flex-column justify-content-center environment-total">
+									<div id="environmentCurrent" class="font-weight-bold"></div>
+									<div>
+										<span id="environmentPoint" class="crop-area"></span>의 콩 작물 생육환경정보는
+										<span id="environmentLevel" class="font-weight-bold"></span> 단계입니다.
 									</div>
 								</div>
 							</div>
-							<div class="mt-3 detail-info py-3 pl-2">
-								<div>표층(10cm) 토양수분이 100일째 [<span class="crop-green">양호</span>] 단계입니다.</div>
-								<div class="my-2">표층(30cm) 토양수분이 35일째 [<span class="crop-green">양호</span>] 단계입니다.</div>
-								<div>표층(50cm) 토양수분이 56일째 [<span class="crop-green">양호</span>] 단계입니다.</div>
+							<div class="mt-2 detail-info py-3 pl-3">
+								<div>
+									<i class="icon-check text-info mr-1"></i>
+									표층(10cm) <span id="environmentSensor1"></span>이 <span id="environmentSensor1Day"></span>일째 
+									[<span id="environmentLevel1" class="font-weight-bold"></span>]입니다.
+								</div>
+								<div class="my-2">
+									<i class="icon-check text-info mr-1"></i>
+									표층(30cm) <span id="environmentSensor2"></span>이 <span id="environmentSensor2Day"></span>일째 
+									[<span id="environmentLevel2" class="font-weight-bold"></span>]입니다.
+								</div>
+								<div>
+									<i class="icon-check text-info mr-1"></i>
+									표층(50cm) <span id="environmentSensor3"></span>이 <span id="environmentSensor3Day"></span>일째 
+									[<span id="environmentLevel3" class="font-weight-bold"></span>]입니다.
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="card">
+							<div class="card-header bg-transparent header-elements-inline">
+								<h6 class="card-title font-weight-bold">
+									<i class="icon-stats-bars2 mr-2"></i>
+									<span id="barChartTitleA">토양수분 A</span>
+								</h6>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				               		</div>
+				          		</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="chart-container">
+									<div class="chart has-fixed-height" id="soilAChart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="card">
+							<div class="card-header bg-transparent header-elements-inline">
+								<h6 class="card-title font-weight-bold">
+									<i class="icon-stats-bars2 mr-2"></i>
+									<span id="barChartTitleB">토양수분 B</span>
+								</h6>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				               		</div>
+				          		</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="chart-container">
+									<div class="chart has-fixed-height" id="soilBChart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="card">
+							<div class="card-header bg-transparent header-elements-inline">
+								<h6 class="card-title font-weight-bold">
+									<i class="icon-stats-bars2 mr-2"></i>
+									<span id="barChartTitleC">토양수분 C</span>
+								</h6>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				               		</div>
+				          		</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="chart-container">
+									<div class="chart has-fixed-height" id="soilCChart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="card">
+							<div class="card-header bg-transparent header-elements-inline">
+								<h6 class="card-title font-weight-bold">
+									<i class="icon-stats-bars2 mr-2"></i>
+									<span id="barChartTitleD">토양수분 D</span>
+								</h6>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				               		</div>
+				          		</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="chart-container">
+									<div class="chart has-fixed-height" id="soilDChart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="card">
+							<div class="card-header bg-transparent header-elements-inline">
+								<h6 class="card-title font-weight-bold">
+									<i class="icon-stats-bars2 mr-2"></i>
+									<span id="barChartTitleE">토양수분 E</span>
+								</h6>
+								<div class="header-elements">
+									<div class="list-icons">
+				                		<a class="list-icons-item" data-action="collapse"></a>
+				               		</div>
+				          		</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="chart-container">
+									<div class="chart has-fixed-height" id="soilEChart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="card">
+							<div class="card-header bg-transparent header-elements-inline">
+								<h6 class="card-title font-weight-bold">
+									<i class="icon-satellite-dish2 mr-2"></i>기상정보(기상청)
+								</h6>
+								<div id="weatherDate" class="text-secondary"></div>
+							</div>
+							<div class="card-body row">
+								<div class="mr-md-auto"></div>
+								<div class="col-4">
+									<img th:src="@{/images/sun.png}" alt="sun" class="img-fluid"/>
+								</div>
+								<div class="col-7 pl-4 py-3">
+									<div id="weatherHour" class="weather-time"></div>
+									<div class="weather-info">
+										<span class="weather-temp"><span id="weatherTemp"></span>℃</span> 
+										<span id="weatherType" class="ml-2"></span>
+									</div>
+									<div>
+										<span id="description"></span> | 강수확률 <span id="weatherRainfall"></span>%
+									</div>
+									<div>
+										미세먼지 <span id="weatherFineDust" class="text-green-600"></span>
+										 ㆍ 오존 <span id="weatherOzone" class="text-blue-600"></span>
+									 </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col">
+						<div class="card mb-2">
+							<div class="card-body p-0">
+								<div class="map-container" id="googleMap"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 
-				<div class="tab-pane fade p-2" id="tab2">
-					<div class="card">
-						<div class="card-header bg-transparent header-elements-inline py-2">
-							<h6 class="card-title font-weight-bold">
-								<i class="icon-stats-bars2 mr-2"></i>토양수분 A
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-			                		<a class="list-icons-item" data-action="collapse"></a>
-			               		</div>
-			          		</div>
+				<div class="tab-pane fade p-2" id="info_tab2">
+					<div class="col">
+						<div class="card mb-0">
+							<div class="card-body p-0">
+								<ul class="nav nav-tabs nav-tabs-highlight nav-justified bg-light font-weight-bold" id="lineChartTab">
+									<li class="nav-item nav-start" id="A">
+										<a href="#tab1" class="nav-link active" data-toggle="tab">A 지점(10일)</a>
+									</li>
+									<li class="nav-item" id="B">
+										<a href="#tab2" class="nav-link" data-toggle="tab">B 지점(10일)</a>
+									</li>
+									<li class="nav-item" id="C">
+										<a href="#tab3" class="nav-link" data-toggle="tab">C 지점(10일)</a>
+									</li>
+									<li class="nav-item" id="D">
+										<a href="#tab4" class="nav-link" data-toggle="tab">D 지점(10일)</a>
+									</li>
+									<li class="nav-item nav-end" id="E">
+										<a href="#tab5" class="nav-link" data-toggle="tab">E 지점(10일)</a>
+									</li>
+								</ul>
+								<div class="tab-content p-2">
+									<div class="tab-pane fade active show" id="tab1">
+										<div class="col">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempALineChart"></div>
+											</div>
+										</div>
+										<div class="col mt-4">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterALineChart"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="tab2">
+										<div class="col">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempBLineChart"></div>
+											</div>
+										</div>
+										<div class="col mt-4">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterBLineChart"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="tab3">
+										<div class="col">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempCLineChart"></div>
+											</div>
+										</div>
+										<div class="col mt-4">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterCLineChart"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="tab4">
+										<div class="col">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempDLineChart"></div>
+											</div>
+										</div>
+										<div class="col mt-4">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterDLineChart"></div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-pane fade" id="tab5">
+										<div class="col">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="tempELineChart"></div>
+											</div>
+										</div>
+										<div class="col mt-4">
+											<div class="chart-container">
+												<div class="chart line-chart-height" id="waterELineChart"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
-						<div class="card-body"></div>
-					</div>
-					
-					<div class="card">
-						<div class="card-header bg-transparent header-elements-inline py-2">
-							<h6 class="card-title font-weight-bold">
-								<i class="icon-stats-bars2 mr-2"></i>토양수분 B
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-			                		<a class="list-icons-item" data-action="collapse"></a>
-			               		</div>
-			          		</div>
-						</div>
-						<div class="card-body"></div>
-					</div>
-					
-					<div class="card">
-						<div class="card-header bg-transparent header-elements-inline py-2">
-							<h6 class="card-title font-weight-bold">
-								<i class="icon-stats-bars2 mr-2"></i>토양수분 C
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-			                		<a class="list-icons-item" data-action="collapse"></a>
-			               		</div>
-			          		</div>
-						</div>
-						<div class="card-body"></div>
-					</div>
-					
-					<div class="card">
-						<div class="card-header bg-transparent header-elements-inline py-2">
-							<h6 class="card-title font-weight-bold">
-								<i class="icon-stats-bars2 mr-2"></i>토양수분 D
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-			                		<a class="list-icons-item" data-action="collapse"></a>
-			               		</div>
-			          		</div>
-						</div>
-						<div class="card-body"></div>
-					</div>
-					
-					<div class="card">
-						<div class="card-header bg-transparent header-elements-inline py-2">
-							<h6 class="card-title font-weight-bold">
-								<i class="icon-stats-bars2 mr-2"></i>토양수분 E
-							</h6>
-							<div class="header-elements">
-								<div class="list-icons">
-			                		<a class="list-icons-item" data-action="collapse"></a>
-			               		</div>
-			          		</div>
-						</div>
-						<div class="card-body"></div>
 					</div>
 				</div>
 			</div>
@@ -156,7 +329,10 @@
     
      <!-- index.html 고유 스크립트 추가 -->
     <th:block layout:fragment="script">
-        <script th:src="@{/js/mobile/home.js}"></script>
+       	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOybNujmIFXZLfUf5J-q0_WqNH3riUKbg" async defer></script>
+    	<script th:src="@{/js/common/google_map.js}"></script>
         <script th:src="@{/js/common/bar_chart.js}"></script>
+        <script th:src="@{/js/common/line_chart.js}"></script>
+        <script th:src="@{/js/page/home.js}"></script>
     </th:block>
 </html>

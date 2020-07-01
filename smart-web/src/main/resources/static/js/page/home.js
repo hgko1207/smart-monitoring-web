@@ -203,4 +203,9 @@ $(document).ready(function() {
     	type = this.id;
     	searchLineChart(type);
     });
+    
+    /** 하단 토양계측정보 탭 선택 시 */
+    $("#mainTab li").click(function() {
+    	searchLineChart('A');
+    });
 });

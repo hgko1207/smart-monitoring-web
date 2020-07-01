@@ -54,22 +54,58 @@
 	background-color: #CAAE84;
 }
 
-.environment-info {
-	font-size: 1rem;
-	font-weight: 700;
-	color: white;
-	line-height: 1.2
-}
-
-.date-info {
-	font-size: 0.9rem;
-	font-weight: 700;
-	color: white;
-}
-
 .detail-info {
 	font-weight: 700;
 	color: white;
 	background-color: #846B44;
 	line-height: 1.2
+}
+
+.environment-total {
+	font-weight: 700;
+	font-size: 16px;
+	color: white;
+}
+
+/*****************************************************/
+/* 막대 차트                                                                                                */
+/*****************************************************/
+@media (max-width: 767.98px) {
+	.chart-container {
+	    overflow-x: hidden;
+	    overflow-y: visible;
+	    max-width: 100%;
+	}
+}
+
+.has-fixed-height {
+	height: 180px;
+}
+
+/*****************************************************/
+/* 기상 데이터 디자인 */
+/*****************************************************/
+.weather-time {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #F96D60;
+}
+
+.weather-temp {
+	font-size: 1.6rem;
+	font-weight: 600;
+}
+
+/*****************************************************/
+/* 지도 데이터 디자인 */
+/*****************************************************/
+.map-container {
+	height: 240px;
+}
+
+/*****************************************************/
+/* 지도 데이터 디자인 */
+/*****************************************************/
+.line-chart-height {
+	height: 260px;
 }
