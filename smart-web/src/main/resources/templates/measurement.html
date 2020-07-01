@@ -11,10 +11,10 @@
 			<div class="page-header-content header-elements-md-inline">
 				<div class="page-title d-flex">
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">구분 :</label>
-					<div class="form-group mr-2 mb-0 wmin-150">
-						<select class="form-control form-control-select2" id="pointSelect" data-fouc>
-							<option value="전체">전체</option>
-							<option th:each="point : ${points}" th:value="${point.pointSq}" th:text="${point.pointNm}"></option>
+					<div class="form-group mr-2 mb-0 wmin-100">
+						<select class="form-control form-control-select2" id="sensorSelect" data-fouc>
+							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
+							<option value="기상">기상</option>
 						</select>
 					</div>
 					
@@ -30,20 +30,13 @@
 						</select>
 					</div>
 					
-					<label class="col-form-label font-weight-bold mr-2" for="form-type">그래프항목 :</label>
-					<div class="form-group mr-2 mb-0">
-						<select class="form-control form-control-select2" id="sensorSelect" data-fouc>
-							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
+					<div class="form-group mr-2 mb-0 d-none">
+						<select class="form-control form-control-select2" id="weatherSelect" data-fouc>
+							<option th:each="location : ${locationTypes}" th:value="${location}" th:text="${location}"></option>
 						</select>
 					</div>
 					
-					<!-- <div class="form-group mr-4 mb-0">
-						<select class="form-control form-control-select2" id="typeSelect" data-fouc>
-							<option th:each="chart : ${chartTypes}" th:value="${chart}" th:text="${chart}"></option>
-						</select>
-					</div> -->
-					
-					<label class="col-form-label font-weight-bold ml-4 mr-2" for="form-type">날짜 선택 :</label>
+					<label class="col-form-label font-weight-bold mr-2" for="form-type">날짜 선택 :</label>
 					<div class="form-group mr-4 mb-0">
 						<div class="input-group">
 							<input type="text" class="form-control daterange-picker"> 
@@ -71,23 +64,23 @@
 				<div class="card-body">
 					<table class="table table-bordered" id="measurementTable">
 						<thead class="text-center">
-							<tr class="table-active">
+							<tr>
 								<th>일시</th>
-								<th>A 상층 온도</th>
-								<th>A 중층 온도</th>
-								<th>A 하층 온도</th>
-								<th>B 상층 온도</th>
-								<th>B 중층 온도</th>
-								<th>B 하층 온도</th>
-								<th>C 상층 온도</th>
-								<th>C 중층 온도</th>
-								<th>C 하층 온도</th>
-								<th>D 상층 온도</th>
-								<th>D 중층 온도</th>
-								<th>D 하층 온도</th>
-								<th>E 상층 온도</th>
-								<th>E 중층 온도</th>
-								<th>E 하층 온도</th>
+								<th id="topA">A 상층 수분</th>
+								<th id="middleA">A 중층 수분</th>
+								<th id="bottomA">A 하층 수분</th>
+								<th id="topB">B 상층 수분</th>
+								<th id="middleB">B 중층 수분</th>
+								<th id="bottomB">B 하층 수분</th>
+								<th id="topC">C 상층 수분</th>
+								<th id="middleC">C 중층 수분</th>
+								<th id="bottomC">C 하층 수분</th>
+								<th id="topD">D 상층 수분</th>
+								<th id="middleD">D 중층 수분</th>
+								<th id="bottomD">D 하층 수분</th>
+								<th id="topE">E 상층 수분</th>
+								<th id="middleE">E 중층 수분</th>
+								<th id="bottomE">E 하층 수분</th>
 							</tr>
 						</thead>
 						<tbody class="text-center"></tbody>

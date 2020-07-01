@@ -1,45 +1,36 @@
 package net.woori.start.domain.weather;
 
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.Data;
 
 @Data
+@XmlRootElement(name = "Root")
+@XmlAccessorType(value = XmlAccessType.FIELD)
 public class Response {
 
-	private Header header;
-	
-	private Body body;
-	
+	@XmlElement(name = "Info")
+	private Info info;
+
 	@Data
-	public static class Header {
+	public static class Info {
+
+		/** 지역 코드 */
+		private String stncode;
 		
-		private int resultCode;
+		/** 지역 이름 */
+		private String stnname;
 		
-		private String resultMsg;
-	}
-	
-	@Data
-	public static class Body {
+		/** 일시 */
+		private String date;
 		
-		/** 데이터 타입 */
-		private String dataType;
+		private String temp_150;
 		
-		/** 한 페이지 결과 수 */
-		private int numOfRows;
+		private String tmprt_150Top;
 		
-		/** 페이지 번호 */
-		private int pageNo;
-		
-		/** 전체 결과 수 */
-		private int totalCount;
-		
-		private Items items;
-	}
-	
-	@Data
-	public static class Items {
-		
-		private List<WthrData> item;
+		private String tmprt_150Lwet;
 	}
 }

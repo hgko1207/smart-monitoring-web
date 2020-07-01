@@ -18,15 +18,15 @@ var LineChart = function() {
             		}
             	},
                 textStyle: {
-                    fontFamily: 'Roboto, Arial, Verdana, sans-serif',
+                	fontFamily: 'Roboto, Arial, Verdana, sans-serif',
                     fontSize: 13
                 },
                 animationDuration: 500,
                 grid: {
-                	 left: 10,
-                     right: 30,
-                     top: 35,
-                     bottom: 5,
+                	left: 5,
+                    right: 35,
+                    top: 35,
+                    bottom: 5,
                     containLabel: true
                 },
                 legend: {
@@ -35,15 +35,19 @@ var LineChart = function() {
                 },
                 tooltip: {
                     trigger: 'axis',
-                    backgroundColor: 'rgba(0,0,0,0.75)',
+                    backgroundColor: 'rgba(0,0,0,0.55)',
                     padding: [10, 15],
-                    textStyle: {
-                        fontSize: 13,
-                        fontFamily: 'Roboto, sans-serif'
-                    },
-                    axisPointer: {
-                        type: 'shadow'
-                    }
+//                    textStyle: {
+//                        fontSize: 13,
+//                        fontFamily: 'Roboto, sans-serif'
+//                    },
+//                    axisPointer: {
+//                        type: 'cross',
+//                        animation: false,
+//                        label: {
+//                            backgroundColor: '#505765'
+//                        }
+//                    }
                 },
                 xAxis: [{
                     type: 'category',
@@ -53,8 +57,9 @@ var LineChart = function() {
                     	color: '#333',
                         formatter: function (value, idx) {
                         	const date = new Date(value);
-                        	const result = moment(date).format("MM/DD");
-                            return idx === 0 ? moment(date).format("MM/DD") : result;
+//                        	const result = moment(date).format("MM/DD HH:mm");
+//                            return idx === 0 ? moment(date).format("MM/DD HH:mm") : result;
+                        	return moment(date).format("MM/DD HH:mm");
                         }
                     },
                     axisLine: {

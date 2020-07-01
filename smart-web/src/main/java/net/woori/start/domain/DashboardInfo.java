@@ -3,6 +3,7 @@ package net.woori.start.domain;
 import lombok.Data;
 import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.chart.ChartInfo;
+import net.woori.start.domain.weather.WeatherInfo;
 
 /**
  * 대시보드 정보 도메인

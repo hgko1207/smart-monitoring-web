@@ -16,7 +16,7 @@ $.extend( $.fn.dataTable.defaults, {
 	},
 	searching: false,
 	lengthChange: false,
-	pageLength: 5
+	pageLength: 10
 	
 });
 
@@ -32,18 +32,36 @@ var Datatables = {
 		
 		return table;
 	},
-	order: function(id, tableOption, num, info) {
+	measurement: function(id, tableOption) {
 		var table = $(id).DataTable({
-			language: {
-				info: info ? info : " _TOTAL_ 개의 데이터가 있습니다." 
-			},
-		    columns: tableOption ? tableOption.columns : null,
+		    columns: tableOption.columns,
 		    columnDefs: [
 		    	{ orderable: true, className: 'reorder', targets: 0 },
-		    	{ orderable: true, className: 'reorder', targets: num },
 		    	{ orderable: false, targets: '_all' }
 		    ],
-		    order: [[num, 'desc']]
+		    order: [[0, 'desc']],
+		    rowCallback: function(row, data, displayIndex, displayIndexFull) {
+		    	const location = $('#locationSelect').val();
+		    	if (location === '상층') {
+			        $(row).children().eq(1).addClass('selected-column');
+			        $(row).children().eq(4).addClass('selected-column');
+			        $(row).children().eq(7).addClass('selected-column');
+			        $(row).children().eq(10).addClass('selected-column');
+			        $(row).children().eq(13).addClass('selected-column');
+		    	} else if (location === '중층') {
+		    		$(row).children().eq(2).addClass('selected-column');
+			        $(row).children().eq(5).addClass('selected-column');
+			        $(row).children().eq(8).addClass('selected-column');
+			        $(row).children().eq(11).addClass('selected-column');
+			        $(row).children().eq(14).addClass('selected-column');
+		    	} else if (location === '하층') {
+		    		$(row).children().eq(3).addClass('selected-column');
+			        $(row).children().eq(6).addClass('selected-column');
+			        $(row).children().eq(9).addClass('selected-column');
+			        $(row).children().eq(12).addClass('selected-column');
+			        $(row).children().eq(15).addClass('selected-column');
+		    	}
+		    }
 		});
 		
 		return table;

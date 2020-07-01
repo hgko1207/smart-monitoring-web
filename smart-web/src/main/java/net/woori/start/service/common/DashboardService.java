@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 import net.woori.start.domain.DashboardInfo;
 import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.EnumType.PointType;
-import net.woori.start.domain.EnumType.WeatherType;
+import net.woori.start.domain.EnumType.Status;
 import net.woori.start.domain.EnvironmentInfo;
-import net.woori.start.domain.WeatherInfo;
 import net.woori.start.domain.db.PointInfo;
 import net.woori.start.domain.param.SearchParam;
+import net.woori.start.domain.weather.WeatherInfo;
 import net.woori.start.service.MeasurementService;
 import net.woori.start.service.PointInfoService;
 
@@ -58,8 +58,8 @@ public class DashboardService {
 		weatherInfo.setTemp(22);
 		weatherInfo.setType("맑음");
 		weatherInfo.setRainfall(0);
-		weatherInfo.setFineDust(WeatherType.보통);
-		weatherInfo.setOzone(WeatherType.좋음);
+		weatherInfo.setFineDust(Status.보통);
+		weatherInfo.setOzone(Status.좋음);
 		weatherInfo.setDescription("어제 기온와 같음");
 		
 		return weatherInfo;

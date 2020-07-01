@@ -1,11 +1,14 @@
 package net.woori.start.service.impl;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.db.PointInfo;
 import net.woori.start.repository.PointInfoRepository;
 import net.woori.start.service.PointInfoService;
@@ -25,7 +28,8 @@ public class PointInfoServiceImpl implements PointInfoService {
 	@Transactional(readOnly = true)
 	@Override
 	public List<PointInfo> getList() {
-		return pointInfoRepository.findAll();
+		return pointInfoRepository.findAll().stream()
+				.sorted(Comparator.comparing(PointInfo::getPointNm)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -59,5 +63,11 @@ public class PointInfoServiceImpl implements PointInfoService {
 	@Override
 	public PointInfo get(String pointNm) {
 		return pointInfoRepository.findByPointNmContaining(pointNm);
+	}
+
+	@Override
+	public List<PointInfo> getList(SensorPointType sensorPoint) {
+		return pointInfoRepository.getList("%" + sensorPoint.name() + "%").stream()
+				.sorted(Comparator.comparing(PointInfo::getPointNm)).collect(Collectors.toList());
 	}
 }

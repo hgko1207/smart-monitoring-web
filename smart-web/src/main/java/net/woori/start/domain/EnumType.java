@@ -27,14 +27,22 @@ public class EnumType {
 
 	@Getter
 	public enum SensorType {
-		토양수분("%"),
-		토양온도("°C");
+		토양수분("%", "수분"),
+		토양온도("°C", "온도");
 		
 		private String unit;
 		
-		private SensorType(String unit) {
+		private String name;
+		
+		private SensorType(String unit, String name) {
 			this.unit = unit;
+			this.name = name;
 		}
+	}
+	
+	@Getter
+	public enum WeatherType {
+		기온, 습도, 풍향, 평균풍속, 최대풍속, 강수량, 일조시간, 토양수분;
 	}
 	
 	public enum SensorPointType {
@@ -58,7 +66,7 @@ public class EnumType {
 		일별, 주별, 월별;
 	}
 	
-	public enum WeatherType {
+	public enum Status {
 		좋음, 나쁨, 보통
 	}
 	

@@ -1,7 +1,7 @@
-package net.woori.start.domain;
+package net.woori.start.domain.weather;
 
 import lombok.Data;
-import net.woori.start.domain.EnumType.WeatherType;
+import net.woori.start.domain.EnumType.Status;
 
 @Data
 public class WeatherInfo {
@@ -18,10 +18,10 @@ public class WeatherInfo {
 	private int rainfall;
 	
 	/** 미세먼지 */
-	private WeatherType fineDust;
+	private Status fineDust;
 	
 	/** 오존 */
-	private WeatherType ozone;
+	private Status ozone;
 	
 	/** 날씨 설명 */
 	private String description;

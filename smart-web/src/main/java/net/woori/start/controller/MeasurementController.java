@@ -15,7 +15,6 @@ import net.woori.start.domain.EnumType.LocationType;
 import net.woori.start.domain.EnumType.SensorPointType;
 import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.param.SearchParam;
-import net.woori.start.service.PointInfoService;
 import net.woori.start.service.common.MeasurementInfoService;
 
 /**
@@ -31,18 +30,14 @@ public class MeasurementController {
 	@Autowired
 	private MeasurementInfoService measurementInfoService;
 	
-	@Autowired
-	private PointInfoService pointInfoService;
-	
 	/**
 	 * 계측정보 화면
 	 * @param model
 	 */
 	@GetMapping("")
 	public void main(Model model) {
-		model.addAttribute("points", pointInfoService.getList());
-		model.addAttribute("locationTypes", LocationType.values());
 		model.addAttribute("sensorTypes", SensorType.values());
+		model.addAttribute("locationTypes", LocationType.values());
 		model.addAttribute("chartTypes", ChartType.values());
 		model.addAttribute("sensorPointTypes", SensorPointType.values());
 	}
@@ -52,18 +47,8 @@ public class MeasurementController {
 	 * @param param
 	 * @return
 	 */
-	@PostMapping("search/chart")
-    public ResponseEntity<?> searchChart(@RequestBody SearchParam param) {
-		return new ResponseEntity<>(measurementInfoService.createChartInfo(param), HttpStatus.OK);
-    }
-	
-	/**
-	 * 테이블 조회
-	 * @param param
-	 * @return
-	 */
-	@PostMapping("search/table")
-    public ResponseEntity<?> searchTable(@RequestBody SearchParam param) {
-		return new ResponseEntity<>(HttpStatus.OK);
+	@PostMapping("search")
+    public ResponseEntity<?> search(@RequestBody SearchParam param) {
+		return new ResponseEntity<>(measurementInfoService.createMeasurementInfo(param), HttpStatus.OK);
     }
 }

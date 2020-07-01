@@ -8,7 +8,13 @@
 .table th {
 	font-weight: 600;
 	font-size: 0.70rem;
+	padding: .75rem .75rem;
 }
+
+.table td {
+	padding: .75rem .75rem;
+}
+
 
 .datatable-header {
 	padding-top: 0rem;
@@ -16,4 +22,8 @@
 
 .datatable-footer {
 	padding: 0.5rem 1.25rem 0 1.25rem;
+}
+
+.selected-column {
+	background-color: #FBE5D6;
 }

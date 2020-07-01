@@ -25,9 +25,9 @@ var linesChart = function(data) {
             animationDuration: 750,
             grid: {
            	 	left: 25,
-                right: 35,
+                right: 30,
                 top: 35,
-                bottom: 60,
+                bottom: 5,
                containLabel: true
             },
             legend: {
@@ -36,26 +36,26 @@ var linesChart = function(data) {
             },
             tooltip: {
                 trigger: 'axis',
-                backgroundColor: 'rgba(0,0,0,0.75)',
+                backgroundColor: 'rgba(0,0,0,0.55)',
                 padding: [10, 15],
                 textStyle: {
             		fontSize: 13,
 	                fontFamily: 'Roboto, sans-serif'
 	            },
-                axisPointer: {
-                    type: 'cross',
-                    animation: false,
-                    label: {
-                    	backgroundColor: '#505765'
-//                        backgroundColor: '#ccc',
-//                        borderColor: '#aaa',
-//                        borderWidth: 1,
-//                        shadowBlur: 0,
-//                        shadowOffsetX: 0,
-//                        shadowOffsetY: 0,
-//                        color: '#222'
-                    }
-                },
+//                axisPointer: {
+//                    type: 'cross',
+//                    animation: false,
+//                    label: {
+//                    	backgroundColor: '#505765'
+////                        backgroundColor: '#ccc',
+////                        borderColor: '#aaa',
+////                        borderWidth: 1,
+////                        shadowBlur: 0,
+////                        shadowOffsetX: 0,
+////                        shadowOffsetY: 0,
+////                        color: '#222'
+//                    }
+//                },
 //                formatter: function (params) {
 //                    return params[2].name + '<br />' + ((params[2].value - base) * 100).toFixed(1) + '%';
 //                }
@@ -66,6 +66,8 @@ var linesChart = function(data) {
                 data: data.categories,
                 axisLabel: {
                 	color: '#333',
+                	fontSize: 13,
+	                fontFamily: 'Roboto, sans-serif',
                     formatter: function (value, idx) {
                         var date = new Date(value);
                         return idx === 0 ? value : [date.getMonth() + 1, date.getDate()].join('-');
@@ -84,8 +86,14 @@ var linesChart = function(data) {
             }],
             yAxis: [{
                 type: 'value',
+                min: function (value) {
+                	const result = Math.round(value.min - 1);
+                    return result <= 0 ? 0 : result;
+                },
                 axisLabel: {
                 	color: '#333',
+                	fontSize: 13,
+	                fontFamily: 'Roboto, sans-serif',
                     formatter: function (val) {
                         return val + data.unit;
                     }
@@ -107,24 +115,23 @@ var linesChart = function(data) {
                     }
                 }
             }],
-            dataZoom: [{
-                type: 'inside',
-                start: 0,
-                end: 100,
-               
-            },{
-                show: true,
-                type: 'slider',
-                start: 0,
-                end: 100,
-                height: 40,
-                bottom: 0,
-                borderColor: '#ccc',
-                fillerColor: 'rgba(0,0,0,0.05)',
-                handleStyle: {
-                    color: '#585f63'
-                }
-            }],
+//            dataZoom: [{
+//                type: 'inside',
+//                start: 0,
+//                end: 100,
+//            },{
+//                show: true,
+//                type: 'slider',
+//                start: 0,
+//                end: 100,
+//                height: 40,
+//                bottom: 0,
+//                borderColor: '#ccc',
+//                fillerColor: 'rgba(0,0,0,0.05)',
+//                handleStyle: {
+//                    color: '#585f63'
+//                }
+//            }],
             series: data.lineChartSeries,
         }, true);
     }
@@ -155,37 +162,30 @@ var measurementTable = {
 	table: null,
 	option: {
 		columns: [
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
-			{ data: "" },
+			{ data: "date" },
+			{ data: "valueA1" },
+			{ data: "valueA2" },
+			{ data: "valueA3" },
+			{ data: "valueB1" },
+			{ data: "valueB2" },
+			{ data: "valueB3" },
+			{ data: "valueC1" },
+			{ data: "valueC2" },
+			{ data: "valueC3" },
+			{ data: "valueD1" },
+			{ data: "valueD2" },
+			{ data: "valueD3" },
+			{ data: "valueE1" },
+			{ data: "valueE2" },
+			{ data: "valueE3" },
 		]
 	},
 	init: function() {
-		this.table = Datatables.order(this.ele, this.option, 0);
+		this.table = Datatables.measurement(this.ele, this.option);
 	}
 }
 
 $(document).ready(function() {
-	let lineChart = null;
-	
-	measurementTable.init();
-	
 	let startDate = new Date(moment().format("YYYY-MM-DD 00:00:00"));
 	startDate.setDate(startDate.getDate() - 6); 
 	let endDate = new Date(moment().format("YYYY-MM-DD 23:59:59"));
@@ -213,47 +213,96 @@ $(document).ready(function() {
     	endDate = end.format("YYYY-MM-DD 23:59:59");
     });
     
+    let lineChart = null;
+    measurementTable.init();
+    
+    $('#sensorSelect').change(function() {
+    	const val = $(this).val();
+    	if (val === '기상') {
+    		
+    	} else {
+    		
+    	}
+    });
+    
+    /** 검색 버튼 클릭 시 */
     $('#searchBtn').click(function() {
     	if (lineChart != null) {
 			lineChart.clear();
 		}
     	
-    	let param = new Object();
-    	param.point = $('#pointSelect').val();
-    	param.location = $('#locationSelect').val();
-    	param.sensor = $('#sensorSelect').val();
-    	param.type = $('#typeSelect').val();
-    	param.startDate = startDate;
-    	param.endDate = endDate;
-    	
-    	$.ajax({
-    		url: contextPath + "/measurement/search/chart",
-    		type: "POST",
-    		data: JSON.stringify(param),
-    		contentType: "application/json",
-    		success: function(data) {
-    			if (param.point === '전체') {
-    				let chartSeries = data.lineChartSeries;
+    	const sensor = $('#sensorSelect').val();
+    	if (sensor == '기상') {
+    		let param = new Object();
+    		param.startDate = startDate;
+    		param.endDate = endDate;
+    		
+    	} else {
+    		measurementTable.table.clear();
+    		removeSelected();
+    		
+    		let param = new Object();
+    		param.sensor = sensor;
+    		param.sensorPoint = $('#sensorPointSelect').val();
+    		param.location = $('#locationSelect').val();
+    		param.startDate = startDate;
+    		param.endDate = endDate;
+    		
+    		$.ajax({
+    			url: contextPath + "/measurement/search",
+    			type: "POST",
+    			data: JSON.stringify(param),
+    			contentType: "application/json",
+    			success: function(data) {
+    				let chartSeries = data.chartInfo.lineChartSeries;
     				$.each(chartSeries, function(i, val) {
     					val.data = val.dataList.map(data => [data.date, data.value]);
     				});
-    				data.lineChartSeries = chartSeries;
+    				data.chartInfo.lineChartSeries = chartSeries;
+    				
+    				lineChart = linesChart(data.chartInfo);
+
+    				changeHeaderName(data.sensor);
+    				addSelected(param.location);
+    				measurementTable.table.rows.add(data.tableInfos).draw();
     			}
-    			
-    			lineChart = linesChart(data);
-           	}
-    	}); 
-    	
-    	measurementTable.table.clear().draw();
-    	
-    	$.ajax({
-    		url: contextPath + "/measurement/search/table",
-    		type: "POST",
-    		data: JSON.stringify(param),
-    		contentType: "application/json",
-    		success: function(data) {
-    			measurementTable.table.rows.add(data).draw();
-           	}
-    	}); 
+    		}); 
+    	}
     });
+    
+    const addSelected = (location) => {
+    	const point = ['A', 'B', 'C', 'D', 'E'];
+    	if (location == '상층') {
+    		$.each(point, function(i, val) {
+    			$('#top' + val).addClass('selected-column');
+    		});
+    	} else if (location == '중층') {
+    		$.each(point, function(i, val) {
+    			$('#middle' + val).addClass('selected-column');
+    		});
+    	} else if (location == '하층') {
+    		$.each(point, function(i, val) {
+    			$('#bottom' + val).addClass('selected-column');
+    		});
+    	}
+    }
+    
+    const removeSelected = () => {
+    	const point = ['A', 'B', 'C', 'D', 'E'];
+    	$.each(point, function(i, val) {
+			$('#top' + val).removeClass('selected-column');
+			$('#middle' + val).removeClass('selected-column');
+			$('#bottom' + val).removeClass('selected-column');
+		});
+    }
+    
+    /** 계측정보 테이블 헤더 이름 변경 */
+    const changeHeaderName = (sensor) => {
+    	const point = ['A', 'B', 'C', 'D', 'E'];
+    	$.each(point, function(i, val) {
+			$('#top' + val).html(val + " 상층 " + sensor);
+			$('#middle' + val).html(val + " 중층 " + sensor);
+			$('#bottom' + val).html(val + " 하층 " + sensor);
+		});
+    }
 });
