@@ -39,6 +39,8 @@ const GoogleMap = function() {
 		});
 		
 		infowindow.open(map, marker);
+		
+		return infowindow;
 	};
 	
 	const markerAndInfoOverlayList = function(map, list) {

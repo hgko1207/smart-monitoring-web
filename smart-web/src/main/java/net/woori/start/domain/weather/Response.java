@@ -7,6 +7,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import lombok.Data;
 
+/**
+ * 기상청 API로 기상정보 조회할 때 쓰이는 도메인
+ * 
+ * @author hgko
+ *
+ */
 @Data
 @XmlRootElement(name = "Root")
 @XmlAccessorType(value = XmlAccessType.FIELD)

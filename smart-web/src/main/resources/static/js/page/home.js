@@ -2,6 +2,8 @@ moment.locale('ko');
 
 $(document).ready(function() {
 	let map;
+	let infowindow = null;
+	
 	let type = 'A';
 	
 	let barChartA = null;
@@ -90,6 +92,10 @@ $(document).ready(function() {
     
     /** 중간 대시보드 정보 조회 */
     const searchDashboard = () => {
+    	if (infowindow != null) {
+    		infowindow.close();
+    	}
+    	
     	let param = new Object();
     	param.sensor = $('#sensorTypeSelect').val();
     	param.sensorPoint = $('#sensorPointSelect').val();
@@ -133,7 +139,7 @@ $(document).ready(function() {
     			$('#environmentLevel3').css('color', info.level3Color);
     			$('#environmentSensor3Day').html(info.level3Day);
     			
-    			GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
+    			infowindow = GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
            	}
     	});
     }

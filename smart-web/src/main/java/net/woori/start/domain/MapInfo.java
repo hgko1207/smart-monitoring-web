@@ -2,6 +2,12 @@ package net.woori.start.domain;
 
 import lombok.Data;
 
+/**
+ * 지도 정보 도메인
+ * 
+ * @author hgko
+ *
+ */
 @Data
 public class MapInfo {
 

@@ -6,6 +6,12 @@ import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 라인 차트 데이터 정보
+ * 
+ * @author hgko
+ *
+ */
 @Data
 @NoArgsConstructor
 public class LineChartSeries {

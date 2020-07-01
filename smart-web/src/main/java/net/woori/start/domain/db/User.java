@@ -18,7 +18,7 @@ import lombok.Data;
 import net.woori.start.domain.Domain;
 
 /**
- * 사용자 관리 도메인
+ * 사용자 관리 테이블 도메인
  * 
  * @author hgko
  *

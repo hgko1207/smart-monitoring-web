@@ -20,7 +20,7 @@ import net.woori.start.domain.weather.Response;
 import net.woori.start.domain.weather.Response.Info;
 
 /**
- * 사용자 관리 도메인
+ * 기상 정보 테이블 도메인
  * 
  * @author hgko
  *

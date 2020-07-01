@@ -24,7 +24,7 @@ import net.woori.start.service.PointInfoService;
 import net.woori.start.service.WeatherService;
 
 /**
- * 계측정보 서비스 
+ * 계측 데이터 조회 서비스 
  * 
  * @author hgko
  *

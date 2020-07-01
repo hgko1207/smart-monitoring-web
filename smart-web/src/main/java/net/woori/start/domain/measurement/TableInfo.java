@@ -2,7 +2,6 @@ package net.woori.start.domain.measurement;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import net.woori.start.domain.chart.WeatherChartData;
 
 /**
  * 계측정보 테이블 도메인

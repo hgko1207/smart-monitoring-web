@@ -10,6 +10,12 @@ import lombok.NoArgsConstructor;
 import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.EnumType.SensorType;
 
+/**
+ * 막대 차트 데이터 정보
+ * 
+ * @author hgko
+ *
+ */
 @Data
 @NoArgsConstructor
 public class BarChartSeries {

@@ -15,7 +15,7 @@ import lombok.Data;
 import net.woori.start.domain.Domain;
 
 /**
- * 스마트팜 센서 RAW 데이터 도메인
+ * 스마트팜 센서 RAW 데이터 테이블 도메인
  * 
  * @author hgko
  *
