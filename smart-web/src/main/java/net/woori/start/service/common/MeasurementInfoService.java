@@ -18,7 +18,7 @@ import net.woori.start.domain.chart.LineChartSeries;
 import net.woori.start.domain.measurement.MeasurementInfo;
 import net.woori.start.domain.measurement.TableInfo;
 import net.woori.start.domain.param.SearchParam;
-import net.woori.start.service.MeasurementService;
+import net.woori.start.service.MeasurementLogService;
 import net.woori.start.service.PointInfoService;
 
 /**
@@ -33,7 +33,7 @@ public class MeasurementInfoService {
 	private final SimpleDateFormat hourFormat = new SimpleDateFormat("yyyy-MM-dd HH:00");
 	
 	@Autowired
-	private MeasurementService measurementService;
+	private MeasurementLogService measurementService;
 	
 	@Autowired
 	private PointInfoService pointInfoService;

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.woori.start.domain.chart.ChartData;
 import net.woori.start.domain.db.Measurement;
 import net.woori.start.repository.MeasurementRepository;
 import net.woori.start.service.MeasurementService;
@@ -55,25 +54,5 @@ public class MeasurementServiceImpl implements MeasurementService {
 
 	private boolean isNew(Measurement domain) {
 		return !measurementRepository.existsById(domain.getPointSq());
-	}
-
-	@Override
-	public List<Measurement> getList(int pointSq, String startDate, String endDate) {
-		return measurementRepository.findByPointSq(startDate, endDate, pointSq);
-	}
-
-	@Override
-	public List<ChartData> getDailyList(int pointSq, String startDate, String endDate) {
-		return measurementRepository.getDailyList(startDate, endDate, pointSq);
-	}
-
-	@Override
-	public Measurement getCurrentData(int pointSq) {
-		return measurementRepository.getCurrentData(pointSq);
-	}
-
-	@Override
-	public List<ChartData> getHourlyList(int pointSq, String startDate, String endDate) {
-		return measurementRepository.getHourlyList(startDate, endDate, pointSq);
 	}
 }

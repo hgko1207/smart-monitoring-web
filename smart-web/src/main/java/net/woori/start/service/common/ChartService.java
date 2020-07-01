@@ -15,7 +15,7 @@ import net.woori.start.domain.chart.ChartInfo;
 import net.woori.start.domain.chart.LineChartSeries;
 import net.woori.start.domain.db.PointInfo;
 import net.woori.start.domain.param.SearchParam;
-import net.woori.start.service.MeasurementService;
+import net.woori.start.service.MeasurementLogService;
 
 /**
  * 차트 관련 서비스
@@ -29,7 +29,7 @@ public class ChartService {
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	@Autowired
-	private MeasurementService measurementService;
+	private MeasurementLogService measurementLogService;
 	
 	/**
 	 * 대시보드 Bar 차트 생성
@@ -87,7 +87,7 @@ public class ChartService {
 		LineChartSeries water2ChartSeries = new LineChartSeries(LocationType.중층.getName());
 		LineChartSeries water3ChartSeries = new LineChartSeries(LocationType.하층.getName());
 		
-		measurementService.getList(pointInfo.getPointSq(), param.getDaysDate(), param.getEndDate()).forEach(data -> {
+		measurementLogService.getList(pointInfo.getPointSq(), param.getDaysDate(), param.getEndDate()).forEach(data -> {
 			tempChartInfo.addCategory(dateFormat.format(data.getMeasDt()));
 			waterChartInfo.addCategory(dateFormat.format(data.getMeasDt()));
 			

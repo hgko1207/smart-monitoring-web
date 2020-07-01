@@ -15,18 +15,21 @@ import lombok.Data;
 import net.woori.start.domain.Domain;
 
 /**
- * 스마트팜 센서 NOW 데이터 도메인
+ * 스마트팜 센서 RAW 데이터 도메인
  * 
  * @author hgko
  *
  */
 @Entity
-@Table(name = "tb_sf_meas_now")
+@Table(name = "tb_sf_meas_raw")
 @Data
-public class Measurement implements Domain {
+public class MeasurementLog implements Domain {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int measSq;
+	
+	/** 장비 시퀀스 */
 	private int pointSq;
 	
 	/** 측정날짜 */

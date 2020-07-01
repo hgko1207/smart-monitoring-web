@@ -85,16 +85,19 @@ public class EnumType {
 	
 	@Getter
 	public enum LevelType {
-		양호("#00D76A", "양호단계"),
-		주의("#FFEB0E", "주의단계"),
-		경계("#FF9710", "경계단계"),
-		심각("#FF2E2F", "심각단계");
+		양호(0, "#00D76A", "양호단계"),
+		주의(1, "#FFEB0E", "주의단계"),
+		경계(2, "#FF9710", "경계단계"),
+		심각(3, "#FF2E2F", "심각단계");
+		
+		private int level;
 		
 		private String color;
 		
 		private String name;
 		
-		private LevelType(String color, String name) {
+		private LevelType(int level,String color, String name) {
+			this.level = level;
 			this.color = color;
 			this.name = name;
 		}

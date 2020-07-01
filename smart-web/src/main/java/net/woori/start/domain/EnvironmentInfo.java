@@ -1,6 +1,7 @@
 package net.woori.start.domain;
 
 import lombok.Data;
+import net.woori.start.domain.EnumType.LevelType;
 
 /**
  * 생육환경 정보
@@ -21,11 +22,11 @@ public class EnvironmentInfo {
 	private String current;
 	
 	/** 지점 단계 */
-	private String level;
+	private LevelType totalLevel; //양호, 주의, 경계, 심각
 	
-	private String level1;
+	private LevelType level1;
 	
-	private String level2;
+	private LevelType level2;
 	
-	private String level3;
+	private LevelType level3;
 }

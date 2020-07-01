@@ -49,6 +49,7 @@ $(document).ready(function() {
     	const date = $('#datetimePicker').val();
     	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
     	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
+    	param.currentDate = moment(date).format("YYYY-MM-DD hh:mm:ss");
     	
     	$.ajax({
     		url: contextPath + "/dashboard/search/bar",
@@ -56,6 +57,10 @@ $(document).ready(function() {
     		data: JSON.stringify(param),
     		contentType: "application/json",
     		success: function(data) {
+    			if (data.datetime) {
+    				$('#currentDate').html(data.datetime + " 기준");
+    			}
+    			
     			$('#barChartTitleA').html(data.sensor + " A");
     			$('#barChartTitleB').html(data.sensor + " B");
     			$('#barChartTitleC').html(data.sensor + " C");
@@ -112,7 +117,7 @@ $(document).ready(function() {
     			$('#environmentSensor1').html(info.sensor);
     			$('#environmentSensor2').html(info.sensor);
     			$('#environmentSensor3').html(info.sensor);
-    			$('#environmentLevel').html(info.level);
+    			$('#environmentLevel').html(info.totalLevel);
     			$('#environmentLevel1').html(info.level1);
     			$('#environmentLevel2').html(info.level2);
     			$('#environmentLevel3').html(info.level3);
