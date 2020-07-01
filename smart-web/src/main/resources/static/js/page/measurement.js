@@ -189,32 +189,23 @@ var measurementTable = {
 }
 
 var weatherTable = {
-		ele: "#weatherTable",
-		table: null,
-		option: {
-			columns: [
-				{ data: "date" },
-				{ data: "valueA1" },
-				{ data: "valueA2" },
-				{ data: "valueA3" },
-				{ data: "valueB1" },
-				{ data: "valueB2" },
-				{ data: "valueB3" },
-				{ data: "valueC1" },
-				{ data: "valueC2" },
-				{ data: "valueC3" },
-				{ data: "valueD1" },
-				{ data: "valueD2" },
-				{ data: "valueD3" },
-				{ data: "valueE1" },
-				{ data: "valueE2" },
-				{ data: "valueE3" },
-			]
-		},
-		init: function() {
-			this.table = Datatables.weather(this.ele, this.option);
-		}
+	ele: "#weatherTable",
+	table: null,
+	option: {
+		columns: [
+			{ data: "date" },
+			{ data: "temp" },
+			{ data: "hum" },
+			{ data: "arvlty" },
+			{ data: "afp" },
+			{ data: "solradQy" },
+			{ data: "soilMitr" },
+		]
+	},
+	init: function() {
+		this.table = Datatables.weather(this.ele, this.option);
 	}
+}
 
 $(document).ready(function() {
 	let startDate = new Date(moment().format("YYYY-MM-DD 00:00:00"));
@@ -246,6 +237,7 @@ $(document).ready(function() {
     
     let lineChart = null;
     measurementTable.init();
+    weatherTable.init();
     
     $('#sensorSelect').change(function() {
     	const val = $(this).val();
@@ -266,6 +258,12 @@ $(document).ready(function() {
 			lineChart.clear();
 		}
     	
+    	measurementTable.table.clear().draw();
+    	weatherTable.table.clear().draw();
+    	
+    	removeSensorSelected();
+    	removeWeatherSelected();
+    	
     	const sensor = $('#sensorSelect').val();
     	if (sensor == '기상') {
     		let param = new Object();
@@ -279,14 +277,16 @@ $(document).ready(function() {
     			data: JSON.stringify(param),
     			contentType: "application/json",
     			success: function(data) {
-    				console.log(data);
+    				$('#weatherTableDiv').removeClass('d-none');
+    				$('#measurementTableDiv').addClass('d-none');
+    				
+    				addWeatherSelected(param.weatherType);
+    				
     				lineChart = linesChart(data.chartInfo);
+    				weatherTable.table.rows.add(data.tableInfos).draw();
     			}
     		}); 
     	} else {
-    		measurementTable.table.clear();
-    		removeSelected();
-    		
     		let param = new Object();
     		param.sensor = sensor;
     		param.sensorPoint = $('#sensorPointSelect').val();
@@ -300,6 +300,12 @@ $(document).ready(function() {
     			data: JSON.stringify(param),
     			contentType: "application/json",
     			success: function(data) {
+    				$('#weatherTableDiv').addClass('d-none');
+    				$('#measurementTableDiv').removeClass('d-none');
+    				
+    				changeSensorHeaderName(data.sensor);
+    				addSensorSelected(param.location);
+    				
     				let chartSeries = data.chartInfo.lineChartSeries;
     				$.each(chartSeries, function(i, val) {
     					val.data = val.dataList.map(data => [data.date, data.value]);
@@ -307,33 +313,30 @@ $(document).ready(function() {
     				data.chartInfo.lineChartSeries = chartSeries;
     				
     				lineChart = linesChart(data.chartInfo);
-
-    				changeHeaderName(data.sensor);
-    				addSelected(param.location);
     				measurementTable.table.rows.add(data.tableInfos).draw();
     			}
     		}); 
     	}
     });
     
-    const addSelected = (location) => {
+    const addSensorSelected = (location) => {
     	const point = ['A', 'B', 'C', 'D', 'E'];
-    	if (location == '상층') {
+    	if (location === '상층') {
     		$.each(point, function(i, val) {
     			$('#top' + val).addClass('selected-column');
     		});
-    	} else if (location == '중층') {
+    	} else if (location === '중층') {
     		$.each(point, function(i, val) {
     			$('#middle' + val).addClass('selected-column');
     		});
-    	} else if (location == '하층') {
+    	} else if (location === '하층') {
     		$.each(point, function(i, val) {
     			$('#bottom' + val).addClass('selected-column');
     		});
     	}
     }
     
-    const removeSelected = () => {
+    const removeSensorSelected = () => {
     	const point = ['A', 'B', 'C', 'D', 'E'];
     	$.each(point, function(i, val) {
 			$('#top' + val).removeClass('selected-column');
@@ -342,8 +345,30 @@ $(document).ready(function() {
 		});
     }
     
+    const addWeatherSelected = (type) => {
+    	if (type === '기온') {
+			$('#weather1').addClass('selected-column');
+    	} else if (type === '습도') {
+    		$('#weather2').addClass('selected-column');
+    	} else if (type === '풍속') {
+    		$('#weather3').addClass('selected-column');
+    	} else if (type === '강수량') {
+    		$('#weather4').addClass('selected-column');
+    	} else if (type === '일조량') {
+    		$('#weather5').addClass('selected-column');
+    	} else if (type === '토양수분') {
+    		$('#weather6').addClass('selected-column');
+    	}
+    }
+    
+    const removeWeatherSelected = () => {
+    	for (let i = 1; i <= 6; i++) {
+    		$('#weather' + i).removeClass('selected-column');
+    	}
+    }
+    
     /** 계측정보 테이블 헤더 이름 변경 */
-    const changeHeaderName = (sensor) => {
+    const changeSensorHeaderName = (sensor) => {
     	const point = ['A', 'B', 'C', 'D', 'E'];
     	$.each(point, function(i, val) {
 			$('#top' + val).html(val + " 상층 " + sensor);

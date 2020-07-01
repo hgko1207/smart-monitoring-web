@@ -27,3 +27,9 @@
 .selected-column {
 	background-color: #FBE5D6;
 }
+
+#weatherTable th {
+	font-weight: 600;
+	font-size: 0.75rem;
+	padding: .75rem .75rem;
+}

@@ -1,6 +1,7 @@
 package net.woori.start.service.common;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,8 @@ import net.woori.start.service.WeatherService;
 @Service
 public class DashboardService {
 	
-	private final SimpleDateFormat hourFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	private final SimpleDateFormat hourFormat = new SimpleDateFormat("HH:00");
 	
 	@Autowired
 	private PointInfoService pointInfoService;
@@ -68,7 +70,7 @@ public class DashboardService {
 		
 		Weather weather = weatherService.getRecentData();
 		if (weather != null) {
-			weatherInfo.setDate(hourFormat.format(weather.getMeasDt()) + " 기준");
+			weatherInfo.setDate(dateFormat.format(weather.getMeasDt()) + " 기준");
 			weatherInfo.setTemp(weather.getTemp_150());
 			weatherInfo.setType("맑음");
 			weatherInfo.setRainfall(0);
@@ -137,8 +139,9 @@ public class DashboardService {
 		info.setPoint("A " + param.getSensorPoint().name());
 		info.setSensor(param.getSensor().name());
 		
-		info.setDate(dateService.parseDate(param.getCurrentDate()) + " 기준");
-		info.setCurrent(dateService.parseDay(param.getCurrentDate()) + " 현재");
+		String currentDate = param.getCurrentDate() + " " + hourFormat.format(new Date());
+		info.setDate(currentDate + " 기준");
+		info.setCurrent(currentDate + " 현재");
 		
 		info.setTotalLevel(LevelType.양호);
 		info.setLevel1(LevelType.양호);
@@ -181,7 +184,8 @@ public class DashboardService {
 	public DashboardInfo createBarChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		dashboardInfo.setSensor(param.getSensor().name());
-		dashboardInfo.setDateTime(dateService.parseDate(param.getCurrentDate()));
+		String currentDate = param.getCurrentDate() + " " + hourFormat.format(new Date());
+		dashboardInfo.setDateTime(currentDate);
 		
 		PointInfo pointA = pointInfoService.get(PointType.A.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {

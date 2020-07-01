@@ -74,7 +74,25 @@ var Datatables = {
 		    	{ orderable: false, targets: '_all' }
 		    ],
 		    order: [[0, 'desc']],
-		})
+		    rowCallback: function(row, data, displayIndex, displayIndexFull) {
+		    	const weather = $('#weatherTypeSelect').val();
+		    	if (weather === '기온') {
+			        $(row).children().eq(1).addClass('selected-column');
+		    	} else if (weather === '습도') {
+		    		$(row).children().eq(2).addClass('selected-column');
+		    	} else if (weather === '풍속') {
+		    		$(row).children().eq(3).addClass('selected-column');
+		    	} else if (weather === '강수량') {
+		    		$(row).children().eq(4).addClass('selected-column');
+		    	} else if (weather === '일조량') {
+		    		$(row).children().eq(5).addClass('selected-column');
+		    	} else if (weather === '토양수분') {
+		    		$(row).children().eq(6).addClass('selected-column');
+		    	}
+		    }
+		});
+		
+		return table;
 	},
 	download: function(id, tableOption, info, visible, exportColumns) {
 		var table = $(id).DataTable({

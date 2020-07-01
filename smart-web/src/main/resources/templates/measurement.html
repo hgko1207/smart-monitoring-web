@@ -61,7 +61,7 @@
 			</div>
 			
 			<div class="card">
-				<div class="card-body">
+				<div id="measurementTableDiv" class="card-body">
 					<table class="table table-bordered" id="measurementTable">
 						<thead class="text-center">
 							<tr>
@@ -81,6 +81,23 @@
 								<th id="topE">E 상층 수분</th>
 								<th id="middleE">E 중층 수분</th>
 								<th id="bottomE">E 하층 수분</th>
+							</tr>
+						</thead>
+						<tbody class="text-center"></tbody>
+					</table>
+				</div>
+				
+				<div id="weatherTableDiv" class="card-body d-none">
+					<table class="table table-bordered" id="weatherTable">
+						<thead class="text-center">
+							<tr>
+								<th>일시</th>
+								<th id="weather1">기온(℃)</th>
+								<th id="weather2">습도(%)</th>
+								<th id="weather3">풍속(m/s)</th>
+								<th id="weather4">강수량(mm)</th>
+								<th id="weather5">일조량(J/㎡)</th>
+								<th id="weather6">토양수분(%)</th>
 							</tr>
 						</thead>
 						<tbody class="text-center"></tbody>

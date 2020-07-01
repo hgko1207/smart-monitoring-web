@@ -49,7 +49,7 @@ $(document).ready(function() {
     	const date = $('#datetimePicker').val();
     	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
     	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
-    	param.currentDate = moment(date).format("YYYY-MM-DD hh:mm:ss");
+    	param.currentDate = date;
     	
     	$.ajax({
     		url: contextPath + "/dashboard/search/bar",
@@ -57,8 +57,8 @@ $(document).ready(function() {
     		data: JSON.stringify(param),
     		contentType: "application/json",
     		success: function(data) {
-    			if (data.datetime) {
-    				$('#currentDate').html(data.datetime + " 기준");
+    			if (data.dateTime) {
+    				$('#currentDate').html(data.dateTime + " 기준");
     			}
     			
     			$('#barChartTitleA').html(data.sensor + " A");
@@ -92,8 +92,8 @@ $(document).ready(function() {
     	param.sensorPoint = $('#sensorPointSelect').val();
     	const date = $('#datetimePicker').val();
     	param.startDate = moment(date).format("YYYY-MM-DD 00:00:00");
-    	param.currentDate = moment(date).format("YYYY-MM-DD hh:mm:ss");
     	param.endDate = moment(date).format("YYYY-MM-DD 23:59:59");
+    	param.currentDate = date;
     	
     	$.ajax({
     		url: contextPath + "/dashboard/search",

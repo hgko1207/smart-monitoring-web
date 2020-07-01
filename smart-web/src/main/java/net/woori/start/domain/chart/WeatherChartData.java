@@ -10,7 +10,7 @@ public interface WeatherChartData {
 	
 	float getHum();
 	
-	float getAtf();
+	float getAfp();
 	
 	float getArvlty();
 	

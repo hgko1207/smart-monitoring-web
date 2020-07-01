@@ -2,6 +2,7 @@ package net.woori.start.domain.measurement;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.woori.start.domain.chart.WeatherChartData;
 
 /**
  * 계측정보 테이블 도메인
@@ -67,4 +68,24 @@ public class TableInfo {
 	
 	/** E 하층 값 */
 	private float valueE3;
+	
+	
+	/** 기상 데이터 */
+	/** 기온 */
+	private float temp;
+	
+	/** 습도 */
+	private float hum;
+	
+	/** 풍속 */
+	private float arvlty;
+	
+	/** 강수량 */
+	private float afp;
+	
+	/** 토양수분 */
+	private float soilMitr;
+	
+	/** 일조량 */
+	private float solradQy;
 }

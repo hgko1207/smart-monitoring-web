@@ -1,6 +1,8 @@
 package net.woori.start.service.common;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ import net.woori.start.service.PointInfoService;
  */
 @Service
 public class MapService {
+	
+	private final SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:00");
 	
 	@Autowired
 	private PointInfoService pointInfoService;
@@ -66,7 +70,9 @@ public class MapService {
 		mapInfo.setLatitude(pointInfo.getLocLat());
 		mapInfo.setLongitude(pointInfo.getLocLng());
 		
-		MeasurementLog log = measurementLogService.getCurrentData(pointInfo.getPointSq(), param.getStartDate(), param.getCurrentDate());
+		String endDate = param.getCurrentDate() + " " + hourFormat.format(new Date());
+		
+		MeasurementLog log = measurementLogService.getCurrentData(pointInfo.getPointSq(), param.getStartDate(), endDate);
 		if (log != null) {
 			mapInfo.setTemp1(log.getTempCh1());
 			mapInfo.setTemp2(log.getTempCh2());

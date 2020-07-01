@@ -162,26 +162,46 @@ public class MeasurementInfoService {
 	}
 	
 	public MeasurementInfo createWeatherLog(SearchParam param) {
-		System.err.println(param);
-		MeasurementInfo measurementInfo = new MeasurementInfo();
 		WeatherType weatherType = param.getWeatherType();
 		
 		ChartInfo chartInfo = new ChartInfo(param.getWeatherType());
-		
 		LineChartSeries chartSeries = new LineChartSeries(param.getWeatherType().name());
+		
+		List<TableInfo> tableInfos = new ArrayList<>();
 		
 		weatherService.getList(param.getStartDate(), param.getEndDate()).forEach(data -> {
 			String date = hourFormat.format(data.getDate());
 			chartInfo.addCategory(date);
 			
 			if (weatherType == WeatherType.기온) {
-				chartSeries.addDataItem(data.getTemp());
+				chartSeries.addDataItem(round(data.getTemp()));
+			} else if (weatherType == WeatherType.습도) {
+				chartSeries.addDataItem(round(data.getHum()));
+			} else if (weatherType == WeatherType.풍속) {
+				chartSeries.addDataItem(round(data.getArvlty()));
+			} else if (weatherType == WeatherType.강수량) {
+				chartSeries.addDataItem(round(data.getAfp()));
+			} else if (weatherType == WeatherType.일조량) {
+				chartSeries.addDataItem(round(data.getSolradQy()));
+			} else if (weatherType == WeatherType.토양수분) {
+				chartSeries.addDataItem(round(data.getSoilMitr()));
 			}
+			
+			TableInfo info = new TableInfo(date);
+			info.setTemp(round(data.getTemp()));
+			info.setHum(round(data.getHum()));
+			info.setArvlty(round(data.getArvlty()));
+			info.setAfp(round(data.getAfp()));
+			info.setSoilMitr(round(data.getSoilMitr()));
+			info.setSolradQy(round(data.getSolradQy()));
+			tableInfos.add(info);
 		});
 		
 		chartInfo.addListChartSeries(chartSeries);
 		
+		MeasurementInfo measurementInfo = new MeasurementInfo();
 		measurementInfo.setChartInfo(chartInfo);
+		measurementInfo.setTableInfos(tableInfos);
 		
 		return measurementInfo;
 	}
