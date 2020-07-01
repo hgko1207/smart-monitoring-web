@@ -81,14 +81,18 @@
 /*****************************************************/
 /* 작물 환경 디자인 */
 /*****************************************************/
+.environment-total {
+	font-weight: 700;
+	font-size: 16px;
+	color: #585858;
+}
+
 .crop-area {
 	font-size: 1rem;
-	font-weight: 600;
 	color: #ff0000;
 }
 
 .crop-green {
-	font-weight: 600;
 	color: #00d76a;
 }
 

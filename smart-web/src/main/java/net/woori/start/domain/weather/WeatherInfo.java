@@ -8,6 +8,8 @@ public class WeatherInfo {
 	
 	private String date;
 	
+	private String hour;
+	
 	/** 온도 */
 	private float temp;
 	

@@ -1,13 +1,17 @@
 @charset "EUC-KR";
-h1 {
-	color: red;
+
+@font-face {
+	font-family: 'NanumBarunGothic';
+	src: local("☺"), url("../../fonts/NanumBarunGothic.woff") format("woff");
 }
+
+body {
+	/* font-family: "Helvetica Neue", Helvetica, Arial, "NanumBarunGothic", sans-serif; */
+}
+
+.sidebar {width: 15rem;}
 
 .fs-16 {font-size: 16px;}
-
-.sidebar {
-	width: 15rem;
-}
 
 .wmin-100 {min-width: 100px;}
 .wmin-150 {min-width: 150px;}
@@ -38,4 +42,3 @@ h1 {
 .page-title {
 	padding: 1rem 0;
 }
-

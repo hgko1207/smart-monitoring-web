@@ -68,9 +68,12 @@ public class DashboardService {
 	private WeatherInfo createWeatherInfo(SearchParam param) {
 		WeatherInfo weatherInfo = new WeatherInfo();
 		
+		SimpleDateFormat hourFormat = new SimpleDateFormat("HH시");
+		
 		Weather weather = weatherService.getRecentData();
 		if (weather != null) {
 			weatherInfo.setDate(dateFormat.format(weather.getMeasDt()) + " 기준");
+			weatherInfo.setHour(hourFormat.format(weather.getMeasDt()) + " 현재");
 			weatherInfo.setTemp(weather.getTemp_150());
 			weatherInfo.setType("맑음");
 			weatherInfo.setRainfall(0);
@@ -139,9 +142,8 @@ public class DashboardService {
 		info.setPoint("A " + param.getSensorPoint().name());
 		info.setSensor(param.getSensor().name());
 		
-		String currentDate = param.getCurrentDate() + " " + hourFormat.format(new Date());
-		info.setDate(currentDate + " 기준");
-		info.setCurrent(currentDate + " 현재");
+		info.setDate(param.getCurrentDate() + " " + hourFormat.format(new Date()) + " 기준");
+		info.setCurrent(dateService.stringToDay(param.getCurrentDate()) + " 현재");
 		
 		info.setTotalLevel(LevelType.양호);
 		info.setLevel1(LevelType.양호);
@@ -184,8 +186,7 @@ public class DashboardService {
 	public DashboardInfo createBarChartInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		dashboardInfo.setSensor(param.getSensor().name());
-		String currentDate = param.getCurrentDate() + " " + hourFormat.format(new Date());
-		dashboardInfo.setDateTime(currentDate);
+		dashboardInfo.setDateTime(param.getCurrentDate() + " " + hourFormat.format(new Date()));
 		
 		PointInfo pointA = pointInfoService.get(PointType.A.getName() + " " + param.getSensorPoint().name());
 		if (pointA != null) {

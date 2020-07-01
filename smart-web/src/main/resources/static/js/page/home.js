@@ -103,6 +103,7 @@ $(document).ready(function() {
     		success: function(data) {
     			const weather = data.weatherInfo;
     			$('#weatherDate').html(weather.date);
+    			$('#weatherHour').html(weather.hour);
     			$('#weatherTemp').html(weather.temp);
     			$('#weatherType').html(weather.type);
     			$('#description').html(weather.description);
@@ -111,16 +112,17 @@ $(document).ready(function() {
     			$('#weatherOzone').html(weather.ozone);
     			
     			const info = data.environmentInfo;
+    			console.log(info);
     			$('#environmentPoint').html(info.point);
     			$('#environmentDate').html(info.date);
     			$('#environmentCurrent').html(info.current);
     			$('#environmentSensor1').html(info.sensor);
     			$('#environmentSensor2').html(info.sensor);
     			$('#environmentSensor3').html(info.sensor);
-    			$('#environmentLevel').html(info.totalLevel);
-    			$('#environmentLevel1').html(info.level1);
-    			$('#environmentLevel2').html(info.level2);
-    			$('#environmentLevel3').html(info.level3);
+    			$('#environmentLevel').html("[" + info.totalLevel + "]");
+    			$('#environmentLevel1').html(info.level1 + "단계");
+    			$('#environmentLevel2').html(info.level2 + "단계");
+    			$('#environmentLevel3').html(info.level3 + "단계");
     			
     			GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
            	}
