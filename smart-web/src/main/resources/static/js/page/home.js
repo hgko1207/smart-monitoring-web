@@ -22,6 +22,7 @@ $(document).ready(function() {
     	search(type);
 	}, 500);
     
+    /** 막대그래프 초기화 */
     const clearBarChart = () => {
     	if (barChartA != null) {
     		barChartA.clear();
@@ -40,6 +41,7 @@ $(document).ready(function() {
     	}
     }
     
+    /** 막대그래프 데이터 조회 */
     const searchBarChart = () => {
     	clearBarChart();
     	
@@ -86,6 +88,7 @@ $(document).ready(function() {
     	});
     }
     
+    /** 중간 대시보드 정보 조회 */
     const searchDashboard = () => {
     	let param = new Object();
     	param.sensor = $('#sensorTypeSelect').val();
@@ -112,7 +115,6 @@ $(document).ready(function() {
     			$('#weatherOzone').html(weather.ozone);
     			
     			const info = data.environmentInfo;
-    			console.log(info);
     			$('#environmentPoint').html(info.point);
     			$('#environmentDate').html(info.date);
     			$('#environmentCurrent').html(info.current);
@@ -120,16 +122,24 @@ $(document).ready(function() {
     			$('#environmentSensor2').html(info.sensor);
     			$('#environmentSensor3').html(info.sensor);
     			$('#environmentLevel').html("[" + info.totalLevel + "]");
+    			$('#environmentLevel').css('color', info.totalLevelColor);
     			$('#environmentLevel1').html(info.level1 + "단계");
+    			$('#environmentLevel1').css('color', info.level1Color);
+    			$('#environmentSensor1Day').html(info.level1Day);
     			$('#environmentLevel2').html(info.level2 + "단계");
+    			$('#environmentLevel2').css('color', info.level2Color);
+    			$('#environmentSensor2Day').html(info.level2Day);
     			$('#environmentLevel3').html(info.level3 + "단계");
+    			$('#environmentLevel3').css('color', info.level3Color);
+    			$('#environmentSensor3Day').html(info.level3Day);
     			
     			GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
            	}
     	});
     }
     
-    const searchLiseChart = (type) => {
+    /** 하단 라인 그래프 데이터 조회 */
+    const searchLineChart = (type) => {
     	let param = new Object();
     	param.pointType = type;
     	const date = $('#datetimePicker').val();
@@ -174,15 +184,17 @@ $(document).ready(function() {
     const search = (type) => {
     	searchBarChart();
     	searchDashboard();
-    	searchLiseChart(type);
+    	searchLineChart(type);
     }
     
+    /** 검색 버튼 클릭 시 */
     $('#searchBtn').click(function() {
     	search(type);
     });
     
+    /** 하단 토양계측정보 탭 선택 시 */
     $("#lineChartTab li").click(function() {
     	type = this.id;
-    	searchLiseChart(type);
+    	searchLineChart(type);
     });
 });

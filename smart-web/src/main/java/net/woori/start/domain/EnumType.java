@@ -23,6 +23,16 @@ public class EnumType {
 			this.titleWater = titleWater;
 			this.titleTemp = titleTemp;
 		}
+		
+		public static PointType value(String value) {
+			for (PointType type : PointType.values()) {
+				if (value.contains(type.name)) {
+					return type;
+				}
+			}
+			
+			return null;
+		}
 	}
 
 	@Getter

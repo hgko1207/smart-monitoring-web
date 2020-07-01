@@ -1,9 +1,11 @@
 package net.woori.start.service.common;
 
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,10 @@ import org.springframework.stereotype.Service;
 import net.woori.start.domain.DashboardInfo;
 import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.EnumType.PointType;
+import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.EnumType.Status;
 import net.woori.start.domain.EnvironmentInfo;
+import net.woori.start.domain.db.MeasurementLog;
 import net.woori.start.domain.db.PointInfo;
 import net.woori.start.domain.db.Weather;
 import net.woori.start.domain.param.SearchParam;
@@ -52,7 +56,7 @@ public class DashboardService {
 	private WeatherService weatherService;
 	
 	/**
-	 * 대시보드 날씨 정보 생성
+	 * 대시보드 정보 생성
 	 * @param param
 	 * @return
 	 */
@@ -65,6 +69,11 @@ public class DashboardService {
 		return dashboardInfo;
 	}
 	
+	/**
+	 * 기상 정보 생성
+	 * @param param
+	 * @return
+	 */
 	private WeatherInfo createWeatherInfo(SearchParam param) {
 		WeatherInfo weatherInfo = new WeatherInfo();
 		
@@ -85,99 +94,6 @@ public class DashboardService {
 		return weatherInfo;
 	}
 	
-	private EnvironmentInfo createEnvironmentInfo(SearchParam param) {
-		Map<String, EnvironmentInfo> infoMap = new HashMap<>();
-		
-//		pointInfoService.getList(param.getSensorPoint()).forEach(pointInfo -> {
-////			System.err.println(pointInfo);
-//			
-//			EnvironmentInfo info = new EnvironmentInfo();
-//			
-//			int totalLevel = 0; // 0 양호, 1 주의, 2 경계, 3 심각
-//			int level = 0; // 0 양호, 1 주의, 2 경계, 3 심각
-//			
-//			for (Measurement data : measurementService.getList(pointInfo.getPointSq(), param.getStartDate(), param.getCurrentDate())) {
-//				if (totalLevel < level) {
-//					totalLevel = level;
-//				}
-//				
-//				LevelType levelType1 = null;
-//				LevelType levelType2 = null;
-//				LevelType levelType3 = null;
-//				
-//				if (param.getSensor() == SensorType.토양수분) {
-//					levelType1 = getSoilWaterLevel(data.getVwcCh1());
-//					levelType2 = getSoilWaterLevel(data.getVwcCh2());
-//					levelType3 = getSoilWaterLevel(data.getVwcCh3());
-//					
-//					
-//				} else if (param.getSensor() == SensorType.토양온도) {
-//					levelType1 = getSoilTempLevel(data.getTempCh1());
-//					levelType2 = getSoilTempLevel(data.getTempCh2());
-//					levelType3 = getSoilTempLevel(data.getTempCh3());
-//				}
-//				
-//				info.setLevel1(levelType1);
-//				info.setLevel2(levelType2);
-//				info.setLevel3(levelType3);
-//				level = levelType1.getLevel();
-//				level = levelType2.getLevel();
-//				level = levelType3.getLevel();
-//			}
-//			
-//			if (totalLevel == 0) {
-//				info.setTotalLevel(LevelType.양호);
-//			} else if (totalLevel == 1) {
-//				info.setTotalLevel(LevelType.주의);
-//			} else if (totalLevel == 2) {
-//				info.setTotalLevel(LevelType.경계);
-//			} else if (totalLevel == 3) {
-//				info.setTotalLevel(LevelType.심각);
-//			}
-//			
-//			infoMap.put(pointInfo.getPointNm(), info);
-//		});
-		
-		EnvironmentInfo info = new EnvironmentInfo();
-		info.setPoint("A " + param.getSensorPoint().name());
-		info.setSensor(param.getSensor().name());
-		
-		info.setDate(param.getCurrentDate() + " " + hourFormat.format(new Date()) + " 기준");
-		info.setCurrent(dateService.stringToDay(param.getCurrentDate()) + " 현재");
-		
-		info.setTotalLevel(LevelType.양호);
-		info.setLevel1(LevelType.양호);
-		info.setLevel2(LevelType.양호);
-		info.setLevel3(LevelType.양호);
-		
-		return info;
-	}
-	
-	private LevelType getSoilWaterLevel(float value) {
-		if (value >= 0 && value < 4.6) {
-			return LevelType.주의;
-		} else if (value >= 4.6 && value < 44) {
-			return LevelType.양호;
-		} else if (value >= 44) {
-			return LevelType.경계;
-		}
-		return LevelType.심각;
-	}
-	
-	private LevelType getSoilTempLevel(float value) {
-		if ((value >= 0 && value < 10) || (value >= 35 && value <= 45)) {
-			return LevelType.심각;
-		} else if ((value >= 10 && value < 15) || (value >= 28 && value < 35)) {
-			return LevelType.경계;
-		} else if ((value >= 15 && value < 19) || (value >= 25 && value < 28)) {
-			return LevelType.주의;
-		} else if (value >= 19 && value < 25) {
-			return LevelType.양호;
-		} else {
-			return LevelType.심각;
-		}
-	}
-
 	/**
 	 * 대시보드 Bar 차트 생성
 	 * @param param
@@ -240,6 +156,122 @@ public class DashboardService {
 		}
 		
 		return dashboardInfo;
+	}
+	
+	/**
+	 * 작물생육환경 정보 생성
+	 * @param param
+	 * @return
+	 */
+	private EnvironmentInfo createEnvironmentInfo(SearchParam param) {
+		Map<PointType, EnvironmentInfo> infoMap = new HashMap<>();
+		
+		String currentDate = param.getCurrentDate() + " " + hourFormat.format(new Date());
+		
+		pointInfoService.getList(param.getSensorPoint()).forEach(pointInfo -> {
+			PointType pointType = PointType.value(pointInfo.getPointNm());
+			
+			EnvironmentInfo info = new EnvironmentInfo();
+			info.setPointType(pointType);
+			info.setPoint(pointType.name() + " 지점");
+			info.setSensor(param.getSensor().name());
+			info.setDate(currentDate + " 기준");
+			info.setCurrent(dateService.stringToDay(param.getCurrentDate()) + " 현재");
+			
+			int totalLevel = 0; // 0 양호, 1 주의, 2 경계, 3 심각
+			int level = 0; // 0 양호, 1 주의, 2 경계, 3 심각
+			
+			for (MeasurementLog data : measurementLogService.getList(pointInfo.getPointSq(), param.getStartDate(), currentDate)) {
+				if (totalLevel < level) {
+					totalLevel = level;
+				}
+				
+				LevelType levelType1 = null;
+				LevelType levelType2 = null;
+				LevelType levelType3 = null;
+				
+				if (param.getSensor() == SensorType.토양수분) {
+					levelType1 = getSoilWaterLevel(data.getVwcCh3());
+					levelType2 = getSoilWaterLevel(data.getVwcCh2());
+					levelType3 = getSoilWaterLevel(data.getVwcCh1());
+				} else if (param.getSensor() == SensorType.토양온도) {
+					levelType1 = getSoilTempLevel(data.getTempCh3());
+					levelType2 = getSoilTempLevel(data.getTempCh2());
+					levelType3 = getSoilTempLevel(data.getTempCh1());
+				}
+				
+				info.setLevel1(levelType1);
+				info.setLevel2(levelType2);
+				info.setLevel3(levelType3);
+				
+				if (level < levelType1.getLevel()) {
+					level = levelType1.getLevel();
+				}
+				
+				if (level < levelType2.getLevel()) {
+					level = levelType2.getLevel();
+				}
+				
+				if (level < levelType3.getLevel()) {
+					level = levelType3.getLevel();
+				}
+			}
+			
+			if (totalLevel == 0) {
+				info.setTotalLevel(LevelType.양호);
+			} else if (totalLevel == 1) {
+				info.setTotalLevel(LevelType.주의);
+			} else if (totalLevel == 2) {
+				info.setTotalLevel(LevelType.경계);
+			} else if (totalLevel == 3) {
+				info.setTotalLevel(LevelType.심각);
+			}
+			
+			info.setLevel1Day(5);
+			info.setLevel2Day(5);
+			info.setLevel3Day(5);
+			
+			infoMap.put(pointType, info);
+		});
+		
+		EnvironmentInfo info = infoMap.get(PointType.A);
+		for (EnvironmentInfo data : infoMap.values().stream().filter(value -> value.getPointType() != PointType.A)
+				.sorted(Comparator.comparing(EnvironmentInfo::getPointType)).collect(Collectors.toList())) {
+			if (data.getTotalLevel().getLevel() > info.getTotalLevel().getLevel()) {
+				info = data;
+			}
+		}
+		
+		return info;
+	}
+	
+	private LevelType getSoilWaterLevel(float value) {
+		if (value == 0) {
+			return LevelType.양호;
+		} else if (value > 0 && value < 4.6) {
+			return LevelType.주의;
+		} else if (value >= 4.6 && value < 44) {
+			return LevelType.양호;
+		} else if (value >= 44) {
+			return LevelType.경계;
+		}
+		return LevelType.심각;
+	}
+	
+	private LevelType getSoilTempLevel(float value) {
+		if (value == 0) {
+			return LevelType.양호;
+		} else if ((value > 0 && value < 10) || (value >= 35 && value <= 45)) {
+			return LevelType.심각;
+		} else if ((value >= 10 && value < 15) || (value >= 28 && value < 35)) {
+			return LevelType.경계;
+		} else if ((value >= 15 && value < 19) || (value >= 25 && value < 28)) {
+			return LevelType.주의;
+		} else if (value >= 19 && value < 25) {
+			return LevelType.양호;
+		} else {
+			return LevelType.심각;
+		}
 	}
 	
 }

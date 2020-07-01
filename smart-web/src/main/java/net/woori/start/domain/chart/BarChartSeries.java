@@ -85,7 +85,9 @@ public class BarChartSeries {
 					color = "#353535";
 				}
 			} else if (type == SensorType.토양온도) {
-			 	if ((value >= 0 && value < 10) || (value >= 35 && value <= 45)) {
+				if (value == 0) {
+					color = "#353535";
+				} else if ((value > 0 && value < 10) || (value >= 35 && value <= 45)) {
 					color = LevelType.심각.getColor();
 				} else if ((value >= 10 && value < 15) || (value >= 28 && value < 35)) {
 					color = LevelType.경계.getColor();
