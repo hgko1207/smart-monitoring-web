@@ -181,14 +181,14 @@ public class DashboardService {
 			int totalLevel = 0; // 0 양호, 1 주의, 2 경계, 3 심각
 			int level = 0; // 0 양호, 1 주의, 2 경계, 3 심각
 			
+			LevelType levelType1 = LevelType.양호;
+			LevelType levelType2 = LevelType.양호;
+			LevelType levelType3 = LevelType.양호;
+			
 			for (MeasurementLog data : measurementLogService.getList(pointInfo.getPointSq(), param.getStartDate(), currentDate)) {
 				if (totalLevel < level) {
 					totalLevel = level;
 				}
-				
-				LevelType levelType1 = null;
-				LevelType levelType2 = null;
-				LevelType levelType3 = null;
 				
 				if (param.getSensor() == SensorType.토양수분) {
 					levelType1 = getSoilWaterLevel(data.getVwcCh3());
@@ -199,10 +199,6 @@ public class DashboardService {
 					levelType2 = getSoilTempLevel(data.getTempCh2());
 					levelType3 = getSoilTempLevel(data.getTempCh1());
 				}
-				
-				info.setLevel1(levelType1);
-				info.setLevel2(levelType2);
-				info.setLevel3(levelType3);
 				
 				if (level < levelType1.getLevel()) {
 					level = levelType1.getLevel();
@@ -216,6 +212,10 @@ public class DashboardService {
 					level = levelType3.getLevel();
 				}
 			}
+			
+			info.setLevel1(levelType1);
+			info.setLevel2(levelType2);
+			info.setLevel3(levelType3);
 			
 			if (totalLevel == 0) {
 				info.setTotalLevel(LevelType.양호);
