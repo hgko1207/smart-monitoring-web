@@ -74,7 +74,7 @@ public class BarChartSeries {
 		
 		private float value;
 		
-		private Label label = new Label();
+		private Label label;
 		
 		private ItemStyle itemStyle;
 		
@@ -108,6 +108,7 @@ public class BarChartSeries {
 			
 			this.value = value;
 			this.itemStyle = new ItemStyle(color);
+			this.label = new Label("{@score}" + type.getUnit());
 		}
 	}
 	
@@ -123,5 +124,11 @@ public class BarChartSeries {
 	public class Label {
 		
 		private String position = "right";
+		
+		private String formatter;
+		
+		public Label(String formatter) {
+			this.formatter = formatter;
+		}
 	}
 }
