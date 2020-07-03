@@ -48,7 +48,8 @@ public class ChartInfo {
 	
 	public ChartInfo(SensorType type, SensorPointType sensorPoint) {
 		this(type);
-		this.title = type.name() + " " + sensorPoint.name();
+//		this.title = type.name() + " " + sensorPoint.name();
+		this.title = type.name();
 	}
 	
 	public void addCategory(String value) {

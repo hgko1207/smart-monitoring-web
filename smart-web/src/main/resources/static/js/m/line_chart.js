@@ -32,7 +32,7 @@ var LineChart = function() {
                 legend: {
                 	left: 'right',
                     itemHeight: 8,
-                    itemGap: 20
+                    itemGap: 4
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -55,13 +55,7 @@ var LineChart = function() {
                     boundaryGap: false,
                     data: data.categories,
                     axisLabel: {
-                    	color: '#333',
-//                        formatter: function (value, idx) {
-//                        	const date = new Date(value);
-////                        	const result = moment(date).format("MM/DD HH:mm");
-////                            return idx === 0 ? moment(date).format("MM/DD HH:mm") : result;
-//                        	return moment(date).format("MM/DD HH:mm");
-//                        }
+                    	color: '#333'
                     },
                     axisLine: {
                         lineStyle: {

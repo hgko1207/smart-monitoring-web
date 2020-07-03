@@ -26,7 +26,7 @@ import net.woori.start.service.MeasurementLogService;
 @Service
 public class ChartService {
 	
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm");
 	
 	@Autowired
 	private MeasurementLogService measurementLogService;
