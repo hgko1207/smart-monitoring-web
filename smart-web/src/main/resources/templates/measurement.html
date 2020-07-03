@@ -9,35 +9,35 @@
     <th:block layout:fragment="content">
        <div class="page-header page-header-light">
 			<div class="page-header-content header-elements-md-inline">
-				<div class="page-title d-flex">
+				<div class="page-title d-md-flex">
 					<label class="col-form-label font-weight-bold mr-2" for="form-type">구분 :</label>
-					<div class="form-group mr-2 mb-0 wmin-100">
+					<div class="form-group mr-md-2 mb-md-0 wmin-100">
 						<select class="form-control form-control-select2" id="sensorSelect" data-fouc>
 							<option th:each="sensor : ${sensorTypes}" th:value="${sensor}" th:text="${sensor}"></option>
 							<option value="기상">기상</option>
 						</select>
 					</div>
 					
-					<div id="locationSelectDiv" class="form-group mr-2 mb-0">
+					<div id="locationSelectDiv" class="form-group mr-md-2 mb-md-0">
 						<select class="form-control form-control-select2" id="locationSelect" data-fouc>
 							<option th:each="location : ${locationTypes}" th:value="${location}" th:text="${location}"></option>
 						</select>
 					</div>
 					
-					<div id="sensorPointSelectDiv" class="form-group mr-4 mb-0">
+					<div id="sensorPointSelectDiv" class="form-group mr-md-4 mb-0">
 						<select class="form-control form-control-select2" id="sensorPointSelect" data-fouc>
 							<option th:each="sensorPoint : ${sensorPointTypes}" th:value="${sensorPoint}" th:text="${sensorPoint}"></option>
 						</select>
 					</div>
 					
-					<div id="weatherSelectDiv" class="form-group mr-4 mb-0 wmin-100 d-none">
+					<div id="weatherSelectDiv" class="form-group mr-md-4 mb-0 wmin-100 d-none">
 						<select class="form-control form-control-select2" id="weatherTypeSelect" data-fouc>
 							<option th:each="weatherType : ${weatherTypes}" th:value="${weatherType}" th:text="${weatherType}"></option>
 						</select>
 					</div>
 					
-					<label class="col-form-label font-weight-bold mr-2" for="form-type">날짜 선택 :</label>
-					<div class="form-group mr-4 mb-0">
+					<label class="col-form-label font-weight-bold mr-md-2" for="form-type">날짜 선택 :</label>
+					<div class="form-group mr-md-4 mb-md-0">
 						<div class="input-group">
 							<input type="text" class="form-control daterange-picker"> 
 							<span class="input-group-append">
