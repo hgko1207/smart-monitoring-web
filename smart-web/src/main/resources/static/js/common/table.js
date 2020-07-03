@@ -17,7 +17,6 @@ $.extend( $.fn.dataTable.defaults, {
 	searching: false,
 	lengthChange: false,
 	pageLength: 10
-	
 });
 
 var Datatables = {
@@ -61,7 +60,14 @@ var Datatables = {
 			        $(row).children().eq(12).addClass('selected-column');
 			        $(row).children().eq(15).addClass('selected-column');
 		    	}
-		    }
+		    },
+		    buttons: [{
+                extend: 'excelHtml5',
+                text: '엑셀 출력',
+                title: function() {
+                	return downloadTitle;
+                }
+            }]
 		});
 		
 		return table;
@@ -89,7 +95,14 @@ var Datatables = {
 		    	} else if (weather === '토양수분') {
 		    		$(row).children().eq(6).addClass('selected-column');
 		    	}
-		    }
+		    },
+		    buttons: [{
+                extend: 'excelHtml5',
+                text: '엑셀 출력',
+                title: function() {
+                	return downloadTitle;
+                }
+            }]
 		});
 		
 		return table;

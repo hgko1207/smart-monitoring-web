@@ -1,6 +1,6 @@
 moment.locale('ko');
 
-var measurementTable = {
+var MeasurementTable = {
 	ele: "#measurementTable",
 	table: null,
 	option: {
@@ -28,7 +28,7 @@ var measurementTable = {
 	}
 }
 
-var weatherTable = {
+var WeatherTable = {
 	ele: "#weatherTable",
 	table: null,
 	option: {
@@ -48,6 +48,9 @@ var weatherTable = {
 }
 
 $(document).ready(function() {
+	let measurementTable = null;
+	let weatherTable = null;
+	
 	let startDate = new Date(moment().format("YYYY-MM-DD 00:00:00"));
 	startDate.setDate(startDate.getDate() - 1); 
 	let endDate = new Date(moment().format("YYYY-MM-DD 23:59:59"));
@@ -76,8 +79,8 @@ $(document).ready(function() {
     });
     
     let lineChart = null;
-    measurementTable.init();
-    weatherTable.init();
+    MeasurementTable.init();
+    WeatherTable.init();
     
     /** 센서타입 선택 시 */
     $('#sensorSelect').change(function() {
@@ -98,8 +101,11 @@ $(document).ready(function() {
 			lineChart.clear();
 		}
     	
-    	measurementTable.table.clear().draw();
-    	weatherTable.table.clear().draw();
+    	MeasurementTable.table.clear().draw();
+    	WeatherTable.table.clear().draw();
+    	
+    	measurementTable = null;
+    	weatherTable = null;
     	
     	removeSensorSelected();
     	removeWeatherSelected();
@@ -123,7 +129,7 @@ $(document).ready(function() {
     				addWeatherSelected(param.weatherType);
     				
     				lineChart = MeasurementChart.init(data.chartInfo);
-    				weatherTable.table.rows.add(data.tableInfos).draw();
+    				weatherTable = WeatherTable.table.rows.add(data.tableInfos).draw();
     			}
     		}); 
     	} else {
@@ -153,7 +159,7 @@ $(document).ready(function() {
     				data.chartInfo.lineChartSeries = chartSeries;
     				
     				lineChart = MeasurementChart.init(data.chartInfo);
-    				measurementTable.table.rows.add(data.tableInfos).draw();
+    				measurementTable = MeasurementTable.table.rows.add(data.tableInfos).draw();
     			}
     		}); 
     	}
@@ -227,4 +233,21 @@ $(document).ready(function() {
     }
     
     search();
+    
+    $('#saveBtn').click(function() {
+    	const sensor = $('#sensorSelect').val();
+    	
+    	const dateTitle = moment().format("YYYY-MM-DD") + '_' + moment().format("HH") + ':' + moment().format("mm");
+    	downloadTitle = sensor + " 데이터_" + dateTitle;
+    	
+    	if (sensor === '기상') {
+    		if (weatherTable != null) {
+    			weatherTable.buttons().trigger();
+    		}
+    	} else {
+    		if (measurementTable != null) {
+    			measurementTable.buttons().trigger();
+    		}
+    	}
+    });
 });

@@ -76,3 +76,5 @@ var swalInit = swal.mixin({
     confirmButtonClass: 'btn btn-primary',
     cancelButtonClass: 'btn btn-light'
 });
+
+let downloadTitle = "계측데이터_" + moment().format("YYYY-MM-DD") + '_' + moment().format("HH") + ':' + moment().format("mm");
