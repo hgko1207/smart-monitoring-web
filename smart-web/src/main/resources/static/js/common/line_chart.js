@@ -161,7 +161,7 @@ var MeasurementChart = function() {
 	            animationDuration: 750,
 	            grid: {
 	           	 	left: 10,
-	                right: 35,
+	                right: 40,
 	                top: 35,
 	                bottom: 5,
 	               containLabel: true
@@ -197,19 +197,16 @@ var MeasurementChart = function() {
 //	                }
 	            },
 	            xAxis: [{
-	                type: 'category',
+	                type: 'time',
 	                boundaryGap: false,
-	                data: data.categories,
+//	                data: data.categories,
 	                axisLabel: {
 	                	color: '#333',
 	                	fontSize: 13,
 		                fontFamily: 'Roboto, sans-serif',
 	                    formatter: function (value, idx) {
 	                        const date = new Date(value);
-	                    	const result = moment(date).format("MM/DD HH:mm");
-//	                        return idx === 0 ? moment(date).format("MM/DD HH:mm") : result;
-//	                        return idx === 0 ? value : [date.getMonth() + 1, date.getDate()].join('-');
-	                    	return result;
+	                    	return moment(date).format("MM/DD HH:mm");
 	                    }
 	                },
 	                axisLine: {
@@ -221,7 +218,9 @@ var MeasurementChart = function() {
 	                    lineStyle: {
 	                        color: ['#eee']
 	                    }
-	                }
+	                },
+//	                interval: 1000* 60 * 20,
+//	                maxInterval: 1000 * 60 * 60,
 	            }],
 	            yAxis: [{
 	                type: 'value',

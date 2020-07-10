@@ -18,9 +18,12 @@ public interface WeatherRepository extends DefaultRepository<Weather, Integer> {
 	final String ORDER_BY = " ORDER BY date";
 	
 	@Query(value = "SELECT " + SELECT_HOURLY + " FROM tb_weather WHERE " + BETWEEN + GROUP_BY_HOURLY + ORDER_BY, nativeQuery = true)
-	List<WeatherChartData> getList(String startDate, String endDate);
+	List<WeatherChartData> getChartList(String startDate, String endDate);
 	
 	@Query(value = "SELECT * FROM tb_weather ORDER BY meas_dt desc limit 1", nativeQuery = true)
 	Weather getRecentData();
+
+	@Query(value = "SELECT * FROM tb_weather WHERE " + BETWEEN  + " ORDER BY meas_dt", nativeQuery = true)
+	List<Weather> getList(String startDate, String endDate);
 
 }

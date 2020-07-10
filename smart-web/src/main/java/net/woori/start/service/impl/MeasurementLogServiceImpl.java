@@ -59,7 +59,7 @@ public class MeasurementLogServiceImpl implements MeasurementLogService {
 
 	@Override
 	public List<MeasurementLog> getList(int pointSq, String startDate, String endDate) {
-		return measurementLogRepository.findByPointSq(startDate, endDate, pointSq);
+		return measurementLogRepository.getList(startDate, endDate, pointSq);
 	}
 
 	@Override

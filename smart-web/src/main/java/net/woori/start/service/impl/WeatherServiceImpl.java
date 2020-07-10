@@ -63,7 +63,12 @@ public class WeatherServiceImpl implements WeatherService {
 	}
 
 	@Override
-	public List<WeatherChartData> getList(String startDate, String endDate) {
+	public List<WeatherChartData> getChartList(String startDate, String endDate) {
+		return weatherRepository.getChartList(startDate, endDate);
+	}
+
+	@Override
+	public List<Weather> getList(String startDate, String endDate) {
 		return weatherRepository.getList(startDate, endDate);
 	}
 }

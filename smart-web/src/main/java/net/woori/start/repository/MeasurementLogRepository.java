@@ -24,7 +24,7 @@ public interface MeasurementLogRepository extends DefaultRepository<MeasurementL
 	final String ORDER_BY_DATE = " ORDER BY date";
 	
 	@Query(value = "SELECT * FROM tb_sf_meas_raw WHERE point_sq = ?3 and " + BETWEEN + ORDER_BY, nativeQuery = true)
-	List<MeasurementLog> findByPointSq(String startDate, String endDate, int pointSq);
+	List<MeasurementLog> getList(String startDate, String endDate, int pointSq);
 
 	@Query(value = "SELECT * FROM tb_sf_meas_raw WHERE " + BETWEEN + ORDER_BY, nativeQuery = true)
 	List<MeasurementLog> findByAll(String startDate, String endDate);

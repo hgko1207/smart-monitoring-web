@@ -16,6 +16,8 @@ public class MeasurementInfo {
 	
 	private String sensor;
 
+	private String unit;
+	
 	private ChartInfo chartInfo;
 	
 	private List<TableInfo> tableInfos;

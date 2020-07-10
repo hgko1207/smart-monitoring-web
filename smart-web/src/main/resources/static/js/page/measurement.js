@@ -52,7 +52,7 @@ $(document).ready(function() {
 	let weatherTable = null;
 	
 	let startDate = new Date(moment().format("YYYY-MM-DD 00:00:00"));
-	startDate.setDate(startDate.getDate() - 1); 
+//	startDate.setDate(startDate.getDate() - 1); 
 	let endDate = new Date(moment().format("YYYY-MM-DD 23:59:59"));
 	
     let datePicker = $('.daterange-picker').daterangepicker({
@@ -128,6 +128,14 @@ $(document).ready(function() {
     				
     				addWeatherSelected(param.weatherType);
     				
+    				let chartSeries = data.chartInfo.lineChartSeries;
+    				$.each(chartSeries, function(i, val) {
+    					val.data = val.dataList.map(data => [data.date, data.value]);
+    				});
+    				data.chartInfo.lineChartSeries = chartSeries;
+    				
+    				console.log(chartSeries);
+    				
     				lineChart = MeasurementChart.init(data.chartInfo);
     				weatherTable = WeatherTable.table.rows.add(data.tableInfos).draw();
     			}
@@ -149,7 +157,7 @@ $(document).ready(function() {
     				$('#weatherTableDiv').addClass('d-none');
     				$('#measurementTableDiv').removeClass('d-none');
     				
-    				changeSensorHeaderName(data.sensor);
+    				changeSensorHeaderName(data.sensor, data.unit);
     				addSensorSelected(param.location);
     				
     				let chartSeries = data.chartInfo.lineChartSeries;
@@ -223,12 +231,12 @@ $(document).ready(function() {
     }
     
     /** 계측정보 테이블 헤더 이름 변경 */
-    const changeSensorHeaderName = (sensor) => {
+    const changeSensorHeaderName = (sensor, unit) => {
     	const point = ['A', 'B', 'C', 'D', 'E'];
     	$.each(point, function(i, val) {
-			$('#top' + val).html(val + " 상층 " + sensor);
-			$('#middle' + val).html(val + " 중층 " + sensor);
-			$('#bottom' + val).html(val + " 하층 " + sensor);
+			$('#top' + val).html(val + " 상층 " + sensor + "(" + unit + ")");
+			$('#middle' + val).html(val + " 중층 " + sensor + "(" + unit + ")");
+			$('#bottom' + val).html(val + " 하층 " + sensor + "(" + unit + ")");
 		});
     }
     
