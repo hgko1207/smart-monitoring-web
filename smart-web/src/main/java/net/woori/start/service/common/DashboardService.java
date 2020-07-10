@@ -16,6 +16,7 @@ import net.woori.start.domain.EnumType.PointType;
 import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.EnumType.Status;
 import net.woori.start.domain.EnvironmentInfo;
+import net.woori.start.domain.MapInfo;
 import net.woori.start.domain.db.MeasurementLog;
 import net.woori.start.domain.db.PointInfo;
 import net.woori.start.domain.db.Weather;
@@ -64,7 +65,8 @@ public class DashboardService {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		dashboardInfo.setWeatherInfo(createWeatherInfo(param));
 		dashboardInfo.setEnvironmentInfo(createEnvironmentInfo(param));
-		dashboardInfo.setMapInfos(mapService.createMapInfo());
+		dashboardInfo.setMapInfos(mapService.createMapInfo().stream()
+				.sorted(Comparator.comparing(MapInfo::getPoint).reversed()).collect(Collectors.toList()));
 //		dashboardInfo.setMapInfo(mapService.createMapInfo(param));
 		
 		return dashboardInfo;

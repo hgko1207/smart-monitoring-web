@@ -46,10 +46,9 @@ const GoogleMap = function() {
 	const markerAndInfoOverlayList = function(map, list) {
 		google.maps.event.trigger(map, "resize");
 		
+		map.setZoom(22);
+		
 		$.each(list, function(i, data) {
-			map.setZoom(22);
-			map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
-			
 			var marker = new google.maps.Marker({
 				position: {lat: data.latitude, lng: data.longitude},
 				map: map
@@ -71,6 +70,8 @@ const GoogleMap = function() {
 			});
 			
 			infowindow.open(map, marker);
+			
+			map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
 		});
 	}
 	

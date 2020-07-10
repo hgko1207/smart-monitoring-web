@@ -11,6 +11,7 @@ public interface MeasurementLogRepository extends DefaultRepository<MeasurementL
 	
 	final String SELECT_DAILY = "DATE(meas_dt) date, AVG(temp_ch1) temp1, AVG(temp_ch2) temp2, AVG(temp_ch3) temp3, "
 			+ "AVG(vwc_ch1) water1, AVG(vwc_ch2) water2, AVG(vwc_ch3) water3";
+	
 	final String SELECT_HOURLY = "TO_TIMESTAMP(to_char(meas_dt, 'YYYY-MM-DD HH24:00:00'), 'YYYY-MM-DD HH24:MI:SS') date, "
 			+ "AVG(temp_ch1) temp1, AVG(temp_ch2) temp2, AVG(temp_ch3) temp3, "
 			+ "AVG(vwc_ch1) water1, AVG(vwc_ch2) water2, AVG(vwc_ch3) water3";

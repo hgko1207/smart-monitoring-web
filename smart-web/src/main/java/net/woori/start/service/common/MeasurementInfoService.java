@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import net.woori.start.domain.EnumType.LocationType;
 import net.woori.start.domain.EnumType.SensorType;
 import net.woori.start.domain.EnumType.WeatherType;
+import net.woori.start.domain.chart.ChartData;
 import net.woori.start.domain.chart.ChartInfo;
 import net.woori.start.domain.chart.LineChartSeries;
-import net.woori.start.domain.db.MeasurementLog;
 import net.woori.start.domain.measurement.MeasurementInfo;
 import net.woori.start.domain.measurement.TableInfo;
 import net.woori.start.domain.param.SearchParam;
@@ -57,93 +57,179 @@ public class MeasurementInfoService {
 		pointInfoService.getList(param.getSensorPoint()).forEach(pointInfo -> {
 			LineChartSeries chartSeries = new LineChartSeries(pointInfo.getPointNm());
 			
-//			List<ChartData> measurements = measurementService.getHourlyList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate());
-			List<MeasurementLog> measurementLogs = measurementService.getList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate());
-			measurementLogs.forEach(data -> {
-				String date = hourFormat.format(data.getMeasDt());
+			List<ChartData> measurements = measurementService.getHourlyList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate());
+			measurements.forEach(data -> {
+				String date = hourFormat.format(data.getDate());
 				TableInfo info = tableInfoMap.get(date);
 				if (info == null) {
 					tableInfoMap.put(date, new TableInfo(date));
 				}
 			});
 			
-			measurementLogs.forEach(data -> {
-				String date = hourFormat.format(data.getMeasDt());
+			measurements.forEach(data -> {
+				String date = hourFormat.format(data.getDate());
 				TableInfo info = tableInfoMap.get(date);
 				if (info != null) {
 					if (param.getSensor() == SensorType.토양수분) {
 						if (param.getLocation() == LocationType.상층) {
-							chartSeries.addDataItem(date, round(data.getVwcCh1()));
+							chartSeries.addDataItem(date, round(data.getWater1()));
 						} else if (param.getLocation() == LocationType.중층) {
-							chartSeries.addDataItem(date, round(data.getVwcCh2()));
+							chartSeries.addDataItem(date, round(data.getWater2()));
 						} else if (param.getLocation() == LocationType.하층) {
-							chartSeries.addDataItem(date, round(data.getVwcCh3()));
+							chartSeries.addDataItem(date, round(data.getWater3()));
 						}
 					} else if (param.getSensor() == SensorType.토양온도) {
 						if (param.getLocation() == LocationType.상층) {
-							chartSeries.addDataItem(date, round(data.getTempCh1()));
+							chartSeries.addDataItem(date, round(data.getTemp1()));
 						} else if (param.getLocation() == LocationType.중층) {
-							chartSeries.addDataItem(date, round(data.getTempCh2()));
+							chartSeries.addDataItem(date, round(data.getTemp2()));
 						} else if (param.getLocation() == LocationType.하층) {
-							chartSeries.addDataItem(date, round(data.getTempCh3()));
+							chartSeries.addDataItem(date, round(data.getTemp3()));
 						}
 					}
 					
 					if (pointInfo.getPointNm().contains("A")) {
 						if (param.getSensor() == SensorType.토양수분) {
-							info.setValueA1(round(data.getVwcCh1()));
-							info.setValueA2(round(data.getVwcCh2()));
-							info.setValueA3(round(data.getVwcCh3()));
+							info.setValueA1(round(data.getWater1()));
+							info.setValueA2(round(data.getWater2()));
+							info.setValueA3(round(data.getWater3()));
 						} else if (param.getSensor() == SensorType.토양온도) {
-							info.setValueA1(round(data.getTempCh1()));
-							info.setValueA2(round(data.getTempCh2()));
-							info.setValueA3(round(data.getTempCh3()));
+							info.setValueA1(round(data.getTemp1()));
+							info.setValueA2(round(data.getTemp2()));
+							info.setValueA3(round(data.getTemp3()));
 						}
 					} else if (pointInfo.getPointNm().contains("B")) {
 						if (param.getSensor() == SensorType.토양수분) {
-							info.setValueB1(round(data.getVwcCh1()));
-							info.setValueB2(round(data.getVwcCh2()));
-							info.setValueB3(round(data.getVwcCh3()));
+							info.setValueB1(round(data.getWater1()));
+							info.setValueB2(round(data.getWater2()));
+							info.setValueB3(round(data.getWater3()));
 						} else if (param.getSensor() == SensorType.토양온도) {
-							info.setValueB1(round(data.getTempCh1()));
-							info.setValueB2(round(data.getTempCh2()));
-							info.setValueB3(round(data.getTempCh3()));
+							info.setValueB1(round(data.getTemp1()));
+							info.setValueB2(round(data.getTemp2()));
+							info.setValueB3(round(data.getTemp3()));
 						}
 					} else if (pointInfo.getPointNm().contains("C")) {
 						if (param.getSensor() == SensorType.토양수분) {
-							info.setValueC1(round(data.getVwcCh1()));
-							info.setValueC2(round(data.getVwcCh2()));
-							info.setValueC3(round(data.getVwcCh3()));
+							info.setValueC1(round(data.getWater1()));
+							info.setValueC2(round(data.getWater2()));
+							info.setValueC3(round(data.getWater3()));
 						} else if (param.getSensor() == SensorType.토양온도) {
-							info.setValueC1(round(data.getTempCh1()));
-							info.setValueC2(round(data.getTempCh2()));
-							info.setValueC3(round(data.getTempCh3()));
+							info.setValueC1(round(data.getTemp1()));
+							info.setValueC2(round(data.getTemp2()));
+							info.setValueC3(round(data.getTemp3()));
 						}
 					} else if (pointInfo.getPointNm().contains("D")) {
 						if (param.getSensor() == SensorType.토양수분) {
-							info.setValueD1(round(data.getVwcCh1()));
-							info.setValueD2(round(data.getVwcCh2()));
-							info.setValueD3(round(data.getVwcCh3()));
+							info.setValueD1(round(data.getWater1()));
+							info.setValueD2(round(data.getWater2()));
+							info.setValueD3(round(data.getWater3()));
 						} else if (param.getSensor() == SensorType.토양온도) {
-							info.setValueD1(round(data.getTempCh1()));
-							info.setValueD2(round(data.getTempCh2()));
-							info.setValueD3(round(data.getTempCh3()));
+							info.setValueD1(round(data.getTemp1()));
+							info.setValueD2(round(data.getTemp2()));
+							info.setValueD3(round(data.getTemp3()));
 						}
 					} else if (pointInfo.getPointNm().contains("E")) {
 						if (param.getSensor() == SensorType.토양수분) {
-							info.setValueE1(round(data.getVwcCh1()));
-							info.setValueE2(round(data.getVwcCh2()));
-							info.setValueE3(round(data.getVwcCh3()));
+							info.setValueE1(round(data.getWater1()));
+							info.setValueE2(round(data.getWater2()));
+							info.setValueE3(round(data.getWater3()));
 						} else if (param.getSensor() == SensorType.토양온도) {
-							info.setValueE1(round(data.getTempCh1()));
-							info.setValueE2(round(data.getTempCh2()));
-							info.setValueE3(round(data.getTempCh3()));
+							info.setValueE1(round(data.getTemp1()));
+							info.setValueE2(round(data.getTemp2()));
+							info.setValueE3(round(data.getTemp3()));
 						}
 					}
 					
 					tableInfoMap.put(date, info);
 				}
 			});
+			
+//			List<MeasurementLog> measurementLogs = measurementService.getList(pointInfo.getPointSq(), param.getStartDate(), param.getEndDate());
+//			measurementLogs.forEach(data -> {
+//				String date = hourFormat.format(data.getMeasDt());
+//				TableInfo info = tableInfoMap.get(date);
+//				if (info == null) {
+//					tableInfoMap.put(date, new TableInfo(date));
+//				}
+//			});
+//			
+//			measurementLogs.forEach(data -> {
+//				String date = hourFormat.format(data.getMeasDt());
+//				TableInfo info = tableInfoMap.get(date);
+//				if (info != null) {
+//					if (param.getSensor() == SensorType.토양수분) {
+//						if (param.getLocation() == LocationType.상층) {
+//							chartSeries.addDataItem(date, round(data.getVwcCh1()));
+//						} else if (param.getLocation() == LocationType.중층) {
+//							chartSeries.addDataItem(date, round(data.getVwcCh2()));
+//						} else if (param.getLocation() == LocationType.하층) {
+//							chartSeries.addDataItem(date, round(data.getVwcCh3()));
+//						}
+//					} else if (param.getSensor() == SensorType.토양온도) {
+//						if (param.getLocation() == LocationType.상층) {
+//							chartSeries.addDataItem(date, round(data.getTempCh1()));
+//						} else if (param.getLocation() == LocationType.중층) {
+//							chartSeries.addDataItem(date, round(data.getTempCh2()));
+//						} else if (param.getLocation() == LocationType.하층) {
+//							chartSeries.addDataItem(date, round(data.getTempCh3()));
+//						}
+//					}
+//					
+//					if (pointInfo.getPointNm().contains("A")) {
+//						if (param.getSensor() == SensorType.토양수분) {
+//							info.setValueA1(round(data.getVwcCh1()));
+//							info.setValueA2(round(data.getVwcCh2()));
+//							info.setValueA3(round(data.getVwcCh3()));
+//						} else if (param.getSensor() == SensorType.토양온도) {
+//							info.setValueA1(round(data.getTempCh1()));
+//							info.setValueA2(round(data.getTempCh2()));
+//							info.setValueA3(round(data.getTempCh3()));
+//						}
+//					} else if (pointInfo.getPointNm().contains("B")) {
+//						if (param.getSensor() == SensorType.토양수분) {
+//							info.setValueB1(round(data.getVwcCh1()));
+//							info.setValueB2(round(data.getVwcCh2()));
+//							info.setValueB3(round(data.getVwcCh3()));
+//						} else if (param.getSensor() == SensorType.토양온도) {
+//							info.setValueB1(round(data.getTempCh1()));
+//							info.setValueB2(round(data.getTempCh2()));
+//							info.setValueB3(round(data.getTempCh3()));
+//						}
+//					} else if (pointInfo.getPointNm().contains("C")) {
+//						if (param.getSensor() == SensorType.토양수분) {
+//							info.setValueC1(round(data.getVwcCh1()));
+//							info.setValueC2(round(data.getVwcCh2()));
+//							info.setValueC3(round(data.getVwcCh3()));
+//						} else if (param.getSensor() == SensorType.토양온도) {
+//							info.setValueC1(round(data.getTempCh1()));
+//							info.setValueC2(round(data.getTempCh2()));
+//							info.setValueC3(round(data.getTempCh3()));
+//						}
+//					} else if (pointInfo.getPointNm().contains("D")) {
+//						if (param.getSensor() == SensorType.토양수분) {
+//							info.setValueD1(round(data.getVwcCh1()));
+//							info.setValueD2(round(data.getVwcCh2()));
+//							info.setValueD3(round(data.getVwcCh3()));
+//						} else if (param.getSensor() == SensorType.토양온도) {
+//							info.setValueD1(round(data.getTempCh1()));
+//							info.setValueD2(round(data.getTempCh2()));
+//							info.setValueD3(round(data.getTempCh3()));
+//						}
+//					} else if (pointInfo.getPointNm().contains("E")) {
+//						if (param.getSensor() == SensorType.토양수분) {
+//							info.setValueE1(round(data.getVwcCh1()));
+//							info.setValueE2(round(data.getVwcCh2()));
+//							info.setValueE3(round(data.getVwcCh3()));
+//						} else if (param.getSensor() == SensorType.토양온도) {
+//							info.setValueE1(round(data.getTempCh1()));
+//							info.setValueE2(round(data.getTempCh2()));
+//							info.setValueE3(round(data.getTempCh3()));
+//						}
+//					}
+//					
+//					tableInfoMap.put(date, info);
+//				}
+//			});
 			
 			chartInfo.addListChartSeries(chartSeries);
 		});
