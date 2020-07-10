@@ -38,17 +38,6 @@ var LineChart = function() {
                     trigger: 'axis',
                     backgroundColor: 'rgba(0,0,0,0.55)',
                     padding: [10, 15],
-//                    textStyle: {
-//                        fontSize: 13,
-//                        fontFamily: 'Roboto, sans-serif'
-//                    },
-//                    axisPointer: {
-//                        type: 'cross',
-//                        animation: false,
-//                        label: {
-//                            backgroundColor: '#505765'
-//                        }
-//                    }
                 },
                 xAxis: [{
                     type: 'category',
@@ -56,12 +45,6 @@ var LineChart = function() {
                     data: data.categories,
                     axisLabel: {
                     	color: '#333',
-//                        formatter: function (value, idx) {
-//                        	const date = new Date(value);
-////                        	const result = moment(date).format("MM/DD HH:mm");
-////                            return idx === 0 ? moment(date).format("MM/DD HH:mm") : result;
-//                        	return moment(date).format("MM/DD HH:mm");
-//                        }
                     },
                     axisLine: {
                         lineStyle: {
@@ -177,24 +160,7 @@ var MeasurementChart = function() {
 	                textStyle: {
 	            		fontSize: 13,
 		                fontFamily: 'Roboto, sans-serif'
-		            },
-//	                axisPointer: {
-//	                    type: 'cross',
-//	                    animation: false,
-//	                    label: {
-//	                    	backgroundColor: '#505765'
-////	                        backgroundColor: '#ccc',
-////	                        borderColor: '#aaa',
-////	                        borderWidth: 1,
-////	                        shadowBlur: 0,
-////	                        shadowOffsetX: 0,
-////	                        shadowOffsetY: 0,
-////	                        color: '#222'
-//	                    }
-//	                },
-//	                formatter: function (params) {
-//	                    return params[2].name + '<br />' + ((params[2].value - base) * 100).toFixed(1) + '%';
-//	                }
+		            }
 	            },
 	            xAxis: [{
 	                type: 'time',
@@ -219,6 +185,7 @@ var MeasurementChart = function() {
 	                        color: ['#eee']
 	                    }
 	                },
+	                splitNumber: 10,
 //	                interval: 1000* 60 * 20,
 //	                maxInterval: 1000 * 60 * 60,
 	            }],
@@ -253,23 +220,6 @@ var MeasurementChart = function() {
 	                    }
 	                }
 	            }],
-//	            dataZoom: [{
-//	                type: 'inside',
-//	                start: 0,
-//	                end: 100,
-//	            },{
-//	                show: true,
-//	                type: 'slider',
-//	                start: 0,
-//	                end: 100,
-//	                height: 40,
-//	                bottom: 0,
-//	                borderColor: '#ccc',
-//	                fillerColor: 'rgba(0,0,0,0.05)',
-//	                handleStyle: {
-//	                    color: '#585f63'
-//	                }
-//	            }],
 	            series: data.lineChartSeries,
 	        }, true);
 	    }

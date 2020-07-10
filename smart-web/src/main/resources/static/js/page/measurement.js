@@ -51,9 +51,9 @@ $(document).ready(function() {
 	let measurementTable = null;
 	let weatherTable = null;
 	
-	let startDate = new Date(moment().format("YYYY-MM-DD 00:00:00"));
+	let startDate = new Date();
 //	startDate.setDate(startDate.getDate() - 1); 
-	let endDate = new Date(moment().format("YYYY-MM-DD 23:59:59"));
+	let endDate = new Date();
 	
     let datePicker = $('.daterange-picker').daterangepicker({
         opens: 'right',
@@ -74,8 +74,8 @@ $(document).ready(function() {
         }
     },
     function(start, end) {
-    	startDate = start.format("YYYY-MM-DD 00:00:00");
-    	endDate = end.format("YYYY-MM-DD 23:59:59");
+    	startDate = start;
+    	endDate = end;
     });
     
     let lineChart = null;
@@ -114,8 +114,8 @@ $(document).ready(function() {
     	if (sensor == '기상') {
     		let param = new Object();
     		param.weatherType = $('#weatherTypeSelect').val();
-    		param.startDate = startDate;
-    		param.endDate = endDate;
+    		param.startDate = moment(startDate).local().format("YYYY-MM-DD 00:00:00");
+    		param.endDate = moment(endDate).local().format("YYYY-MM-DD 23:59:59");
     		
     		$.ajax({
     			url: contextPath + "/measurement/search/weather",
@@ -134,8 +134,6 @@ $(document).ready(function() {
     				});
     				data.chartInfo.lineChartSeries = chartSeries;
     				
-    				console.log(chartSeries);
-    				
     				lineChart = MeasurementChart.init(data.chartInfo);
     				weatherTable = WeatherTable.table.rows.add(data.tableInfos).draw();
     			}
@@ -145,8 +143,8 @@ $(document).ready(function() {
     		param.sensor = sensor;
     		param.sensorPoint = $('#sensorPointSelect').val();
     		param.location = $('#locationSelect').val();
-    		param.startDate = startDate;
-    		param.endDate = endDate;
+    		param.startDate = moment(startDate).local().format("YYYY-MM-DD 00:00:00");
+    		param.endDate = moment(endDate).local().format("YYYY-MM-DD 23:59:59");
     		
     		$.ajax({
     			url: contextPath + "/measurement/search",
