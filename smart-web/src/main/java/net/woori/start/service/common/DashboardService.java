@@ -64,7 +64,8 @@ public class DashboardService {
 		DashboardInfo dashboardInfo = new DashboardInfo();
 		dashboardInfo.setWeatherInfo(createWeatherInfo(param));
 		dashboardInfo.setEnvironmentInfo(createEnvironmentInfo(param));
-		dashboardInfo.setMapInfo(mapService.createMapInfo(param));
+		dashboardInfo.setMapInfos(mapService.createMapInfo());
+//		dashboardInfo.setMapInfo(mapService.createMapInfo(param));
 		
 		return dashboardInfo;
 	}
@@ -85,7 +86,7 @@ public class DashboardService {
 			weatherInfo.setHour(hourFormat.format(weather.getMeasDt()) + " 현재");
 			weatherInfo.setTemp(weather.getTemp_150());
 			weatherInfo.setType("맑음");
-			weatherInfo.setRainfall(0);
+			weatherInfo.setRainfall(weather.getAfp());
 			weatherInfo.setFineDust(Status.보통);
 			weatherInfo.setOzone(Status.좋음);
 			weatherInfo.setDescription("어제 기온와 같음");

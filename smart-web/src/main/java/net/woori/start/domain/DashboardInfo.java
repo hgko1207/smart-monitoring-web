@@ -1,5 +1,7 @@
 package net.woori.start.domain;
 
+import java.util.List;
+
 import lombok.Data;
 import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.chart.ChartInfo;
@@ -26,6 +28,8 @@ public class DashboardInfo {
 	
 	/** 지도 정보 */
 	private MapInfo mapInfo;
+	
+	private List<MapInfo> mapInfos;
 	
 	/** 양호, 주의, 경계, 심각 */
 	private LevelType levelType;

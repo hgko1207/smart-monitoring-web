@@ -139,7 +139,8 @@ $(document).ready(function() {
     			$('#environmentLevel3').css('color', info.level3Color);
     			$('#environmentSensor3Day').html(info.level3Day);
     			
-    			infowindow = GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
+//    			infowindow = GoogleMap.markerAndInfoOverlay(map, data.mapInfo);
+    			infowindow = GoogleMap.markerAndInfoOverlayList(map, data.mapInfos);
            	}
     	});
     }

@@ -165,24 +165,26 @@
 							</h6>
 							<div id="weatherDate" class="text-secondary"></div>
 						</div>
-						<div class="card-body row">
-							<div class="mr-md-auto"></div>
-							<div class="col-4">
-								<img th:src="@{/images/sun.png}" alt="sun" class="img-fluid"/>
-							</div>
-							<div class="col-7 pl-4 py-3">
-								<div id="weatherHour" class="weather-time"></div>
-								<div class="weather-info">
-									<span class="weather-temp"><span id="weatherTemp"></span>℃</span> 
-									<span id="weatherType" class="ml-2"></span>
+						<div class="card-body card-body-fixed pb-0">
+							<div class="row">
+								<div class="mr-md-auto"></div>
+								<div class="col-4">
+									<img th:src="@{/images/sun.png}" alt="sun" class="img-responsive"/>
 								</div>
-								<div>
-									<span id="description"></span> | 강수확률 <span id="weatherRainfall"></span>%
+								<div class="col-7 pl-4 py-3">
+									<div id="weatherHour" class="weather-time"></div>
+									<div class="weather-info">
+										<span class="weather-temp"><span id="weatherTemp"></span>℃</span> 
+										<span id="weatherType" class="ml-2"></span>
+									</div>
+									<div>
+										<span id="description"></span> | 강수량 <span id="weatherRainfall"></span>mm
+									</div>
+									<div>
+										미세먼지 <span id="weatherFineDust" class="text-green-600"></span>
+										 ㆍ 오존 <span id="weatherOzone" class="text-blue-600"></span>
+									 </div>
 								</div>
-								<div>
-									미세먼지 <span id="weatherFineDust" class="text-green-600"></span>
-									 ㆍ 오존 <span id="weatherOzone" class="text-blue-600"></span>
-								 </div>
 							</div>
 						</div>
 					</div>
@@ -196,7 +198,7 @@
 							</h6>
 							<div id="environmentDate" class="text-secondary"></div>
 						</div>
-						<div class="card-body pb-2">
+						<div class="card-body card-body-fixed pb-0">
 							<div class="environment-total pl-md-3">
 								<div id="environmentCurrent" class="font-weight-bold"></div>
 								<div>

@@ -17,7 +17,7 @@ public class WeatherInfo {
 	private String type;
 	
 	/** 강우량 / 강수확률 */
-	private int rainfall;
+	private float rainfall;
 	
 	/** 미세먼지 */
 	private Status fineDust;
