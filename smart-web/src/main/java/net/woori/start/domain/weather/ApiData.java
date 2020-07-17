@@ -26,7 +26,11 @@ public class ApiData {
 		VVV("남북바람성분", "m/s"),
 		WAV("파고", "M"),
 		VEC("풍향", "m/s"),
-		WSD("풍속", "1");
+		WSD("풍속", "km/h"),
+		
+		T1H("기온", "℃"),
+		RN1("1시간 강수량", "mm"),
+		LGT("낙뢰", "코드값");
 		
 		private String name;
 		

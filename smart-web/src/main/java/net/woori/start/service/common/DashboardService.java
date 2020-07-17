@@ -14,17 +14,13 @@ import net.woori.start.domain.DashboardInfo;
 import net.woori.start.domain.EnumType.LevelType;
 import net.woori.start.domain.EnumType.PointType;
 import net.woori.start.domain.EnumType.SensorType;
-import net.woori.start.domain.EnumType.Status;
 import net.woori.start.domain.EnvironmentInfo;
 import net.woori.start.domain.MapInfo;
 import net.woori.start.domain.db.MeasurementLog;
 import net.woori.start.domain.db.PointInfo;
-import net.woori.start.domain.db.Weather;
 import net.woori.start.domain.param.SearchParam;
-import net.woori.start.domain.weather.WeatherInfo;
 import net.woori.start.service.MeasurementLogService;
 import net.woori.start.service.PointInfoService;
-import net.woori.start.service.WeatherService;
 
 /**
  * 대시보드 데이터 서비스
@@ -35,7 +31,6 @@ import net.woori.start.service.WeatherService;
 @Service
 public class DashboardService {
 	
-	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	private final SimpleDateFormat hourFormat = new SimpleDateFormat("HH:00");
 	
 	@Autowired
@@ -54,9 +49,6 @@ public class DashboardService {
 	private MapService mapService;
 	
 	@Autowired
-	private WeatherService weatherService;
-	
-	@Autowired
 	private AwsService awsService;
 	
 	/**
@@ -66,7 +58,6 @@ public class DashboardService {
 	 */
 	public DashboardInfo createDashboardInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
-//		dashboardInfo.setWeatherInfo(createWeatherInfo(param));
 		dashboardInfo.setWeatherInfo(awsService.createWeatherInfo());
 		dashboardInfo.setEnvironmentInfo(createEnvironmentInfo(param));
 		dashboardInfo.setMapInfos(mapService.createMapInfo().stream()
@@ -74,31 +65,6 @@ public class DashboardService {
 //		dashboardInfo.setMapInfo(mapService.createMapInfo(param));
 		
 		return dashboardInfo;
-	}
-	
-	/**
-	 * 기상 정보 생성
-	 * @param param
-	 * @return
-	 */
-	private WeatherInfo createWeatherInfo(SearchParam param) {
-		WeatherInfo weatherInfo = new WeatherInfo();
-		
-		SimpleDateFormat hourFormat = new SimpleDateFormat("HH시");
-		
-		Weather weather = weatherService.getRecentData();
-		if (weather != null) {
-			weatherInfo.setDate(dateFormat.format(weather.getMeasDt()) + " 기준");
-			weatherInfo.setHour(hourFormat.format(weather.getMeasDt()) + " 현재");
-			weatherInfo.setTemp(weather.getTemp_150());
-			weatherInfo.setType("맑음");
-			weatherInfo.setRainfall(weather.getAfp());
-			weatherInfo.setFineDust(Status.보통);
-			weatherInfo.setOzone(Status.좋음);
-			weatherInfo.setDescription("어제 기온와 같음");
-		}
-		
-		return weatherInfo;
 	}
 	
 	/**

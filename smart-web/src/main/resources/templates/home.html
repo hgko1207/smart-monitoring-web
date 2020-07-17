@@ -168,41 +168,41 @@
 						<div class="card-body card-body-fixed pb-0">
 							<div class="row">
 								<div class="mr-md-auto"></div>
-								<div class="col-4 d-flex justify-content-center align-items-center">
-									<img id="weatherIcon" alt="" class="img-fluid" width="85%"/>
+								<div class="col-4 d-flex flex-column justify-content-center align-items-center">
+									<img id="weatherIcon" alt="" class="img-fluid" width="75%"/>
+									<span id="weatherType" class="font-weight-bold"></span>
 								</div>
-								<div class="col-7 pl-4 py-3">
-									<div id="weatherHour" class="weather-time">현재</div>
-									<div class="weather-info">
+								<div class="col-6 pl-4 pt-1">
+									<div id="weatherHour" class="weather-time"></div>
+									<div class="weather-info d-flex align-items-center">
 										<span id="weatherTemp" class="weather-temp"></span>
-										<span id="weatherType" class="ml-2"></span>
+										<span class="weather-temp-unit">℃</span>
 									</div>
 									
-									<table class="weather-text">
+									<table>
 										<tr>
 											<td>
 												<img th:src="@{/images/weather/icon_table03.png}" alt="" title="습도" class="img-fluid"/>
 											</td>
-											<td class="vertical-center">
+											<td class="weather-text">
 												<span id="weatherHum" class="ml-2"></span> 
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<img th:src="@{/images/weather/icon_table01.png}" alt="" title="강수확률/강수량" class="img-fluid"/>
-											</td>
-											<td class="vertical-center">
-												<span id="weatherRainfall" class="ml-2"></span> / 
-												<span id="weatherRain"></span>
 											</td>
 										</tr>
 										<tr>
 											<td>
 												<img th:src="@{/images/weather/icon_table02.png}" alt="" title="풍향/풍속" class="img-fluid"/>
 											</td>
-											<td class="vertical-center">
+											<td class="weather-text">
 												<span id="weatherWind" class="ml-2"></span>
-												<span id="weatherWindSpeed"></span>
+												<span id="weatherWindSpeed" class="ml-1"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<img th:src="@{/images/weather/icon_table01.png}" alt="" title="강수량" class="img-fluid"/>
+											</td>
+											<td class="weather-text">
+												<span id="weatherRain" class="ml-2"></span>
 											</td>
 										</tr>
 									</table>
