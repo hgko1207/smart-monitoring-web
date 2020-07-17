@@ -112,13 +112,16 @@ $(document).ready(function() {
     		success: function(data) {
     			const weather = data.weatherInfo;
     			$('#weatherDate').html(weather.date);
-    			$('#weatherHour').html(weather.hour);
-    			$('#weatherTemp').html(weather.temp);
+//    			$('#weatherHour').html(weather.hour);
+    			$("#weatherIcon").attr("src", contextPath + "/images/weather/DB" + weather.icon + ".png");
+    			$("#weatherIcon").attr("title", weather.type);
+    			$('#weatherTemp').html(weather.temp + "℃");
     			$('#weatherType').html(weather.type);
-    			$('#description').html(weather.description);
-    			$('#weatherRainfall').html(weather.rainfall);
-    			$('#weatherFineDust').html(weather.fineDust);
-    			$('#weatherOzone').html(weather.ozone);
+    			$('#weatherHum').html(weather.hum + "%");
+    			$('#weatherRainfall').html(weather.rainfall + "%");
+    			$('#weatherRain').html(weather.rain + "mm");
+    			$('#weatherWind').html(weather.windDirection);
+    			$('#weatherWindSpeed').html(weather.windSpeed + "km/h");
     			
     			const info = data.environmentInfo;
     			$('#environmentPoint').html(info.point);

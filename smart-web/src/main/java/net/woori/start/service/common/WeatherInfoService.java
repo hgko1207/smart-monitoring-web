@@ -3,13 +3,14 @@ package net.woori.start.service.common;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import net.woori.start.domain.db.Weather;
-import net.woori.start.domain.weather.Response;
+import net.woori.start.domain.weather.ResponseXml;
 import net.woori.start.service.WeatherService;
 
 /**
@@ -34,17 +35,19 @@ public class WeatherInfoService {
 	 * 농업 기상 데이터 조회
 	 * 10분 마다 실행
 	 */
-//	@PostConstruct
-	@Scheduled(cron = "0 0/10 * * * *")
+	@PostConstruct
+//	@Scheduled(cron = "0 0/10 * * * *")
 	public void getWthrDataList() {
 		StringBuilder urlBuilder = new StringBuilder(BASE_URL);
 		try {
 			urlBuilder.append("?" + URLEncoder.encode("mberid", "UTF-8") + "=" + userId);
 			urlBuilder.append("&" + URLEncoder.encode("regist_ky", "UTF-8") + "=" + serviceKey);
+			
+			System.err.println(urlBuilder.toString());
 	        
 	        RestTemplate restTemplate = new RestTemplate();
-	        Response response = restTemplate.getForObject(urlBuilder.toString(), Response.class);
-	        
+	        ResponseXml response = restTemplate.getForObject(urlBuilder.toString(), ResponseXml.class);
+	        System.err.println(response);
 	        Weather weather = new Weather(response);
 	        
 	        Weather temp = weatherService.getRecentData();

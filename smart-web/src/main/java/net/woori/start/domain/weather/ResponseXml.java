@@ -16,7 +16,7 @@ import lombok.Data;
 @Data
 @XmlRootElement(name = "Root")
 @XmlAccessorType(value = XmlAccessType.FIELD)
-public class Response {
+public class ResponseXml {
 
 	@XmlElement(name = "Info")
 	private Info info;

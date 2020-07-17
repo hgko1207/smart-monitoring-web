@@ -168,22 +168,52 @@
 						<div class="card-body card-body-fixed pb-0">
 							<div class="row">
 								<div class="mr-md-auto"></div>
-								<div class="col-4">
-									<img th:src="@{/images/sun.png}" alt="sun" class="img-responsive"/>
+								<div class="col-4 d-flex justify-content-center align-items-center">
+									<img id="weatherIcon" alt="" class="img-fluid" width="85%"/>
 								</div>
 								<div class="col-7 pl-4 py-3">
-									<div id="weatherHour" class="weather-time"></div>
+									<div id="weatherHour" class="weather-time">현재</div>
 									<div class="weather-info">
-										<span class="weather-temp"><span id="weatherTemp"></span>℃</span> 
+										<span id="weatherTemp" class="weather-temp"></span>
 										<span id="weatherType" class="ml-2"></span>
 									</div>
-									<div>
-										<span id="description"></span> | 강수량 <span id="weatherRainfall"></span>mm
+									
+									<table class="weather-text">
+										<tr>
+											<td>
+												<img th:src="@{/images/weather/icon_table03.png}" alt="" title="습도" class="img-fluid"/>
+											</td>
+											<td class="vertical-center">
+												<span id="weatherHum" class="ml-2"></span> 
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<img th:src="@{/images/weather/icon_table01.png}" alt="" title="강수확률/강수량" class="img-fluid"/>
+											</td>
+											<td class="vertical-center">
+												<span id="weatherRainfall" class="ml-2"></span> / 
+												<span id="weatherRain"></span>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<img th:src="@{/images/weather/icon_table02.png}" alt="" title="풍향/풍속" class="img-fluid"/>
+											</td>
+											<td class="vertical-center">
+												<span id="weatherWind" class="ml-2"></span>
+												<span id="weatherWindSpeed"></span>
+											</td>
+										</tr>
+									</table>
+									<!-- <div class="mt-1 weather-text">
+										습도 <span id="weatherHum" class="font-weight-bold"></span> 
+										ㆍ 강수확률 <span id="weatherRainfall" class="font-weight-bold"></span>
 									</div>
-									<div>
-										미세먼지 <span id="weatherFineDust" class="text-green-600"></span>
-										 ㆍ 오존 <span id="weatherOzone" class="text-blue-600"></span>
-									 </div>
+									<div class="mt-1 weather-text">
+										풍향 <span id="weatherWind" class="font-weight-bold"></span>
+										 ㆍ 풍속 <span id="weatherWindSpeed" class="font-weight-bold"></span>
+									 </div> -->
 								</div>
 							</div>
 						</div>
@@ -208,7 +238,7 @@
 							</div>
 							<div class="row mt-1">
 								<div class="col-3">
-									<img th:src="@{/images/crop_bean.png}" alt="" class="img-fluid"/>
+									<img th:src="@{/images/crop_bean.png}" alt="" class="img-fluid" width="95%"/>
 								</div>
 								<div class="col-1 py-2">
 									<div class="vertical-line"></div>

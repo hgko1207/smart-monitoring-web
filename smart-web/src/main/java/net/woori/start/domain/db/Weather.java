@@ -16,8 +16,8 @@ import javax.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.woori.start.domain.Domain;
-import net.woori.start.domain.weather.Response;
-import net.woori.start.domain.weather.Response.Info;
+import net.woori.start.domain.weather.ResponseXml;
+import net.woori.start.domain.weather.ResponseXml.Info;
 
 /**
  * 기상 정보 테이블 도메인
@@ -68,7 +68,7 @@ public class Weather implements Domain {
 	/** 토양수분(10CM) */
 	private float soilMitr_10;
 	
-	public Weather(Response response) {
+	public Weather(ResponseXml response) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		Info info = response.getInfo();
 		try {
