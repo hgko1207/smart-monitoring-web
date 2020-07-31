@@ -79,6 +79,7 @@ public class OpenWeatherService {
 		return windType.getName();
 	}
 	
+	
 	private String wDescEngToKor(int w_id) {
 		int[] w_id_arr = new int[] {
     	201,200,202,210,211,212,221,230,231,232,
