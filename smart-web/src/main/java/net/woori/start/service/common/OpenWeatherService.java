@@ -66,8 +66,6 @@ public class OpenWeatherService {
 	        Date timeInDate = new Date(time); 
 	        weatherInfo.setDate(dateFormat.format(timeInDate));
 	        weatherInfo.setHour(hourFormat.format(timeInDate));
-	        
-	        System.err.println(response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
