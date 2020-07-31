@@ -23,7 +23,7 @@ public class WeatherInfoService {
 
 	private final String BASE_URL = "http://weather.rda.go.kr/openapi/realtime_openapi_xml.jsp";
 	private final String userId = "sondar20";
-	private final String serviceKey = "fhkkcbtdunucdfwhnnextzxlemumvq";
+	private final String serviceKey = "dslpyjazabtasvrhnjkxdhcwnaixsd";
 	
 	private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 	

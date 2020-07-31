@@ -49,7 +49,7 @@ public class DashboardService {
 	private MapService mapService;
 	
 	@Autowired
-	private AwsService awsService;
+	private OpenWeatherService openWeatherService;
 	
 	/**
 	 * 대시보드 정보 생성
@@ -58,7 +58,7 @@ public class DashboardService {
 	 */
 	public DashboardInfo createDashboardInfo(SearchParam param) {
 		DashboardInfo dashboardInfo = new DashboardInfo();
-		dashboardInfo.setWeatherInfo(awsService.createWeatherInfo());
+		dashboardInfo.setWeatherInfo(openWeatherService.createWeatherInfo());
 		dashboardInfo.setEnvironmentInfo(createEnvironmentInfo(param));
 		dashboardInfo.setMapInfos(mapService.createMapInfo().stream()
 				.sorted(Comparator.comparing(MapInfo::getPoint).reversed()).collect(Collectors.toList()));

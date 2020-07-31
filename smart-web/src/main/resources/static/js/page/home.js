@@ -113,7 +113,8 @@ $(document).ready(function() {
     			const weather = data.weatherInfo;
     			$('#weatherDate').html(weather.date);
     			$('#weatherHour').html(weather.hour + "시 현재");
-    			$("#weatherIcon").attr("src", contextPath + "/images/weather/DB" + weather.icon + ".png");
+//    			$("#weatherIcon").attr("src", contextPath + "/images/weather/DB" + weather.icon + ".png");
+    			$("#weatherIcon").attr("src", contextPath + "/images/openweather/" + weather.icon + ".png");
     			$("#weatherIcon").attr("title", weather.type);
     			$('#weatherTemp').html(weather.temp);
     			$('#weatherType').html(weather.type);

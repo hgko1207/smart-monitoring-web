@@ -70,8 +70,6 @@ public class AwsService {
 			e.printStackTrace();
 		}
 		
-		System.err.println(urlBuilder.toString());
-		
 		return urlBuilder.toString();
 	}
 	
