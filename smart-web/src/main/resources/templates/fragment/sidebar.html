@@ -59,53 +59,98 @@
 						<div class="text-uppercase font-size-md line-height-md">운영 조건 참조 </div> 
 						<i class="icon-menu" title="Main"></i>
 					</li>
-					
+					<li class="nav-item">
+						<div class="portlet box">
+				            <table class="table text-center">
+							    <tr><th>구분</th><th>토양온도(도)</th><th>토양수분(%)</th>
+							    <tr>
+							    	<td>
+							    		<span style="color:green;">관심</span>
+						    		</td>
+						    		<td>
+						    			<span style="color:green">20&lt;x&lt;25</span>
+					    			</td>
+					    			<td>
+					    				<span style="color:green">0&lt;x&lt;4.6</span>
+					    			</td>
+					    		</tr>
+							    <tr>
+							    	<td>
+							    		<span style="color:yellow">주의</span>
+						    		</td>
+						    		<td>
+						    			<span style="color:yellow">16&lt;x&lt;19<br/>26&lt;x&lt;28</span>
+					    			</td>
+					    			<td>
+					    				<span style="color:yellow">4.6&lt;x&lt;44</span>
+				    				</td>
+				    			</tr>
+							    <tr>
+							    	<td>
+							    		<span style="color:orange">경계</span>
+						    		</td>
+						    		<td>
+						    			<span style="color:orange">11&lt;x&lt;15<br/>29&lt;x&lt;32</span>
+					    			</td>
+					    			<td>
+					    				<span style="color:orange">44&lt;x</span>
+				    				</td>
+			    				</tr>
+							    <tr>
+							    	<td>
+							    		<span style="color:red">심각</span>
+						    		</td>
+						    		<td>
+						    			<span style="color:red">x&lt;10<br/>35&lt;x</span>
+					    			</td>
+					    			<td>
+					    				<span style="color:red"> - </span>
+				    				</td>
+				    			</tr>
+							</table>    
+				        </div>
+					</li>
 				</ul>
 			</div>
 		</div>
 		
-		<div class="portlet box yellow">
-		   <style>
-			    .table {
-			      border-collapse: collapse;
-			      border-top: 6px solid #168;
-			    }  
-			    .table th {
-			      color: #168;
-			      background: #f0f6f9;
-			      text-align: center;
-			    }
-			    .table th, .table td {
-			      padding: 5px;
-			      border: 1px solid #ddd;
-			      
-			    }
-			    .table th:first-child, .table td:first-child {
-			      border-left: 0;
-			    }
-			    .table th:last-child, .table td:last-child {
-			      border-right: 0;
-			    }
-			    .table tr td:first-child{
-			      text-align: center;
-			    }
-			    .table caption{caption-side: bottom; display: none;}
-			    .green{color:green;text-align: center;}
-			    .yellow{color:yellow;text-align: center;}
-			    .orange{color:orange;text-align: center;}
-			    .yellow{color:red;text-align: center;}
-			</style>
-		                      
-            <table class="table">
-			    <tr><th>구분</th><th>토양온도(도)</th><th>토양수분(%)</th>
-			    <tr><td><p style="color:green;">관심</td><td><p style="color:green">20&lt;x&lt;25</td><td><p style="color:green">0&lt;x&lt;4.6</td>
-			    <tr><td><p style="color:yellow">주의</td><td><p style="color:yellow">16&lt;x&lt;19<br/>26&lt;x&lt;28</td><td><p style="color:yellow">4.6&lt;x&lt;44</td>
-			    <tr><td><p style="color:orange">경계</td><td><p style="color:orange">11&lt;x&lt;15<br/>29&lt;x&lt;32</td><td><p style="color:orange">44&lt;</td>
-			    <tr><td><p style="color:red">심각</td><td><p style="color:red">&lt;10<br/>35&lt;</td><td><p style="color:red"> - </td>
-			</table>    
-		                      
-		              </div>
+		
 	</div>
+	
+	<style>
+		.table {
+			border-collapse: collapse;
+			border-top: 6px solid #168;
+		}
+		
+		.table th {
+			color: #168;
+			background: #f0f6f9;
+			text-align: center;
+		}
+		
+		.table th, .table td {
+			padding: 5px;
+			border: 1px solid #ddd;
+		}
+		
+		.table th:first-child, .table td:first-child {
+			border-left: 0;
+		}
+		
+		.table th:last-child, .table td:last-child {
+			border-right: 0;
+		}
+		
+		.table tr td:first-child {
+			text-align: center;
+		}
+		
+		.table caption {
+			caption-side: bottom;
+			display: none;
+		}
+	</style>
 	
 	<script>
 		var pathName = this.location.pathname;
@@ -114,7 +159,4 @@
 		$("li#" + menuName).children().addClass("active");
 	</script>
 </th:block>
-
-  
 </html>
-
